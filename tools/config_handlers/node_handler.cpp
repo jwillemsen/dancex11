@@ -43,9 +43,10 @@ namespace DAnCEX11
 
       dest.name (src.name ());
 
-      if (src.label_p ())
+      auto const* label = src.label_if_set ();
+      if (label)
       {
-        dest.label (src.label ());
+        dest.label (*label);
       }
 
       std::transform(src.begin_resource (),

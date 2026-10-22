@@ -7,6 +7,7 @@
 
 #include "pspe_handler.h"
 #include "idd_handler.h"
+#include "common.h"
 #include "dancex11/logger/log.h"
 
 namespace DAnCEX11
@@ -26,15 +27,20 @@ namespace DAnCEX11
 
       // Lookup the reference for our mdd, when we find it we use the index, if we can't find
       // it we set it to max to indicate that we failed
-      auto result = instancedeploymentdescription_map.find (src.instance ().idref ().id ());
+      auto const* idref = src.instance ().idref_if_set ();
+      if (!idref)
+        throw Config_Error ("", "Missing idref for instance endpoint");
+
+      auto result = instancedeploymentdescription_map.find (idref->id ());
       if (result != instancedeploymentdescription_map.end ())
         dest.instanceRef(static_cast<uint32_t>(result->second));
       else
         dest.instanceRef(std::numeric_limits<uint32_t>::max());
 
-      if (src.provider_p ())
+      auto const* provider = src.provider_if_set ();
+      if (provider)
         {
-          dest.provider (src.provider () == "true");
+          dest.provider (*provider == "true");
         }
       else
         {

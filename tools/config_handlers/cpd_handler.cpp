@@ -25,9 +25,10 @@ namespace DAnCEX11
       dest.exclusiveUser (src.exclusiveUser ());
       dest.optional (src.optional ());
 
-      if (src.specificType_p ())
+      auto const* specific_type = src.specificType_if_set ();
+      if (specific_type)
       {
-        dest.specificType (src.specificType ());
+        dest.specificType (*specific_type);
       }
 
       std::copy(src.begin_supportedType (),

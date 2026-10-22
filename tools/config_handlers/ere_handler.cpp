@@ -22,9 +22,10 @@ namespace DAnCEX11
       dest.location (src.location ());
       dest.provider (src.provider ());
 
-      if (src.portName_p ())
+      auto const* port_name = src.portName_if_set ();
+      if (port_name)
       {
-        dest.portName (src.portName ());
+        dest.portName (*port_name);
       }
 
       std::copy(src.begin_supportedType (),

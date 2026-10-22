@@ -28,9 +28,10 @@ namespace DAnCEX11
 
       dest.name (src.name ());
 
-      if (src.source_p ())
+      auto const* source = src.source_if_set ();
+      if (source)
         {
-          dest.source().push_back (src.source ());
+          dest.source().push_back (*source);
         }
 
       std::transform(src.begin_deployRequirement (),

@@ -10,6 +10,7 @@
 #include "property_handler.h"
 #include "req_handler.h"
 #include "cdp.hpp"
+#include "common.h"
 #include "dancex11/logger/log.h"
 
 namespace DAnCEX11
@@ -35,7 +36,11 @@ namespace DAnCEX11
                      std::back_inserter(dest.artifactRef()),
                      [&](const DAnCE::Config_Handlers::IdRef& id)
                      {
-                       auto result = artifact_map.find (id.idref().id ());
+                       auto const* idref = id.idref_if_set ();
+                       if (!idref)
+                         throw Config_Error ("", "Missing idref for artifact reference");
+
+                       auto result = artifact_map.find (idref->id ());
                        if (result != artifact_map.end ())
                          return static_cast<uint32_t>(result->second);
                        else

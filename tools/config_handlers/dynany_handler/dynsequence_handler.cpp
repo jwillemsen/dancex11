@@ -25,6 +25,9 @@ namespace DAnCEX11
                                               IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynSequence_Handler::extract_into_dynany");
+      auto const* sequence_type = type.sequence_if_set ();
+      if (!sequence_type)
+        throw Config_Error ("", "Sequence type description required");
 
       IDL::traits<CORBA::TypeCode>::ref_type tc;
       if (req_tc)
@@ -41,7 +44,7 @@ namespace DAnCEX11
       DynamicAny::DynAnySeq dynseq;
       uint32_t pos {};
 
-      switch (type.sequence ().elementType ().kind ().integral ())
+      switch (sequence_type->elementType ().kind ().integral ())
         {
           // ========== BASIC TYPES
         case TCKind::tk_null_l:
@@ -81,7 +84,7 @@ namespace DAnCEX11
                  ++i)
             {
               IDL::traits<DynamicAny::DynAny>::ref_type dynany
-                (DYNANY_HANDLER->extract_into_dynany (type.sequence ().elementType (),
+                (DYNANY_HANDLER->extract_into_dynany (sequence_type->elementType (),
                                                       *i));
               dynseq[pos++] = dynany->copy ();
             }
@@ -127,7 +130,8 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynSequence_Handler::create_typecode");
 
-      if (!type.sequence_p ())
+      auto const* sequence_type = type.sequence_if_set ();
+      if (!sequence_type)
         {
         DANCEX11_LOG_ERROR ("ERROR: Sequence type description required");
           throw Config_Error ("",
@@ -135,11 +139,12 @@ namespace DAnCEX11
         }
 
       IDL::traits<CORBA::TypeCode>::ref_type etc =
-        DYNANY_HANDLER->create_typecode (type.sequence ().elementType ());
+        DYNANY_HANDLER->create_typecode (sequence_type->elementType ());
 
       uint32_t bound {};
-      if (type.sequence ().bound_p ())
-        bound = type.sequence ().bound ();
+      auto const* sequence_bound = sequence_type->bound_if_set ();
+      if (sequence_bound)
+        bound = *sequence_bound;
 
       IDL::traits<CORBA::TypeCode>::ref_type tc =
         DYNANY_HANDLER->orb ()->create_sequence_tc (bound, etc);

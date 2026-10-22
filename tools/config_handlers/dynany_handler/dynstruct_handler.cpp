@@ -22,10 +22,13 @@ namespace DAnCEX11
                           std::map <std::string, DataType const *> &dt_map)
     {
       DANCEX11_LOG_TRACE("Config_Handlers::create_type_map");
+      auto const* struct_type = type.struct__if_set ();
+      if (!struct_type)
+        throw Config_Error ("", "Struct type description required");
 
       for (StructType::member_const_iterator i =
-             type.struct_ ().begin_member ();
-           i != type.struct_ ().end_member (); ++i)
+             struct_type->begin_member ();
+           i != struct_type->end_member (); ++i)
       {
         dt_map[i->name ()] = &(i->type ());
       }
@@ -37,6 +40,9 @@ namespace DAnCEX11
                                             IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynStruct_Handler::extract_into_dynany");
+      auto const* struct_type = type.struct__if_set ();
+      if (!struct_type)
+        throw Config_Error ("", "Struct type description required");
 
       try
       {
@@ -75,15 +81,11 @@ namespace DAnCEX11
       }
       catch (const Config_Error &ex)
       {
-        if (type.struct_p ())
-          throw Config_Error (ex.add_name(type.struct_ ().typeId ()),
-                              ex.get_error());
-        else
-          throw ex;
+        throw Config_Error (ex.add_name(struct_type->typeId ()), ex.get_error());
       }
       catch (...)
       {
-        throw Config_Error (type.struct_ ().typeId (),
+        throw Config_Error (struct_type->typeId (),
                             "Unknown exception");
       }
     }
@@ -93,20 +95,21 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynStruct_Handler::create_typecode");
 
-      if (!type.struct_p ())
+      auto const* struct_type = type.struct__if_set ();
+      if (!struct_type)
         {
           DANCEX11_LOG_ERROR ("ERROR: Struct type description required");
           throw Config_Error ("","Expected struct type information, tc_kind may be"\
                                  "incorrect");
         }
-      std::string  rid (type.struct_ ().typeId ());
-      std::string  name (type.struct_ ().name ());
+      std::string  rid (struct_type->typeId ());
+      std::string  name (struct_type->name ());
 
       CORBA::StructMemberSeq members;
 
       for (StructType::member_const_iterator i =
-        type.struct_ ().begin_member ();
-           i != type.struct_ ().end_member (); ++i)
+        struct_type->begin_member ();
+           i != struct_type->end_member (); ++i)
       {
         CORBA::StructMember member =
            CORBA::StructMember(i->name (),
@@ -122,7 +125,7 @@ namespace DAnCEX11
           name ,
           members);
 
-      DYNANY_HANDLER->register_typecode (type.struct_ ().typeId (), tc);
+      DYNANY_HANDLER->register_typecode (struct_type->typeId (), tc);
 
       return tc;
     }

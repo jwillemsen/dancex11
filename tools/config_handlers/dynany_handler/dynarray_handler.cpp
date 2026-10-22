@@ -22,6 +22,9 @@ namespace DAnCEX11
                                             IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynArray_Handler::extract_into_dynany");
+      auto const* array_type = type.array_if_set ();
+      if (!array_type)
+        throw Config_Error ("", "Array type description required");
 
       IDL::traits<CORBA::TypeCode>::ref_type tc;
       if (req_tc)
@@ -38,7 +41,7 @@ namespace DAnCEX11
       DynamicAny::DynAnySeq dynseq;
       uint32_t pos {};
 
-      switch (type.array ().elementType ().kind ().integral ())
+      switch (array_type->elementType ().kind ().integral ())
         {
           // ========== BASIC TYPES
         case TCKind::tk_null_l:
@@ -75,7 +78,7 @@ namespace DAnCEX11
                  ++i)
             {
                IDL::traits<DynamicAny::DynAny>::ref_type dynany
-                    (DYNANY_HANDLER->extract_into_dynany (type.array ().elementType (),
+                    (DYNANY_HANDLER->extract_into_dynany (array_type->elementType (),
                                                           *i));
                 dynseq.push_back (dynany->copy ());
             }
@@ -120,16 +123,17 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynArray_Handler::create_typecode");
 
-      if (!type.array_p ())
+      auto const* array_type = type.array_if_set ();
+      if (!array_type)
         {
         DANCEX11_LOG_ERROR("ERROR: Array type description required");
           throw Config_Error ("","Expected <array> element, incorrect tc_kind.");
         }
 
       IDL::traits<CORBA::TypeCode>::ref_type etc =
-        DYNANY_HANDLER->create_typecode (type.array ().elementType ());
+        DYNANY_HANDLER->create_typecode (array_type->elementType ());
 
-      uint32_t const length =  type.array ().length ();
+      uint32_t const length =  array_type->length ();
 
       IDL::traits<CORBA::TypeCode>::ref_type tc =
         DYNANY_HANDLER->orb ()->create_array_tc (length, etc);

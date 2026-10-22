@@ -22,19 +22,22 @@ namespace DAnCEX11
 
       Deployment::ComponentInterfaceDescription dest {};
 
-      if (src.UUID_p ())
+      auto const* uuid = src.UUID_if_set ();
+      if (uuid)
       {
-        dest.UUID (src.UUID ());
+        dest.UUID (*uuid);
       }
 
-      if (src.label_p ())
+      auto const* label = src.label_if_set ();
+      if (label)
       {
-        dest.label (src.label ());
+        dest.label (*label);
       }
 
-      if (src.specificType_p ())
+      auto const* specific_type = src.specificType_if_set ();
+      if (specific_type)
       {
-        dest.specificType (src.specificType ());
+        dest.specificType (*specific_type);
       }
 
       std::copy(src.begin_supportedType (),

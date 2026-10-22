@@ -29,14 +29,16 @@ namespace DAnCEX11
 
       std::unique_ptr<Deployment::DeploymentPlan> idl_dp = std::make_unique<Deployment::DeploymentPlan> ();
 
-      if (xsc_dp.label_p ())
+      auto const* label = xsc_dp.label_if_set ();
+      if (label)
         {
-          idl_dp->label (xsc_dp.label ());
+          idl_dp->label (*label);
         }
 
-      if (xsc_dp.UUID_p ())
+      auto const* uuid = xsc_dp.UUID_if_set ();
+      if (uuid)
         {
-          idl_dp->UUID (xsc_dp.UUID ());
+          idl_dp->UUID (*uuid);
         }
 
       std::transform(xsc_dp.begin_dependsOn (),
@@ -49,9 +51,10 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->infoProperty()),
                      DAnCEX11::Config_Handlers::convert_property);
 
-      if (xsc_dp.realizes_p ())
+      auto const* realizes = xsc_dp.realizes_if_set ();
+      if (realizes)
         {
-          idl_dp->realizes(DAnCEX11::Config_Handlers::convert_componentinterfacedescription (xsc_dp.realizes ()));
+          idl_dp->realizes(DAnCEX11::Config_Handlers::convert_componentinterfacedescription (*realizes));
         }
 
       std::unordered_map<std::string, size_t> artifact_map;
@@ -60,9 +63,10 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->artifact()),
                      [&](const DAnCE::Config_Handlers::ArtifactDeploymentDescription& src)
                      {
-                       if (src.id_p ())
+                       auto const* id = src.id_if_set ();
+                       if (id)
                        {
-                         artifact_map.insert({src.id (), idl_dp->artifact().size () });
+                         artifact_map.insert({*id, idl_dp->artifact().size () });
                        }
                        return DAnCEX11::Config_Handlers::convert_artifactdeploymentdescription(src);
                      });
@@ -73,9 +77,10 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->implementation()),
                      [&](const DAnCE::Config_Handlers::MonolithicDeploymentDescription& src)
                      {
-                       if (src.id_p ())
+                       auto const* id = src.id_if_set ();
+                       if (id)
                        {
-                         monolithicdeploymentdescription_map.insert({src.id (), idl_dp->implementation().size () });
+                         monolithicdeploymentdescription_map.insert({*id, idl_dp->implementation().size () });
                        }
                        return DAnCEX11::Config_Handlers::convert_monolithicdeploymentdescription(src, artifact_map);
                      });
@@ -86,9 +91,10 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->instance()),
                      [&](const DAnCE::Config_Handlers::InstanceDeploymentDescription& src)
                      {
-                       if (src.id_p ())
+                       auto const* id = src.id_if_set ();
+                       if (id)
                        {
-                         instancedeploymentdescription_map.insert({src.id (), idl_dp->instance().size () });
+                         instancedeploymentdescription_map.insert({*id, idl_dp->instance().size () });
                        }
                        return DAnCEX11::Config_Handlers::convert_instancedeploymentdescription(src, monolithicdeploymentdescription_map);
                      });

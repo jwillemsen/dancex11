@@ -60,11 +60,12 @@ namespace DAnCEX11
       }
 
       uint32_t bound {} ;
-      if (type.boundedString_p ())
+      auto const* bounded_string = type.boundedString_if_set ();
+      if (bounded_string)
       {
-        if (type.boundedString ().count_bound ())
+        if (bounded_string->count_bound ())
         {
-          bound = *type.boundedString ().begin_bound ();
+          bound = *bounded_string->begin_bound ();
         }
       }
 

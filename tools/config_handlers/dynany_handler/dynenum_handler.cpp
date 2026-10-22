@@ -25,6 +25,9 @@ namespace DAnCEX11
                                           IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynEnum_Handler::extract_into_dynany");
+      auto const* enum_type = type.enum__if_set ();
+      if (!enum_type)
+        throw Config_Error ("", "Enum type description required");
 
       try
       {
@@ -48,23 +51,19 @@ namespace DAnCEX11
       catch (const DynamicAny::DynAny::InvalidValue &)
       {
         DANCEX11_LOG_ERROR ("Invalid value provided in XML when trying to "
-                            "initialize an instance of enumerated type " << type.enum_ ().typeId ());
-        throw Config_Error (type.enum_ ().typeId (),
+                            "initialize an instance of enumerated type " << enum_type->typeId ());
+        throw Config_Error (enum_type->typeId (),
                             "Invalid value provided in XML");
       }
       catch (const Config_Error &ex)
       {
         DANCEX11_LOG_ERROR ("DynEnum_Handler caught Config_Error");
-        if (type.enum_p ())
-          throw Config_Error (ex.add_name (type.enum_ ().typeId ()),
-                              ex.get_error());
-        else
-          throw ex;
+        throw Config_Error (ex.add_name (enum_type->typeId ()), ex.get_error());
       }
       catch (...)
       {
         DANCEX11_LOG_ERROR ("DynEnum_Handler caught unknown exception");
-        throw Config_Error (type.enum_ ().typeId (),
+        throw Config_Error (enum_type->typeId (),
                             "Unknown exception");
       }
     }
@@ -74,7 +73,8 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynEnum_Handler::create_typecode");
 
-      if (!type.enum_p ())
+      auto const* enum_type = type.enum__if_set ();
+      if (!enum_type)
       {
         DANCEX11_LOG_ERROR ("ERROR: Enum type description required");
         throw Config_Error ("","Did not find expected enum type description,"\
@@ -84,8 +84,8 @@ namespace DAnCEX11
       // Construct TypeCode for the enum
       CORBA::EnumMemberSeq members;
 
-      for (EnumType::member_const_iterator i = type.enum_ ().begin_member ();
-           i != type.enum_ ().end_member ();
+      for (EnumType::member_const_iterator i = enum_type->begin_member ();
+           i != enum_type->end_member ();
            ++i)
         {
           members.push_back (*i);
@@ -93,11 +93,11 @@ namespace DAnCEX11
 
       IDL::traits<CORBA::TypeCode>::ref_type tc =
         DYNANY_HANDLER->orb ()->create_enum_tc (
-          type.enum_ ().typeId (),
-          type.enum_ ().name (),
+          enum_type->typeId (),
+          enum_type->name (),
           members);
 
-      DYNANY_HANDLER->register_typecode ((type.enum_ ().typeId ()),
+      DYNANY_HANDLER->register_typecode (enum_type->typeId (),
                                          tc);
 
       return tc;

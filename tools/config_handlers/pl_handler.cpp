@@ -6,6 +6,7 @@
  */
 
 #include "pl_handler.h"
+#include "common.h"
 #include "idd_handler.h"
 #include "dancex11/logger/log.h"
 
@@ -38,7 +39,11 @@ namespace DAnCEX11
                      std::back_inserter(dest.constrainedInstanceRef()),
                      [&](const DAnCE::Config_Handlers::IdRef& id)
                      {
-                       auto result = instancedeploymentdescription_map.find (id.idref().id ());
+                       auto const* idref = id.idref_if_set ();
+                       if (!idref)
+                         throw Config_Error ("", "Missing idref for constrained instance");
+
+                       auto result = instancedeploymentdescription_map.find (idref->id ());
                        if (result != instancedeploymentdescription_map.end ())
                          return static_cast<uint32_t>(result->second);
                        else

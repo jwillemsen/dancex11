@@ -10,6 +10,7 @@
 #include "mdd_handler.h"
 #include "property_handler.h"
 #include "cdp.hpp"
+#include "common.h"
 #include "dancex11/logger/log.h"
 
 namespace DAnCEX11
@@ -30,7 +31,11 @@ namespace DAnCEX11
 
       // Lookup the reference for our mdd, when we find it we use the index, if we can't find
       // it we set it to max to indicate that we failed
-      auto result = monolithicdeploymentdescription_map.find (src.implementation ().idref ().id ());
+      auto const* idref = src.implementation ().idref_if_set ();
+      if (!idref)
+        throw Config_Error ("", "Missing idref for implementation");
+
+      auto result = monolithicdeploymentdescription_map.find (idref->id ());
       if (result != monolithicdeploymentdescription_map.end ())
         dest.implementationRef(static_cast<uint32_t>(result->second));
       else

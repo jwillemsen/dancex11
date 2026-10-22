@@ -23,6 +23,9 @@ namespace DAnCEX11
                                            IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynAlias_Handler::extract_into_dynany");
+      auto const* alias_type = type.alias_if_set ();
+      if (!alias_type)
+        throw Config_Error ("", "Alias type description required");
 
       try
       {
@@ -34,28 +37,24 @@ namespace DAnCEX11
           tc = DynAlias_Handler::create_typecode (type);
 
         IDL::traits<DynamicAny::DynAny>::ref_type alias = DYNANY_HANDLER->extract_into_dynany (
-          type.alias ().elementType (), value, tc);
+          alias_type->elementType (), value, tc);
         return alias;
       }
       catch (const DynamicAny::DynAny::InvalidValue&)
       {
         DANCEX11_LOG_ERROR("Invalid value provided in XML when trying to "
-                           "initialize an instance of enumerated type " << type.alias ().typeId ());
-        throw Config_Error (type.alias ().typeId (),"Invalid value provided in XML");
+                           "initialize an instance of alias type " << alias_type->typeId ());
+        throw Config_Error (alias_type->typeId (),"Invalid value provided in XML");
       }
       catch (const Config_Error &ex)
       {
         DANCEX11_LOG_ERROR ("DynAlias_Handler caught Config_Error");
-        if (type.alias_p ())
-          throw Config_Error (ex.add_name(type.alias ().typeId ()),
-                              ex.get_error());
-        else
-          throw ex;
+        throw Config_Error (ex.add_name(alias_type->typeId ()), ex.get_error());
       }
       catch (...)
       {
         DANCEX11_LOG_ERROR ("DynAlias_Handler caught unknown exception");
-        throw Config_Error (type.alias ().typeId (),"Unknown exception");
+        throw Config_Error (alias_type->typeId (),"Unknown exception");
       }
     }
 
@@ -64,7 +63,8 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynAlias_Handler::create_typecode");
 
-      if (!type.alias_p ())
+      auto const* alias_type = type.alias_if_set ();
+      if (!alias_type)
       {
         DANCEX11_LOG_ERROR ("ERROR: Alias type description required");
         throw Config_Error ("","Did not find expected alias type description, tk_kind may be wrong.");
@@ -72,11 +72,11 @@ namespace DAnCEX11
 
       IDL::traits<CORBA::TypeCode>::ref_type tc =
         DYNANY_HANDLER->orb ()->create_alias_tc
-        (type.alias ().typeId ().c_str (),
-         type.alias ().name ().c_str (),
-         DYNANY_HANDLER->create_typecode (type.alias ().elementType ()));
+        (alias_type->typeId ().c_str (),
+         alias_type->name ().c_str (),
+         DYNANY_HANDLER->create_typecode (alias_type->elementType ()));
 
-      DYNANY_HANDLER->register_typecode (type.alias ().typeId (),
+      DYNANY_HANDLER->register_typecode (alias_type->typeId (),
                                          tc);
 
       return tc;
