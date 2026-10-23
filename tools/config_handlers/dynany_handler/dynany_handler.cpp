@@ -448,27 +448,21 @@ namespace DAnCEX11
 
     void
     DynAny_Handler::register_typecode (
-      const std::string& typeID,
+      std::string_view typeID,
        IDL::traits<CORBA::TypeCode>::ref_type tc)
     {
       DANCEX11_LOG_TRACE("DynAny_Handler::register_typecode");
 
-      this->typecode_map_[typeID] = tc;
+      this->typecode_map_.insert_or_assign (std::string (typeID), tc);
     }
 
     IDL::traits<CORBA::TypeCode>::ref_type
-    DynAny_Handler::get_typecode (const std::string& typeID)
+    DynAny_Handler::get_typecode (std::string_view typeID)
     {
       DANCEX11_LOG_TRACE("DynAny_Handler::get_typecode");
 
-      try
-      {
-        return this->typecode_map_ [typeID];
-      }
-      catch (...)
-      {
-        return {};
-      }
+      const TypecodeMap::const_iterator pos = this->typecode_map_.find (typeID);
+      return pos == this->typecode_map_.end () ? IDL::traits<CORBA::TypeCode>::ref_type {} : pos->second;
     }
   }
 }
