@@ -69,8 +69,12 @@ namespace DAnCEX11
         for (auto i = value.member ().begin ();
              i != value.member ().end (); ++i)
         {
+          auto const data_type = dt_map.find (i->name ());
+          if (data_type == dt_map.end ())
+            throw Config_Error (i->name (), "Unknown member in struct value");
+
           values[pos].id(i->name ());
-          values[pos].value (DYNANY_HANDLER->extract_into_dynany (*dt_map[i->name ()],
+          values[pos].value (DYNANY_HANDLER->extract_into_dynany (*data_type->second,
                                                  i->value ()));
           ++pos;
         }

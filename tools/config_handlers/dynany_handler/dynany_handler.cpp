@@ -95,7 +95,8 @@ namespace DAnCEX11
 
       TCKind::Value const tkind = type.kind ().integral ();
 
-      if ((!value._cxx_short ().empty () && tkind != TCKind::tk_short_l) ||
+      if (tkind != TCKind::tk_alias_l &&
+          ((!value._cxx_short ().empty () && tkind != TCKind::tk_short_l) ||
           (!value._cxx_long ().empty () && tkind != TCKind::tk_long_l) ||
           (!value.ushort ().empty () && tkind != TCKind::tk_ushort_l ) ||
           (!value.ulong ().empty () && tkind != TCKind::tk_ulong_l) ||
@@ -105,9 +106,14 @@ namespace DAnCEX11
           (!value.octet ().empty () && tkind != TCKind::tk_octet_l) ||
           (!value.longlong ().empty () && tkind != TCKind::tk_longlong_l) ||
           (!value.ulonglong ().empty () && tkind != TCKind::tk_ulonglong_l) ||
+          (!value.longdouble ().empty () && tkind != TCKind::tk_longdouble_l) ||
+          (!value._cxx_enum ().empty () && tkind != TCKind::tk_enum_l) ||
+          (!value.element ().empty () && tkind != TCKind::tk_sequence_l &&
+                                          tkind != TCKind::tk_array_l) ||
+          (!value.member ().empty () && tkind != TCKind::tk_struct_l) ||
           (!value.string ().empty () && !(tkind == TCKind::tk_string_l ||
                                       tkind == TCKind::tk_char_l ||
-                                      tkind == TCKind::tk_wchar_l)))
+                                      tkind == TCKind::tk_wchar_l))))
         {
           throw Config_Error ("", "Wrong value type for data type");
         }

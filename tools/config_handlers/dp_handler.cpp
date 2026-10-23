@@ -58,53 +58,46 @@ namespace DAnCEX11
         }
 
       std::unordered_map<std::string, size_t> artifact_map;
-      std::transform(xsc_dp.artifact ().begin (),
-                     xsc_dp.artifact ().end (),
-                     std::back_inserter(idl_dp->artifact()),
-                     [&](const DAnCE::Config_Handlers::ArtifactDeploymentDescription& src)
-                     {
-                       ::XMLSchema::ID<char> const* id = src.id_if_set ();
-                       if (id)
-                       {
-                         artifact_map.insert({*id, idl_dp->artifact().size () });
-                       }
-                       return DAnCEX11::Config_Handlers::convert_artifactdeploymentdescription(src);
-                     });
+      for (DAnCE::Config_Handlers::ArtifactDeploymentDescription const& src : xsc_dp.artifact ())
+        {
+          size_t const index = idl_dp->artifact ().size ();
+          ::XMLSchema::ID<char> const* id = src.id_if_set ();
+          if (id)
+            artifact_map.insert ({*id, index});
+          idl_dp->artifact ().push_back (
+            DAnCEX11::Config_Handlers::convert_artifactdeploymentdescription (src));
+        }
 
       std::unordered_map<std::string, size_t> monolithicdeploymentdescription_map;
-      std::transform(xsc_dp.implementation ().begin (),
-                     xsc_dp.implementation ().end (),
-                     std::back_inserter(idl_dp->implementation()),
-                     [&](const DAnCE::Config_Handlers::MonolithicDeploymentDescription& src)
-                     {
-                       ::XMLSchema::ID<char> const* id = src.id_if_set ();
-                       if (id)
-                       {
-                         monolithicdeploymentdescription_map.insert({*id, idl_dp->implementation().size () });
-                       }
-                       return DAnCEX11::Config_Handlers::convert_monolithicdeploymentdescription(src, artifact_map);
-                     });
+      for (DAnCE::Config_Handlers::MonolithicDeploymentDescription const& src : xsc_dp.implementation ())
+        {
+          size_t const index = idl_dp->implementation ().size ();
+          ::XMLSchema::ID<char> const* id = src.id_if_set ();
+          if (id)
+            monolithicdeploymentdescription_map.insert ({*id, index});
+          idl_dp->implementation ().push_back (
+            DAnCEX11::Config_Handlers::convert_monolithicdeploymentdescription (src, artifact_map));
+        }
 
       std::unordered_map<std::string, size_t> instancedeploymentdescription_map;
-      std::transform(xsc_dp.instance ().begin (),
-                     xsc_dp.instance ().end (),
-                     std::back_inserter(idl_dp->instance()),
-                     [&](const DAnCE::Config_Handlers::InstanceDeploymentDescription& src)
-                     {
-                       ::XMLSchema::ID<char> const* id = src.id_if_set ();
-                       if (id)
-                       {
-                         instancedeploymentdescription_map.insert({*id, idl_dp->instance().size () });
-                       }
-                       return DAnCEX11::Config_Handlers::convert_instancedeploymentdescription(src, monolithicdeploymentdescription_map);
-                     });
+      for (DAnCE::Config_Handlers::InstanceDeploymentDescription const& src : xsc_dp.instance ())
+        {
+          size_t const index = idl_dp->instance ().size ();
+          ::XMLSchema::ID<char> const* id = src.id_if_set ();
+          if (id)
+            instancedeploymentdescription_map.insert ({*id, index});
+          idl_dp->instance ().push_back (
+            DAnCEX11::Config_Handlers::convert_instancedeploymentdescription (
+              src, monolithicdeploymentdescription_map));
+        }
 
       std::transform(xsc_dp.connection ().begin (),
                      xsc_dp.connection ().end (),
                      std::back_inserter(idl_dp->connection()),
                      [&](const DAnCE::Config_Handlers::PlanConnectionDescription& src)
                      {
-                       return DAnCEX11::Config_Handlers::convert_planconnectiondescription(src, instancedeploymentdescription_map);
+                       return DAnCEX11::Config_Handlers::convert_planconnectiondescription (
+                         src, instancedeploymentdescription_map);
                      });
 
       std::transform(xsc_dp.localityConstraint ().begin (),
