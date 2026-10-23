@@ -282,7 +282,7 @@ namespace DAnCEX11
           char c = 0;
           if (!value.string ().empty ())
           {
-            c = *value.string ().front ().c_str ();
+            c = value.string ().front ().front ();
           }
           retval->insert_char (c);
         }
@@ -297,7 +297,7 @@ namespace DAnCEX11
           wchar_t wc{};
           if (!value.string ().empty ())
           {
-            wc = *value.string ().front ().c_str ();
+            wc = value.string ().front ().front ();
           }
           retval->insert_wchar (wc);
         }

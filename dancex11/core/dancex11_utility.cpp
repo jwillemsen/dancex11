@@ -279,20 +279,18 @@ namespace DAnCEX11
     }
 
     std::vector< std::string >
-    tokenize (const char *str, char c)
+    tokenize (std::string_view str, char c)
     {
       std::vector< std::string > result;
 
-      do
+      while (true)
         {
-          const char *begin = str;
-          while(*str != c && *str)
-            {
-              str++;
-            }
-          result.push_back (std::string (begin, str));
+          const std::string_view::size_type delim = str.find (c);
+          result.emplace_back (str.substr (0, delim));
+          if (delim == std::string_view::npos)
+            break;
+          str.remove_prefix (delim + 1);
         }
-      while (0 != *str++);
 
       return result;
     }

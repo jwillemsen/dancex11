@@ -232,7 +232,7 @@ namespace DAnCEX11
                           std::string err ("unknown installation protocol ");
                           err += protocol;
                           throw Deployment::PlanError (plan_uuid,
-                                                       err.c_str ());
+                                                       err);
                         }
 
                       DANCEX11_LOG_TRACE ("ArtifactInstallation_Impl::install -" <<
@@ -288,7 +288,7 @@ namespace DAnCEX11
                                   " : " << ex.reason ());
 
               // artifact installation failed for this location; clean up anything left behind
-              this->remove_i (plan_uuid, name.c_str (), &ar_guard, false);
+              this->remove_i (plan_uuid, name, &ar_guard, false);
 
               // if we have alternates we continue otherwise we fail finally
               if (++loc_n >= artifact.location ().size ())
@@ -320,7 +320,7 @@ namespace DAnCEX11
               std::string err ("malformed location ");
               err += location;
               throw Deployment::PlanError (plan_uuid,
-                                           err.c_str ());
+                                           err);
             }
 
           std::string const prot = loctmp.substr (0, p);
@@ -344,7 +344,7 @@ namespace DAnCEX11
               std::string err ("malformed location ");
               err += location;
               throw Deployment::PlanError (plan_uuid,
-                                           err.c_str ());
+                                           err);
             }
 
           // remove path separator
@@ -363,7 +363,7 @@ namespace DAnCEX11
                           handler_guard_,
                           handler_lock_,
                           throw Deployment::PlanError (
-                            plan_uuid.c_str (),
+                            plan_uuid,
                             "ArtifactInstallation handler lock failed"));
 
       // find protocol handler
@@ -389,7 +389,7 @@ namespace DAnCEX11
                           artifacts_guard_,
                           artifacts_lock_,
                           throw Deployment::PlanError (
-                            plan_uuid.c_str (),
+                            plan_uuid,
                             "artifacts lock failed"));
 
       while (true)
@@ -405,7 +405,7 @@ namespace DAnCEX11
               if (ar == 0)
                 {
                   throw Deployment::PlanError (
-                    plan_uuid.c_str (),
+                    plan_uuid,
                     "out of memory");
                 }
               plan_map[name] = ar;
@@ -423,7 +423,7 @@ namespace DAnCEX11
               if (this->artifacts_condition_.wait () != 0)
                 {
                   throw Deployment::PlanError (
-                    plan_uuid.c_str (),
+                    plan_uuid,
                     "artifact registry lock failed");
                 }
             }
@@ -447,7 +447,7 @@ namespace DAnCEX11
                           artifacts_guard_,
                           artifacts_lock_,
                           throw Deployment::PlanError (
-                            plan_uuid.c_str (),
+                            plan_uuid,
                             "artifacts lock failed"));
 
       while (true)
@@ -460,8 +460,8 @@ namespace DAnCEX11
               std::string err ("unknown artifact ");
               err += name;
               throw Deployment::PlanError (
-                plan_uuid.c_str (),
-                err.c_str ());
+                plan_uuid,
+                err);
             }
           ArtifactRegistry* ar = it_art->second;
 
@@ -472,7 +472,7 @@ namespace DAnCEX11
               if (this->artifacts_condition_.wait () != 0)
                 {
                   throw Deployment::PlanError (
-                    plan_uuid.c_str (),
+                    plan_uuid,
                     "artifact registry lock failed");
                 }
             }
@@ -522,7 +522,7 @@ namespace DAnCEX11
            ita != artifacts_map.end ();
            ++ita)
         {
-          this->remove_i (plan_uuid, ita->first.c_str (), ita->second);
+          this->remove_i (plan_uuid, ita->first, ita->second);
         }
     }
 
@@ -537,7 +537,7 @@ namespace DAnCEX11
                           handler_guard_,
                           handler_lock_,
                           throw Deployment::PlanError (
-                            plan_uuid.c_str (),
+                            plan_uuid,
                             "ArtifactInstallation handler lock failed"));
 
       DANCEX11_LOG_TRACE ("ArtifactInstallation_Impl::remove_intermediates -" <<
@@ -642,7 +642,7 @@ namespace DAnCEX11
                                   artifacts_guard_,
                                   artifacts_lock_,
                                   throw Deployment::PlanError (
-                                    plan_uuid.c_str (),
+                                    plan_uuid,
                                     "artifacts lock failed"));
 
               DANCEX11_LOG_TRACE ("ArtifactInstallation_Impl::remove -" <<
@@ -668,7 +668,7 @@ namespace DAnCEX11
                           artifacts_guard_,
                           artifacts_lock_,
                           throw Deployment::PlanError (
-                            plan_uuid.c_str (),
+                            plan_uuid,
                             "artifacts lock failed"));
 
       TArtifactsRegistry::iterator it_reg = this->artifacts_.find (plan_uuid);

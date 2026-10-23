@@ -246,7 +246,7 @@ namespace DAnCEX11
     {
       ifstream* ifs {};
       ACE_NEW_RETURN (ifs,
-                      ifstream (path.c_str (),
+                      ifstream (path,
                                 std::ios_base::in |
                                     std::ios_base::binary),
                       0);
@@ -285,7 +285,7 @@ namespace DAnCEX11
     }
 
     ACE_NEW_RETURN (ofs,
-                    ofstream (path.c_str (),
+                    ofstream (path,
                               std::ios_base::out |
                                 std::ios_base::binary),
                     0);
