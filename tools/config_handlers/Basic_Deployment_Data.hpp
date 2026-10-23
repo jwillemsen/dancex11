@@ -239,105 +239,105 @@ namespace DAnCE
 
       public:
       using short_container_type = std::list<::XMLSchema::short_>;
-      short_container_type const& short_values () const noexcept;
+      short_container_type const& short_ () const noexcept;
 
       private:
       short_container_type short__ {};
 
       public:
       using long_container_type = std::list<::XMLSchema::int_>;
-      long_container_type const& long_values () const noexcept;
+      long_container_type const& long_ () const noexcept;
 
       private:
       long_container_type long__ {};
 
       public:
       using ushort_container_type = std::list<::XMLSchema::unsignedShort>;
-      ushort_container_type const& ushort_values () const noexcept;
+      ushort_container_type const& ushort () const noexcept;
 
       private:
       ushort_container_type ushort_ {};
 
       public:
       using ulong_container_type = std::list<::XMLSchema::unsignedInt>;
-      ulong_container_type const& ulong_values () const noexcept;
+      ulong_container_type const& ulong () const noexcept;
 
       private:
       ulong_container_type ulong_ {};
 
       public:
       using float_container_type = std::list<::XMLSchema::float_>;
-      float_container_type const& float_values () const noexcept;
+      float_container_type const& float_ () const noexcept;
 
       private:
       float_container_type float__ {};
 
       public:
       using double_container_type = std::list<::XMLSchema::double_>;
-      double_container_type const& double_values () const noexcept;
+      double_container_type const& double_ () const noexcept;
 
       private:
       double_container_type double__ {};
 
       public:
       using boolean_container_type = std::list<::XMLSchema::boolean>;
-      boolean_container_type const& boolean_values () const noexcept;
+      boolean_container_type const& boolean () const noexcept;
 
       private:
       boolean_container_type boolean_ {};
 
       public:
       using octet_container_type = std::list<::XMLSchema::unsignedByte>;
-      octet_container_type const& octet_values () const noexcept;
+      octet_container_type const& octet () const noexcept;
 
       private:
       octet_container_type octet_ {};
 
       public:
       using enum_container_type = std::list<::XMLSchema::string<char>>;
-      enum_container_type const& enum_values () const noexcept;
+      enum_container_type const& enum_ () const noexcept;
 
       private:
       enum_container_type enum__ {};
 
       public:
       using string_container_type = std::list<::XMLSchema::string<char>>;
-      string_container_type const& string_values () const noexcept;
+      string_container_type const& string () const noexcept;
 
       private:
       string_container_type string_ {};
 
       public:
       using longlong_container_type = std::list<::XMLSchema::long_>;
-      longlong_container_type const& longlong_values () const noexcept;
+      longlong_container_type const& longlong () const noexcept;
 
       private:
       longlong_container_type longlong_ {};
 
       public:
       using ulonglong_container_type = std::list<::XMLSchema::unsignedLong>;
-      ulonglong_container_type const& ulonglong_values () const noexcept;
+      ulonglong_container_type const& ulonglong () const noexcept;
 
       private:
       ulonglong_container_type ulonglong_ {};
 
       public:
       using longdouble_container_type = std::list<::XMLSchema::double_>;
-      longdouble_container_type const& longdouble_values () const noexcept;
+      longdouble_container_type const& longdouble () const noexcept;
 
       private:
       longdouble_container_type longdouble_ {};
 
       public:
       using element_container_type = std::list<::DAnCE::Config_Handlers::DataValue>;
-      element_container_type const& element_values () const noexcept;
+      element_container_type const& element () const noexcept;
 
       private:
       element_container_type element_ {};
 
       public:
       using member_container_type = std::list<::DAnCE::Config_Handlers::NamedValue>;
-      member_container_type const& member_values () const noexcept;
+      member_container_type const& member () const noexcept;
 
       private:
       member_container_type member_ {};
@@ -400,7 +400,7 @@ namespace DAnCE
 
       public:
       using member_container_type = std::list<::XMLSchema::string<char>>;
-      member_container_type const& member_values () const noexcept;
+      member_container_type const& member () const noexcept;
 
       private:
       member_container_type member_ {};
@@ -420,7 +420,7 @@ namespace DAnCE
 
       public:
       using bound_container_type = std::list<::XMLSchema::unsignedInt>;
-      bound_container_type const& bound_values () const noexcept;
+      bound_container_type const& bound () const noexcept;
 
       private:
       bound_container_type bound_ {};
@@ -452,7 +452,7 @@ namespace DAnCE
 
       public:
       using member_container_type = std::list<::DAnCE::Config_Handlers::StructMemberType>;
-      member_container_type const& member_values () const noexcept;
+      member_container_type const& member () const noexcept;
 
       private:
       member_container_type member_ {};
@@ -521,7 +521,7 @@ namespace DAnCE
 
       public:
       using member_container_type = std::list<::DAnCE::Config_Handlers::ValueMemberType>;
-      member_container_type const& member_values () const noexcept;
+      member_container_type const& member () const noexcept;
 
       private:
       member_container_type member_ {};
@@ -781,14 +781,14 @@ namespace DAnCE
 
       public:
       using resourceType_container_type = std::list<::XMLSchema::string<char>>;
-      resourceType_container_type const& resourceType_values () const noexcept;
+      resourceType_container_type const& resourceType () const noexcept;
 
       private:
       resourceType_container_type resourceType_ {};
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::SatisfierProperty>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -820,7 +820,7 @@ namespace DAnCE
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -852,7 +852,7 @@ namespace DAnCE
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -878,7 +878,7 @@ namespace DAnCE
 
       public:
       using source_container_type = std::list<::XMLSchema::string<char>>;
-      source_container_type const& source_values () const noexcept;
+      source_container_type const& source () const noexcept;
 
       private:
       source_container_type source_ {};
@@ -891,28 +891,28 @@ namespace DAnCE
 
       public:
       using location_container_type = std::list<::XMLSchema::string<char>>;
-      location_container_type const& location_values () const noexcept;
+      location_container_type const& location () const noexcept;
 
       private:
       location_container_type location_ {};
 
       public:
       using execParameter_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      execParameter_container_type const& execParameter_values () const noexcept;
+      execParameter_container_type const& execParameter () const noexcept;
 
       private:
       execParameter_container_type execParameter_ {};
 
       public:
       using deployRequirement_container_type = std::list<::DAnCE::Config_Handlers::Requirement>;
-      deployRequirement_container_type const& deployRequirement_values () const noexcept;
+      deployRequirement_container_type const& deployRequirement () const noexcept;
 
       private:
       deployRequirement_container_type deployRequirement_ {};
 
       public:
       using deployedResource_container_type = std::list<::DAnCE::Config_Handlers::ResourceDeploymentDescription>;
-      deployedResource_container_type const& deployedResource_values () const noexcept;
+      deployedResource_container_type const& deployedResource () const noexcept;
 
       private:
       deployedResource_container_type deployedResource_ {};
@@ -944,28 +944,28 @@ namespace DAnCE
 
       public:
       using source_container_type = std::list<::XMLSchema::string<char>>;
-      source_container_type const& source_values () const noexcept;
+      source_container_type const& source () const noexcept;
 
       private:
       source_container_type source_ {};
 
       public:
       using artifact_container_type = std::list<::DAnCE::Config_Handlers::IdRef>;
-      artifact_container_type const& artifact_values () const noexcept;
+      artifact_container_type const& artifact () const noexcept;
 
       private:
       artifact_container_type artifact_ {};
 
       public:
       using execParameter_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      execParameter_container_type const& execParameter_values () const noexcept;
+      execParameter_container_type const& execParameter () const noexcept;
 
       private:
       execParameter_container_type execParameter_ {};
 
       public:
       using deployRequirement_container_type = std::list<::DAnCE::Config_Handlers::Requirement>;
-      deployRequirement_container_type const& deployRequirement_values () const noexcept;
+      deployRequirement_container_type const& deployRequirement () const noexcept;
 
       private:
       deployRequirement_container_type deployRequirement_ {};
@@ -1049,7 +1049,7 @@ namespace DAnCE
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -1093,21 +1093,21 @@ namespace DAnCE
 
       public:
       using configProperty_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      configProperty_container_type const& configProperty_values () const noexcept;
+      configProperty_container_type const& configProperty () const noexcept;
 
       private:
       configProperty_container_type configProperty_ {};
 
       public:
       using deployedResource_container_type = std::list<::DAnCE::Config_Handlers::InstanceResourceDeploymentDescription>;
-      deployedResource_container_type const& deployedResource_values () const noexcept;
+      deployedResource_container_type const& deployedResource () const noexcept;
 
       private:
       deployedResource_container_type deployedResource_ {};
 
       public:
       using deployedSharedResource_container_type = std::list<::DAnCE::Config_Handlers::InstanceResourceDeploymentDescription>;
-      deployedSharedResource_container_type const& deployedSharedResource_values () const noexcept;
+      deployedSharedResource_container_type const& deployedSharedResource () const noexcept;
 
       private:
       deployedSharedResource_container_type deployedSharedResource_ {};
@@ -1188,7 +1188,7 @@ namespace DAnCE
 
       public:
       using supportedType_container_type = std::list<::XMLSchema::string<char>>;
-      supportedType_container_type const& supportedType_values () const noexcept;
+      supportedType_container_type const& supportedType () const noexcept;
 
       private:
       supportedType_container_type supportedType_ {};
@@ -1225,7 +1225,7 @@ namespace DAnCE
 
       public:
       using templateParam_container_type = std::list<::XMLSchema::string<char>>;
-      templateParam_container_type const& templateParam_values () const noexcept;
+      templateParam_container_type const& templateParam () const noexcept;
 
       private:
       templateParam_container_type templateParam_ {};
@@ -1344,7 +1344,7 @@ namespace DAnCE
 
       public:
       using supportedType_container_type = std::list<::XMLSchema::string<char>>;
-      supportedType_container_type const& supportedType_values () const noexcept;
+      supportedType_container_type const& supportedType () const noexcept;
 
       private:
       supportedType_container_type supportedType_ {};
@@ -1382,7 +1382,7 @@ namespace DAnCE
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -1414,35 +1414,35 @@ namespace DAnCE
 
       public:
       using deployRequirement_container_type = std::list<::DAnCE::Config_Handlers::Requirement>;
-      deployRequirement_container_type const& deployRequirement_values () const noexcept;
+      deployRequirement_container_type const& deployRequirement () const noexcept;
 
       private:
       deployRequirement_container_type deployRequirement_ {};
 
       public:
       using externalEndpoint_container_type = std::list<::DAnCE::Config_Handlers::ComponentExternalPortEndpoint>;
-      externalEndpoint_container_type const& externalEndpoint_values () const noexcept;
+      externalEndpoint_container_type const& externalEndpoint () const noexcept;
 
       private:
       externalEndpoint_container_type externalEndpoint_ {};
 
       public:
       using internalEndpoint_container_type = std::list<::DAnCE::Config_Handlers::PlanSubcomponentPortEndpoint>;
-      internalEndpoint_container_type const& internalEndpoint_values () const noexcept;
+      internalEndpoint_container_type const& internalEndpoint () const noexcept;
 
       private:
       internalEndpoint_container_type internalEndpoint_ {};
 
       public:
       using externalReference_container_type = std::list<::DAnCE::Config_Handlers::ExternalReferenceEndpoint>;
-      externalReference_container_type const& externalReference_values () const noexcept;
+      externalReference_container_type const& externalReference () const noexcept;
 
       private:
       externalReference_container_type externalReference_ {};
 
       public:
       using deployedResource_container_type = std::list<::DAnCE::Config_Handlers::ConnectionResourceDeploymentDescription>;
-      deployedResource_container_type const& deployedResource_values () const noexcept;
+      deployedResource_container_type const& deployedResource () const noexcept;
 
       private:
       deployedResource_container_type deployedResource_ {};
@@ -1487,14 +1487,14 @@ namespace DAnCE
 
       public:
       using resourceType_container_type = std::list<::XMLSchema::string<char>>;
-      resourceType_container_type const& resourceType_values () const noexcept;
+      resourceType_container_type const& resourceType () const noexcept;
 
       private:
       resourceType_container_type resourceType_ {};
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::SatisfierProperty>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -1544,7 +1544,7 @@ namespace DAnCE
 
       public:
       using property_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      property_container_type const& property_values () const noexcept;
+      property_container_type const& property () const noexcept;
 
       private:
       property_container_type property_ {};
@@ -1595,28 +1595,28 @@ namespace DAnCE
 
       public:
       using deployRequirement_container_type = std::list<::DAnCE::Config_Handlers::Requirement>;
-      deployRequirement_container_type const& deployRequirement_values () const noexcept;
+      deployRequirement_container_type const& deployRequirement () const noexcept;
 
       private:
       deployRequirement_container_type deployRequirement_ {};
 
       public:
       using internalEndpoint_container_type = std::list<::DAnCE::Config_Handlers::SubcomponentPortEndpoint>;
-      internalEndpoint_container_type const& internalEndpoint_values () const noexcept;
+      internalEndpoint_container_type const& internalEndpoint () const noexcept;
 
       private:
       internalEndpoint_container_type internalEndpoint_ {};
 
       public:
       using externalEndpoint_container_type = std::list<::DAnCE::Config_Handlers::ComponentExternalPortEndpoint>;
-      externalEndpoint_container_type const& externalEndpoint_values () const noexcept;
+      externalEndpoint_container_type const& externalEndpoint () const noexcept;
 
       private:
       externalEndpoint_container_type externalEndpoint_ {};
 
       public:
       using externalReference_container_type = std::list<::DAnCE::Config_Handlers::ExternalReferenceEndpoint>;
-      externalReference_container_type const& externalReference_values () const noexcept;
+      externalReference_container_type const& externalReference () const noexcept;
 
       private:
       externalReference_container_type externalReference_ {};
@@ -1680,7 +1680,7 @@ namespace DAnCE
 
       public:
       using constrainedInstance_container_type = std::list<::DAnCE::Config_Handlers::IdRef>;
-      constrainedInstance_container_type const& constrainedInstance_values () const noexcept;
+      constrainedInstance_container_type const& constrainedInstance () const noexcept;
 
       private:
       constrainedInstance_container_type constrainedInstance_ {};

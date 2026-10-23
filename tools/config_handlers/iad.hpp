@@ -73,35 +73,35 @@ namespace DAnCE
 
       public:
       using location_container_type = std::list<::XMLSchema::string<char>>;
-      location_container_type const& location_values () const noexcept;
+      location_container_type const& location () const noexcept;
 
       private:
       location_container_type location_ {};
 
       public:
       using dependsOn_container_type = std::list<::DAnCE::Config_Handlers::NamedImplementationArtifact>;
-      dependsOn_container_type const& dependsOn_values () const noexcept;
+      dependsOn_container_type const& dependsOn () const noexcept;
 
       private:
       dependsOn_container_type dependsOn_ {};
 
       public:
       using execParameter_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      execParameter_container_type const& execParameter_values () const noexcept;
+      execParameter_container_type const& execParameter () const noexcept;
 
       private:
       execParameter_container_type execParameter_ {};
 
       public:
       using infoProperty_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      infoProperty_container_type const& infoProperty_values () const noexcept;
+      infoProperty_container_type const& infoProperty () const noexcept;
 
       private:
       infoProperty_container_type infoProperty_ {};
 
       public:
       using deployRequirement_container_type = std::list<::DAnCE::Config_Handlers::Requirement>;
-      deployRequirement_container_type const& deployRequirement_values () const noexcept;
+      deployRequirement_container_type const& deployRequirement () const noexcept;
 
       private:
       deployRequirement_container_type deployRequirement_ {};

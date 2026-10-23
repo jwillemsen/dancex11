@@ -34,8 +34,8 @@ namespace DAnCEX11
             break;
         }
 
-      std::transform(src.constrainedInstance_values ().begin (),
-                     src.constrainedInstance_values ().end (),
+      std::transform(src.constrainedInstance ().begin (),
+                     src.constrainedInstance ().end (),
                      std::back_inserter(dest.constrainedInstanceRef()),
                      [&](const DAnCE::Config_Handlers::IdRef& id)
                      {

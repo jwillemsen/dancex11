@@ -25,27 +25,27 @@ namespace DAnCE
     {
       return specificType_.get ();
     }
-    ComponentInterfaceDescription::supportedType_container_type const& ComponentInterfaceDescription::supportedType_values () const noexcept
+    ComponentInterfaceDescription::supportedType_container_type const& ComponentInterfaceDescription::supportedType () const noexcept
     {
       return supportedType_;
     }
-    ComponentInterfaceDescription::idlFile_container_type const& ComponentInterfaceDescription::idlFile_values () const noexcept
+    ComponentInterfaceDescription::idlFile_container_type const& ComponentInterfaceDescription::idlFile () const noexcept
     {
       return idlFile_;
     }
-    ComponentInterfaceDescription::configProperty_container_type const& ComponentInterfaceDescription::configProperty_values () const noexcept
+    ComponentInterfaceDescription::configProperty_container_type const& ComponentInterfaceDescription::configProperty () const noexcept
     {
       return configProperty_;
     }
-    ComponentInterfaceDescription::port_container_type const& ComponentInterfaceDescription::port_values () const noexcept
+    ComponentInterfaceDescription::port_container_type const& ComponentInterfaceDescription::port () const noexcept
     {
       return port_;
     }
-    ComponentInterfaceDescription::property_container_type const& ComponentInterfaceDescription::property_values () const noexcept
+    ComponentInterfaceDescription::property_container_type const& ComponentInterfaceDescription::property () const noexcept
     {
       return property_;
     }
-    ComponentInterfaceDescription::infoProperty_container_type const& ComponentInterfaceDescription::infoProperty_values () const noexcept
+    ComponentInterfaceDescription::infoProperty_container_type const& ComponentInterfaceDescription::infoProperty () const noexcept
     {
       return infoProperty_;
     }

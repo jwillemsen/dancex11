@@ -34,15 +34,15 @@ namespace DAnCE
     {
       return realizes_.get ();
     }
-    ComponentPackageDescription::configProperty_container_type const& ComponentPackageDescription::configProperty_values () const noexcept
+    ComponentPackageDescription::configProperty_container_type const& ComponentPackageDescription::configProperty () const noexcept
     {
       return configProperty_;
     }
-    ComponentPackageDescription::implementation_container_type const& ComponentPackageDescription::implementation_values () const noexcept
+    ComponentPackageDescription::implementation_container_type const& ComponentPackageDescription::implementation () const noexcept
     {
       return implementation_;
     }
-    ComponentPackageDescription::infoProperty_container_type const& ComponentPackageDescription::infoProperty_values () const noexcept
+    ComponentPackageDescription::infoProperty_container_type const& ComponentPackageDescription::infoProperty () const noexcept
     {
       return infoProperty_;
     }
@@ -63,15 +63,15 @@ namespace DAnCE
     {
       return realizes_.get ();
     }
-    ConnectorPackageDescription::configProperty_container_type const& ConnectorPackageDescription::configProperty_values () const noexcept
+    ConnectorPackageDescription::configProperty_container_type const& ConnectorPackageDescription::configProperty () const noexcept
     {
       return configProperty_;
     }
-    ConnectorPackageDescription::implementation_container_type const& ConnectorPackageDescription::implementation_values () const noexcept
+    ConnectorPackageDescription::implementation_container_type const& ConnectorPackageDescription::implementation () const noexcept
     {
       return implementation_;
     }
-    ConnectorPackageDescription::infoProperty_container_type const& ConnectorPackageDescription::infoProperty_values () const noexcept
+    ConnectorPackageDescription::infoProperty_container_type const& ConnectorPackageDescription::infoProperty () const noexcept
     {
       return infoProperty_;
     }

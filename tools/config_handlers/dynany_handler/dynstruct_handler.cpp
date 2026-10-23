@@ -27,8 +27,8 @@ namespace DAnCEX11
         throw Config_Error ("", "Struct type description required");
 
       for (auto i =
-             struct_type->member_values ().begin ();
-           i != struct_type->member_values ().end (); ++i)
+             struct_type->member ().begin ();
+           i != struct_type->member ().end (); ++i)
       {
         dt_map[i->name ()] = &(i->type ());
       }
@@ -64,10 +64,10 @@ namespace DAnCEX11
 
         uint32_t pos {};
         DynamicAny::NameDynAnyPairSeq values;
-        values.resize (value.member_values ().size ());
+        values.resize (value.member ().size ());
 
-        for (auto i = value.member_values ().begin ();
-             i != value.member_values ().end (); ++i)
+        for (auto i = value.member ().begin ();
+             i != value.member ().end (); ++i)
         {
           values[pos].id(i->name ());
           values[pos].value (DYNANY_HANDLER->extract_into_dynany (*dt_map[i->name ()],
@@ -108,8 +108,8 @@ namespace DAnCEX11
       CORBA::StructMemberSeq members;
 
       for (auto i =
-        struct_type->member_values ().begin ();
-           i != struct_type->member_values ().end (); ++i)
+        struct_type->member ().begin ();
+           i != struct_type->member ().end (); ++i)
       {
         CORBA::StructMember member =
            CORBA::StructMember(i->name (),

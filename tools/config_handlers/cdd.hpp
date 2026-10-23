@@ -51,35 +51,35 @@ namespace DAnCE
 
       public:
       using node_container_type = std::list<::DAnCE::Config_Handlers::Node>;
-      node_container_type const& node_values () const noexcept;
+      node_container_type const& node () const noexcept;
 
       private:
       node_container_type node_ {};
 
       public:
       using interconnect_container_type = std::list<::DAnCE::Config_Handlers::Interconnect>;
-      interconnect_container_type const& interconnect_values () const noexcept;
+      interconnect_container_type const& interconnect () const noexcept;
 
       private:
       interconnect_container_type interconnect_ {};
 
       public:
       using bridge_container_type = std::list<::DAnCE::Config_Handlers::Bridge>;
-      bridge_container_type const& bridge_values () const noexcept;
+      bridge_container_type const& bridge () const noexcept;
 
       private:
       bridge_container_type bridge_ {};
 
       public:
       using sharedResource_container_type = std::list<::DAnCE::Config_Handlers::SharedResource>;
-      sharedResource_container_type const& sharedResource_values () const noexcept;
+      sharedResource_container_type const& sharedResource () const noexcept;
 
       private:
       sharedResource_container_type sharedResource_ {};
 
       public:
       using infoProperty_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      infoProperty_container_type const& infoProperty_values () const noexcept;
+      infoProperty_container_type const& infoProperty () const noexcept;
 
       private:
       infoProperty_container_type infoProperty_ {};
@@ -111,14 +111,14 @@ namespace DAnCE
 
       public:
       using connect_container_type = std::list<::DAnCE::Config_Handlers::Interconnect>;
-      connect_container_type const& connect_values () const noexcept;
+      connect_container_type const& connect () const noexcept;
 
       private:
       connect_container_type connect_ {};
 
       public:
       using resource_container_type = std::list<::DAnCE::Config_Handlers::Resource>;
-      resource_container_type const& resource_values () const noexcept;
+      resource_container_type const& resource () const noexcept;
 
       private:
       resource_container_type resource_ {};
@@ -150,21 +150,21 @@ namespace DAnCE
 
       public:
       using connection_container_type = std::list<::DAnCE::Config_Handlers::Bridge>;
-      connection_container_type const& connection_values () const noexcept;
+      connection_container_type const& connection () const noexcept;
 
       private:
       connection_container_type connection_ {};
 
       public:
       using connect_container_type = std::list<::DAnCE::Config_Handlers::Node>;
-      connect_container_type const& connect_values () const noexcept;
+      connect_container_type const& connect () const noexcept;
 
       private:
       connect_container_type connect_ {};
 
       public:
       using resource_container_type = std::list<::DAnCE::Config_Handlers::Resource>;
-      resource_container_type const& resource_values () const noexcept;
+      resource_container_type const& resource () const noexcept;
 
       private:
       resource_container_type resource_ {};
@@ -196,21 +196,21 @@ namespace DAnCE
 
       public:
       using connection_container_type = std::list<::DAnCE::Config_Handlers::Interconnect>;
-      connection_container_type const& connection_values () const noexcept;
+      connection_container_type const& connection () const noexcept;
 
       private:
       connection_container_type connection_ {};
 
       public:
       using sharedResource_container_type = std::list<::DAnCE::Config_Handlers::SharedResource>;
-      sharedResource_container_type const& sharedResource_values () const noexcept;
+      sharedResource_container_type const& sharedResource () const noexcept;
 
       private:
       sharedResource_container_type sharedResource_ {};
 
       public:
       using resource_container_type = std::list<::DAnCE::Config_Handlers::Resource>;
-      resource_container_type const& resource_values () const noexcept;
+      resource_container_type const& resource () const noexcept;
 
       private:
       resource_container_type resource_ {};

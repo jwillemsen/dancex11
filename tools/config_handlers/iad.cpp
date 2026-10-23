@@ -30,23 +30,23 @@ namespace DAnCE
     {
       return UUID_.get ();
     }
-    ImplementationArtifactDescription::location_container_type const& ImplementationArtifactDescription::location_values () const noexcept
+    ImplementationArtifactDescription::location_container_type const& ImplementationArtifactDescription::location () const noexcept
     {
       return location_;
     }
-    ImplementationArtifactDescription::dependsOn_container_type const& ImplementationArtifactDescription::dependsOn_values () const noexcept
+    ImplementationArtifactDescription::dependsOn_container_type const& ImplementationArtifactDescription::dependsOn () const noexcept
     {
       return dependsOn_;
     }
-    ImplementationArtifactDescription::execParameter_container_type const& ImplementationArtifactDescription::execParameter_values () const noexcept
+    ImplementationArtifactDescription::execParameter_container_type const& ImplementationArtifactDescription::execParameter () const noexcept
     {
       return execParameter_;
     }
-    ImplementationArtifactDescription::infoProperty_container_type const& ImplementationArtifactDescription::infoProperty_values () const noexcept
+    ImplementationArtifactDescription::infoProperty_container_type const& ImplementationArtifactDescription::infoProperty () const noexcept
     {
       return infoProperty_;
     }
-    ImplementationArtifactDescription::deployRequirement_container_type const& ImplementationArtifactDescription::deployRequirement_values () const noexcept
+    ImplementationArtifactDescription::deployRequirement_container_type const& ImplementationArtifactDescription::deployRequirement () const noexcept
     {
       return deployRequirement_;
     }

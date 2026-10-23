@@ -13,7 +13,7 @@ namespace DAnCE
 {
   namespace Config_Handlers
   {
-    ComponentPackageImport::location_container_type const& ComponentPackageImport::location_values () const noexcept
+    ComponentPackageImport::location_container_type const& ComponentPackageImport::location () const noexcept
     {
       return location_;
     }
@@ -42,11 +42,11 @@ namespace DAnCE
     {
       return referencedPackage_.get ();
     }
-    PackageConfiguration::selectRequirement_container_type const& PackageConfiguration::selectRequirement_values () const noexcept
+    PackageConfiguration::selectRequirement_container_type const& PackageConfiguration::selectRequirement () const noexcept
     {
       return selectRequirement_;
     }
-    PackageConfiguration::configProperty_container_type const& PackageConfiguration::configProperty_values () const noexcept
+    PackageConfiguration::configProperty_container_type const& PackageConfiguration::configProperty () const noexcept
     {
       return configProperty_;
     }

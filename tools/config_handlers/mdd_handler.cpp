@@ -27,12 +27,12 @@ namespace DAnCEX11
 
       dest.name(src.name ());
 
-      std::copy(src.source_values ().begin (),
-                src.source_values ().end (),
+      std::copy(src.source ().begin (),
+                src.source ().end (),
                 std::back_inserter(dest.source()));
 
-      std::transform(src.artifact_values ().begin (),
-                     src.artifact_values ().end (),
+      std::transform(src.artifact ().begin (),
+                     src.artifact ().end (),
                      std::back_inserter(dest.artifactRef()),
                      [&](const DAnCE::Config_Handlers::IdRef& id)
                      {
@@ -47,13 +47,13 @@ namespace DAnCEX11
                          return std::numeric_limits<uint32_t>::max();
                      });
 
-      std::transform(src.execParameter_values ().begin (),
-                     src.execParameter_values ().end (),
+      std::transform(src.execParameter ().begin (),
+                     src.execParameter ().end (),
                      std::back_inserter(dest.execParameter()),
                      DAnCEX11::Config_Handlers::convert_property);
 
-      std::transform(src.deployRequirement_values ().begin (),
-                     src.deployRequirement_values ().end (),
+      std::transform(src.deployRequirement ().begin (),
+                     src.deployRequirement ().end (),
                      std::back_inserter(dest.deployRequirement()),
                      DAnCEX11::Config_Handlers::convert_requirement);
 

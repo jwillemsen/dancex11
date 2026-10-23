@@ -21,23 +21,23 @@ namespace DAnCE
     {
       return label_.get ();
     }
-    Domain::node_container_type const& Domain::node_values () const noexcept
+    Domain::node_container_type const& Domain::node () const noexcept
     {
       return node_;
     }
-    Domain::interconnect_container_type const& Domain::interconnect_values () const noexcept
+    Domain::interconnect_container_type const& Domain::interconnect () const noexcept
     {
       return interconnect_;
     }
-    Domain::bridge_container_type const& Domain::bridge_values () const noexcept
+    Domain::bridge_container_type const& Domain::bridge () const noexcept
     {
       return bridge_;
     }
-    Domain::sharedResource_container_type const& Domain::sharedResource_values () const noexcept
+    Domain::sharedResource_container_type const& Domain::sharedResource () const noexcept
     {
       return sharedResource_;
     }
-    Domain::infoProperty_container_type const& Domain::infoProperty_values () const noexcept
+    Domain::infoProperty_container_type const& Domain::infoProperty () const noexcept
     {
       return infoProperty_;
     }
@@ -50,11 +50,11 @@ namespace DAnCE
     {
       return label_.get ();
     }
-    Bridge::connect_container_type const& Bridge::connect_values () const noexcept
+    Bridge::connect_container_type const& Bridge::connect () const noexcept
     {
       return connect_;
     }
-    Bridge::resource_container_type const& Bridge::resource_values () const noexcept
+    Bridge::resource_container_type const& Bridge::resource () const noexcept
     {
       return resource_;
     }
@@ -67,15 +67,15 @@ namespace DAnCE
     {
       return label_.get ();
     }
-    Interconnect::connection_container_type const& Interconnect::connection_values () const noexcept
+    Interconnect::connection_container_type const& Interconnect::connection () const noexcept
     {
       return connection_;
     }
-    Interconnect::connect_container_type const& Interconnect::connect_values () const noexcept
+    Interconnect::connect_container_type const& Interconnect::connect () const noexcept
     {
       return connect_;
     }
-    Interconnect::resource_container_type const& Interconnect::resource_values () const noexcept
+    Interconnect::resource_container_type const& Interconnect::resource () const noexcept
     {
       return resource_;
     }
@@ -88,15 +88,15 @@ namespace DAnCE
     {
       return label_.get ();
     }
-    Node::connection_container_type const& Node::connection_values () const noexcept
+    Node::connection_container_type const& Node::connection () const noexcept
     {
       return connection_;
     }
-    Node::sharedResource_container_type const& Node::sharedResource_values () const noexcept
+    Node::sharedResource_container_type const& Node::sharedResource () const noexcept
     {
       return sharedResource_;
     }
-    Node::resource_container_type const& Node::resource_values () const noexcept
+    Node::resource_container_type const& Node::resource () const noexcept
     {
       return resource_;
     }

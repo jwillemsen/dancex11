@@ -31,12 +31,12 @@ namespace DAnCEX11
         dest.specificType (*specific_type);
       }
 
-      std::copy(src.supportedType_values ().begin (),
-                src.supportedType_values ().end (),
+      std::copy(src.supportedType ().begin (),
+                src.supportedType ().end (),
                 std::back_inserter(dest.supportedType()));
 
-      std::copy(src.templateParam_values ().begin (),
-                src.templateParam_values ().end (),
+      std::copy(src.templateParam ().begin (),
+                src.templateParam ().end (),
                 std::back_inserter(dest.templateParam()));
 
       switch (src.kind ().integral ())

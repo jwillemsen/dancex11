@@ -40,31 +40,31 @@ namespace DAnCEX11
         dest.specificType (*specific_type);
       }
 
-      std::copy(src.supportedType_values ().begin (),
-                src.supportedType_values ().end (),
+      std::copy(src.supportedType ().begin (),
+                src.supportedType ().end (),
                 std::back_inserter(dest.supportedType()));
 
-      std::copy(src.idlFile_values ().begin (),
-                src.idlFile_values ().end (),
+      std::copy(src.idlFile ().begin (),
+                src.idlFile ().end (),
                 std::back_inserter(dest.idlFile()));
 
-      std::transform(src.configProperty_values ().begin (),
-                     src.configProperty_values ().begin (),
+      std::transform(src.configProperty ().begin (),
+                     src.configProperty ().begin (),
                      std::back_inserter(dest.configProperty()),
                      DAnCEX11::Config_Handlers::convert_property);
 
-      std::transform(src.port_values ().begin (),
-                     src.port_values ().end (),
+      std::transform(src.port ().begin (),
+                     src.port ().end (),
                      std::back_inserter(dest.port()),
                      DAnCEX11::Config_Handlers::convert_componentportdescription);
 
-      std::transform(src.property_values ().begin (),
-                     src.property_values ().end (),
+      std::transform(src.property ().begin (),
+                     src.property ().end (),
                      std::back_inserter(dest.property()),
                      DAnCEX11::Config_Handlers::convert_componentpropertydescription);
 
-      std::transform(src.infoProperty_values ().begin (),
-                     src.infoProperty_values ().end (),
+      std::transform(src.infoProperty ().begin (),
+                     src.infoProperty ().end (),
                      std::back_inserter(dest.infoProperty()),
                      DAnCEX11::Config_Handlers::convert_property);
 

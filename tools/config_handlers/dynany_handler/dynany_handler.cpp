@@ -95,17 +95,17 @@ namespace DAnCEX11
 
       TCKind::Value const tkind = type.kind ().integral ();
 
-      if ((value.short_values ().size () && tkind != TCKind::tk_short_l) ||
-          (value.long_values ().size () && tkind != TCKind::tk_long_l) ||
-          (value.ushort_values ().size () && tkind != TCKind::tk_ushort_l ) ||
-          (value.ulong_values ().size () && tkind != TCKind::tk_ulong_l) ||
-          (value.float_values ().size () && tkind != TCKind::tk_float_l) ||
-          (value.double_values ().size () && tkind != TCKind::tk_double_l) ||
-          (value.boolean_values ().size () && tkind != TCKind::tk_boolean_l) ||
-          (value.octet_values ().size () && tkind != TCKind::tk_octet_l) ||
-          (value.longlong_values ().size () && tkind != TCKind::tk_longlong_l) ||
-          (value.ulonglong_values ().size () && tkind != TCKind::tk_ulonglong_l) ||
-          (value.string_values ().size () && !(tkind == TCKind::tk_string_l ||
+      if ((value.short_ ().size () && tkind != TCKind::tk_short_l) ||
+          (value.long_ ().size () && tkind != TCKind::tk_long_l) ||
+          (value.ushort ().size () && tkind != TCKind::tk_ushort_l ) ||
+          (value.ulong ().size () && tkind != TCKind::tk_ulong_l) ||
+          (value.float_ ().size () && tkind != TCKind::tk_float_l) ||
+          (value.double_ ().size () && tkind != TCKind::tk_double_l) ||
+          (value.boolean ().size () && tkind != TCKind::tk_boolean_l) ||
+          (value.octet ().size () && tkind != TCKind::tk_octet_l) ||
+          (value.longlong ().size () && tkind != TCKind::tk_longlong_l) ||
+          (value.ulonglong ().size () && tkind != TCKind::tk_ulonglong_l) ||
+          (value.string ().size () && !(tkind == TCKind::tk_string_l ||
                                       tkind == TCKind::tk_char_l ||
                                       tkind == TCKind::tk_wchar_l)))
         {
@@ -128,9 +128,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_short);
           }
           int16_t s {};
-          if (value.short_values ().size ())
+          if (value.short_ ().size ())
           {
-            s = *value.short_values ().begin ();
+            s = *value.short_ ().begin ();
           }
           retval->insert_short (s);
         }
@@ -142,9 +142,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_long);
           }
           int32_t l {};
-          if (value.long_values ().size ())
+          if (value.long_ ().size ())
           {
-            l = *value.long_values ().begin ();
+            l = *value.long_ ().begin ();
           }
           retval->insert_long (l);
         }
@@ -157,9 +157,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ushort);
           }
           uint16_t us {};
-          if (value.ushort_values ().size ())
+          if (value.ushort ().size ())
           {
-            us = *value.ushort_values ().begin ();
+            us = *value.ushort ().begin ();
           }
           retval->insert_ushort (us);
         }
@@ -172,9 +172,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ulong);
           }
           uint32_t ul {};
-          if (value.ulong_values ().size ())
+          if (value.ulong ().size ())
           {
-            ul = *value.ulong_values ().begin ();
+            ul = *value.ulong ().begin ();
           }
           retval->insert_ulong (ul);
         }
@@ -187,9 +187,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_float);
           }
           float f {};
-          if (value.float_values ().size ())
+          if (value.float_ ().size ())
           {
-            f = *value.float_values ().begin ();
+            f = *value.float_ ().begin ();
           }
           retval->insert_float (f);
         }
@@ -202,9 +202,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_double);
           }
           double d {};
-          if (value.double_values ().size ())
+          if (value.double_ ().size ())
           {
-            d = *value.double_values ().begin ();
+            d = *value.double_ ().begin ();
           }
           retval->insert_double (d);
         }
@@ -217,9 +217,9 @@ namespace DAnCEX11
                 retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_boolean);
               }
             bool b { false };
-            if (value.boolean_values ().size ())
+            if (value.boolean ().size ())
               {
-                b = *value.boolean_values ().begin ();
+                b = *value.boolean ().begin ();
               }
             retval->insert_boolean (b);
           }
@@ -232,9 +232,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_octet);
           }
           uint8_t o {};
-          if (value.octet_values ().size ())
+          if (value.octet ().size ())
           {
-            o = *(value.octet_values ().begin ());
+            o = *(value.octet ().begin ());
           }
           retval->insert_octet (o);
         }
@@ -247,9 +247,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_longlong);
           }
           int64_t ll {};
-          if (value.longlong_values ().size ())
+          if (value.longlong ().size ())
           {
-            ll = *value.longlong_values ().begin ();
+            ll = *value.longlong ().begin ();
           }
           retval->insert_longlong (ll);
         }
@@ -262,9 +262,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ulonglong);
           }
         uint64_t ull = {};
-        if (value.ulonglong_values ().size ())
+        if (value.ulonglong ().size ())
           {
-            ull = *value.ulonglong_values ().begin ();
+            ull = *value.ulonglong ().begin ();
           }
           retval->insert_ulonglong (ull);
         }
@@ -280,9 +280,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_char);
           }
           char c = 0;
-          if (value.string_values ().size ())
+          if (value.string ().size ())
           {
-            c = *value.string_values ().begin ()->c_str();
+            c = *value.string ().begin ()->c_str();
           }
           retval->insert_char (c);
         }
@@ -295,9 +295,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_wchar);
           }
           wchar_t wc{};
-          if (value.string_values ().size ())
+          if (value.string ().size ())
           {
-            wc = *value.string_values ().begin ()->c_str();
+            wc = *value.string ().begin ()->c_str();
           }
           retval->insert_wchar (wc);
         }

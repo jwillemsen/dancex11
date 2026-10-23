@@ -68,7 +68,7 @@ namespace DAnCE
 
       public:
       using source_container_type = std::list<::XMLSchema::string<char>>;
-      source_container_type const& source_values () const noexcept;
+      source_container_type const& source () const noexcept;
 
       private:
       source_container_type source_ {};
@@ -81,7 +81,7 @@ namespace DAnCE
 
       public:
       using delegatesTo_container_type = std::list<::DAnCE::Config_Handlers::PlanSubcomponentPropertyReference>;
-      delegatesTo_container_type const& delegatesTo_values () const noexcept;
+      delegatesTo_container_type const& delegatesTo () const noexcept;
 
       private:
       delegatesTo_container_type delegatesTo_ {};
@@ -119,56 +119,56 @@ namespace DAnCE
 
       public:
       using implementation_container_type = std::list<::DAnCE::Config_Handlers::MonolithicDeploymentDescription>;
-      implementation_container_type const& implementation_values () const noexcept;
+      implementation_container_type const& implementation () const noexcept;
 
       private:
       implementation_container_type implementation_ {};
 
       public:
       using instance_container_type = std::list<::DAnCE::Config_Handlers::InstanceDeploymentDescription>;
-      instance_container_type const& instance_values () const noexcept;
+      instance_container_type const& instance () const noexcept;
 
       private:
       instance_container_type instance_ {};
 
       public:
       using connection_container_type = std::list<::DAnCE::Config_Handlers::PlanConnectionDescription>;
-      connection_container_type const& connection_values () const noexcept;
+      connection_container_type const& connection () const noexcept;
 
       private:
       connection_container_type connection_ {};
 
       public:
       using externalProperty_container_type = std::list<::DAnCE::Config_Handlers::PlanPropertyMapping>;
-      externalProperty_container_type const& externalProperty_values () const noexcept;
+      externalProperty_container_type const& externalProperty () const noexcept;
 
       private:
       externalProperty_container_type externalProperty_ {};
 
       public:
       using dependsOn_container_type = std::list<::DAnCE::Config_Handlers::ImplementationDependency>;
-      dependsOn_container_type const& dependsOn_values () const noexcept;
+      dependsOn_container_type const& dependsOn () const noexcept;
 
       private:
       dependsOn_container_type dependsOn_ {};
 
       public:
       using artifact_container_type = std::list<::DAnCE::Config_Handlers::ArtifactDeploymentDescription>;
-      artifact_container_type const& artifact_values () const noexcept;
+      artifact_container_type const& artifact () const noexcept;
 
       private:
       artifact_container_type artifact_ {};
 
       public:
       using infoProperty_container_type = std::list<::DAnCE::Config_Handlers::Property>;
-      infoProperty_container_type const& infoProperty_values () const noexcept;
+      infoProperty_container_type const& infoProperty () const noexcept;
 
       private:
       infoProperty_container_type infoProperty_ {};
 
       public:
       using localityConstraint_container_type = std::list<::DAnCE::Config_Handlers::PlanLocality>;
-      localityConstraint_container_type const& localityConstraint_values () const noexcept;
+      localityConstraint_container_type const& localityConstraint () const noexcept;
 
       private:
       localityConstraint_container_type localityConstraint_ {};

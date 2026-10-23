@@ -26,7 +26,7 @@ namespace DAnCE
     {
       return *name_;
     }
-    PlanPropertyMapping::source_container_type const& PlanPropertyMapping::source_values () const noexcept
+    PlanPropertyMapping::source_container_type const& PlanPropertyMapping::source () const noexcept
     {
       return source_;
     }
@@ -34,7 +34,7 @@ namespace DAnCE
     {
       return *externalName_;
     }
-    PlanPropertyMapping::delegatesTo_container_type const& PlanPropertyMapping::delegatesTo_values () const noexcept
+    PlanPropertyMapping::delegatesTo_container_type const& PlanPropertyMapping::delegatesTo () const noexcept
     {
       return delegatesTo_;
     }
@@ -51,35 +51,35 @@ namespace DAnCE
     {
       return realizes_.get ();
     }
-    deploymentPlan::implementation_container_type const& deploymentPlan::implementation_values () const noexcept
+    deploymentPlan::implementation_container_type const& deploymentPlan::implementation () const noexcept
     {
       return implementation_;
     }
-    deploymentPlan::instance_container_type const& deploymentPlan::instance_values () const noexcept
+    deploymentPlan::instance_container_type const& deploymentPlan::instance () const noexcept
     {
       return instance_;
     }
-    deploymentPlan::connection_container_type const& deploymentPlan::connection_values () const noexcept
+    deploymentPlan::connection_container_type const& deploymentPlan::connection () const noexcept
     {
       return connection_;
     }
-    deploymentPlan::externalProperty_container_type const& deploymentPlan::externalProperty_values () const noexcept
+    deploymentPlan::externalProperty_container_type const& deploymentPlan::externalProperty () const noexcept
     {
       return externalProperty_;
     }
-    deploymentPlan::dependsOn_container_type const& deploymentPlan::dependsOn_values () const noexcept
+    deploymentPlan::dependsOn_container_type const& deploymentPlan::dependsOn () const noexcept
     {
       return dependsOn_;
     }
-    deploymentPlan::artifact_container_type const& deploymentPlan::artifact_values () const noexcept
+    deploymentPlan::artifact_container_type const& deploymentPlan::artifact () const noexcept
     {
       return artifact_;
     }
-    deploymentPlan::infoProperty_container_type const& deploymentPlan::infoProperty_values () const noexcept
+    deploymentPlan::infoProperty_container_type const& deploymentPlan::infoProperty () const noexcept
     {
       return infoProperty_;
     }
-    deploymentPlan::localityConstraint_container_type const& deploymentPlan::localityConstraint_values () const noexcept
+    deploymentPlan::localityConstraint_container_type const& deploymentPlan::localityConstraint () const noexcept
     {
       return localityConstraint_;
     }

@@ -38,11 +38,11 @@ namespace DAnCE
     {
       return specializedConfig_.get ();
     }
-    SubcomponentInstantiationDescription::selectRequirement_container_type const& SubcomponentInstantiationDescription::selectRequirement_values () const noexcept
+    SubcomponentInstantiationDescription::selectRequirement_container_type const& SubcomponentInstantiationDescription::selectRequirement () const noexcept
     {
       return selectRequirement_;
     }
-    SubcomponentInstantiationDescription::configProperty_container_type const& SubcomponentInstantiationDescription::configProperty_values () const noexcept
+    SubcomponentInstantiationDescription::configProperty_container_type const& SubcomponentInstantiationDescription::configProperty () const noexcept
     {
       return configProperty_;
     }
@@ -76,7 +76,7 @@ namespace DAnCE
     {
       return *externalName_;
     }
-    AssemblyPropertyMapping::delegatesTo_container_type const& AssemblyPropertyMapping::delegatesTo_values () const noexcept
+    AssemblyPropertyMapping::delegatesTo_container_type const& AssemblyPropertyMapping::delegatesTo () const noexcept
     {
       return delegatesTo_;
     }
@@ -106,36 +106,36 @@ namespace DAnCE
       return *constrainedInstance_;
     }
 
-    ComponentAssemblyDescription::instance_container_type const& ComponentAssemblyDescription::instance_values () const noexcept
+    ComponentAssemblyDescription::instance_container_type const& ComponentAssemblyDescription::instance () const noexcept
     {
       return instance_;
     }
-    ComponentAssemblyDescription::connection_container_type const& ComponentAssemblyDescription::connection_values () const noexcept
+    ComponentAssemblyDescription::connection_container_type const& ComponentAssemblyDescription::connection () const noexcept
     {
       return connection_;
     }
-    ComponentAssemblyDescription::externalProperty_container_type const& ComponentAssemblyDescription::externalProperty_values () const noexcept
+    ComponentAssemblyDescription::externalProperty_container_type const& ComponentAssemblyDescription::externalProperty () const noexcept
     {
       return externalProperty_;
     }
-    ComponentAssemblyDescription::locality_container_type const& ComponentAssemblyDescription::locality_values () const noexcept
+    ComponentAssemblyDescription::locality_container_type const& ComponentAssemblyDescription::locality () const noexcept
     {
       return locality_;
     }
 
-    MonolithicImplementationDescription::nodeExecParameter_container_type const& MonolithicImplementationDescription::nodeExecParameter_values () const noexcept
+    MonolithicImplementationDescription::nodeExecParameter_container_type const& MonolithicImplementationDescription::nodeExecParameter () const noexcept
     {
       return nodeExecParameter_;
     }
-    MonolithicImplementationDescription::componentExecParameter_container_type const& MonolithicImplementationDescription::componentExecParameter_values () const noexcept
+    MonolithicImplementationDescription::componentExecParameter_container_type const& MonolithicImplementationDescription::componentExecParameter () const noexcept
     {
       return componentExecParameter_;
     }
-    MonolithicImplementationDescription::deployRequirement_container_type const& MonolithicImplementationDescription::deployRequirement_values () const noexcept
+    MonolithicImplementationDescription::deployRequirement_container_type const& MonolithicImplementationDescription::deployRequirement () const noexcept
     {
       return deployRequirement_;
     }
-    MonolithicImplementationDescription::primaryArtifact_container_type const& MonolithicImplementationDescription::primaryArtifact_values () const noexcept
+    MonolithicImplementationDescription::primaryArtifact_container_type const& MonolithicImplementationDescription::primaryArtifact () const noexcept
     {
       return primaryArtifact_;
     }
@@ -160,19 +160,19 @@ namespace DAnCE
     {
       return monolithicImpl_.get ();
     }
-    ComponentImplementationDescription::configProperty_container_type const& ComponentImplementationDescription::configProperty_values () const noexcept
+    ComponentImplementationDescription::configProperty_container_type const& ComponentImplementationDescription::configProperty () const noexcept
     {
       return configProperty_;
     }
-    ComponentImplementationDescription::capability_container_type const& ComponentImplementationDescription::capability_values () const noexcept
+    ComponentImplementationDescription::capability_container_type const& ComponentImplementationDescription::capability () const noexcept
     {
       return capability_;
     }
-    ComponentImplementationDescription::dependsOn_container_type const& ComponentImplementationDescription::dependsOn_values () const noexcept
+    ComponentImplementationDescription::dependsOn_container_type const& ComponentImplementationDescription::dependsOn () const noexcept
     {
       return dependsOn_;
     }
-    ComponentImplementationDescription::infoProperty_container_type const& ComponentImplementationDescription::infoProperty_values () const noexcept
+    ComponentImplementationDescription::infoProperty_container_type const& ComponentImplementationDescription::infoProperty () const noexcept
     {
       return infoProperty_;
     }
@@ -201,19 +201,19 @@ namespace DAnCE
     {
       return monolithicImpl_.get ();
     }
-    ConnectorImplementationDescription::configProperty_container_type const& ConnectorImplementationDescription::configProperty_values () const noexcept
+    ConnectorImplementationDescription::configProperty_container_type const& ConnectorImplementationDescription::configProperty () const noexcept
     {
       return configProperty_;
     }
-    ConnectorImplementationDescription::capability_container_type const& ConnectorImplementationDescription::capability_values () const noexcept
+    ConnectorImplementationDescription::capability_container_type const& ConnectorImplementationDescription::capability () const noexcept
     {
       return capability_;
     }
-    ConnectorImplementationDescription::dependsOn_container_type const& ConnectorImplementationDescription::dependsOn_values () const noexcept
+    ConnectorImplementationDescription::dependsOn_container_type const& ConnectorImplementationDescription::dependsOn () const noexcept
     {
       return dependsOn_;
     }
-    ConnectorImplementationDescription::infoProperty_container_type const& ConnectorImplementationDescription::infoProperty_values () const noexcept
+    ConnectorImplementationDescription::infoProperty_container_type const& ConnectorImplementationDescription::infoProperty () const noexcept
     {
       return infoProperty_;
     }
