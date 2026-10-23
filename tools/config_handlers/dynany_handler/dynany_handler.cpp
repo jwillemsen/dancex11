@@ -236,7 +236,7 @@ namespace DAnCEX11
             bool b { false };
             if (!value.boolean ().empty ())
               {
-            b = value.boolean ().front ();
+                b = value.boolean ().front ();
               }
             retval->insert_boolean (b);
           }
