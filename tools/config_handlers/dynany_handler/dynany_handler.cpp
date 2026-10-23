@@ -95,6 +95,17 @@ namespace DAnCEX11
 
       TCKind::Value const tkind = type.kind ().integral ();
 
+      if (value._cxx_short ().size () > 1 || value._cxx_long ().size () > 1 ||
+          value.ushort ().size () > 1 || value.ulong ().size () > 1 ||
+          value._cxx_float ().size () > 1 || value._cxx_double ().size () > 1 ||
+          value.boolean ().size () > 1 || value.octet ().size () > 1 ||
+          value.longlong ().size () > 1 || value.ulonglong ().size () > 1 ||
+          value.longdouble ().size () > 1 || value._cxx_enum ().size () > 1 ||
+          value.string ().size () > 1)
+      {
+        throw Config_Error ("", "Multiple scalar values provided for data type");
+      }
+
       if (tkind != TCKind::tk_alias_l &&
           ((!value._cxx_short ().empty () && tkind != TCKind::tk_short_l) ||
           (!value._cxx_long ().empty () && tkind != TCKind::tk_long_l) ||
@@ -308,10 +319,12 @@ namespace DAnCEX11
           if (!value.string ().empty ())
           {
             ::XMLSchema::string<char> const& character_value = value.string ().front ();
-            if (!character_value.empty ())
+            if (character_value.size () != 1 ||
+                static_cast<unsigned char> (character_value.front ()) > 0x7f)
             {
-              wc = character_value.front ();
+              throw Config_Error ("", "Non-ASCII wchar values are not supported");
             }
+            wc = character_value.front ();
           }
           retval->insert_wchar (wc);
         }
@@ -415,13 +428,15 @@ namespace DAnCEX11
           // We are then creating a long double initialized from a regular
           // double. This is a very tricky conversion and doesn't work in
           // combination with certain (versions of) compilers.
-          break;
+          DANCEX11_LOG_DEBUG("DynAny_Handler::create_typecode - Type not supported");
+          throw Config_Error ("", "Type not supported");
 
         case TCKind::tk_wchar_l:
           return CORBA::_tc_wchar;
 
         case TCKind::tk_wstring_l:
-          break;
+          DANCEX11_LOG_DEBUG("DynAny_Handler::create_typecode - Type not supported");
+          throw Config_Error ("", "Type not supported");
 
         case TCKind::tk_enum_l:
           return DynEnum_Handler::create_typecode (type);
@@ -457,7 +472,8 @@ namespace DAnCEX11
           throw Config_Error ("", "Type not supported");
         }
 
-      return {};
+      DANCEX11_LOG_DEBUG("DynAny_Handler::create_typecode - Unknown type");
+      throw Config_Error ("", "Unknown type");
     }
 
     void
