@@ -26,8 +26,7 @@ namespace DAnCEX11
       if (!struct_type)
         throw Config_Error ("", "Struct type description required");
 
-      for (auto i =
-             struct_type->member ().begin ();
+      for (auto i = struct_type->member ().begin ();
            i != struct_type->member ().end (); ++i)
       {
         dt_map[i->name ()] = &(i->type ());
@@ -111,8 +110,7 @@ namespace DAnCEX11
 
       CORBA::StructMemberSeq members;
 
-      for (auto i =
-        struct_type->member ().begin ();
+      for (auto i = struct_type->member ().begin ();
            i != struct_type->member ().end (); ++i)
       {
         CORBA::StructMember member =

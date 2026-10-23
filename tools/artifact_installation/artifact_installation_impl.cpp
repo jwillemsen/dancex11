@@ -562,10 +562,9 @@ namespace DAnCEX11
                           handler_lock_,
                           throw Deployment::PlanError (plan_uuid, "ArtifactInstallation handler lock failed"));
 
-      std::unique_ptr<ArtifactRegistry> safe_artifact_reg (do_delete ? artifact_reg : 0);
+      std::unique_ptr<ArtifactRegistry> safe_artifact_reg (do_delete ? artifact_reg : nullptr);
 
-      for (ArtifactRegistry::TVersions::iterator iti =
-             artifact_reg->versions ().begin ();
+      for (ArtifactRegistry::TVersions::iterator iti = artifact_reg->versions ().begin ();
            iti != artifact_reg->versions ().end ();
            ++iti)
         {
