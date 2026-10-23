@@ -101,8 +101,7 @@ namespace DAnCEX11
           enum_type->name (),
           members);
 
-      DYNANY_HANDLER->register_typecode (enum_type->typeId (),
-                                         tc);
+      DYNANY_HANDLER->register_typecode (enum_type->typeId (), tc);
 
       return tc;
     }

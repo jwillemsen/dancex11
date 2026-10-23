@@ -76,8 +76,7 @@ namespace DAnCEX11
          alias_type->name (),
          DYNANY_HANDLER->create_typecode (alias_type->elementType ()));
 
-      DYNANY_HANDLER->register_typecode (alias_type->typeId (),
-                                         tc);
+      DYNANY_HANDLER->register_typecode (alias_type->typeId (), tc);
 
       return tc;
     }
