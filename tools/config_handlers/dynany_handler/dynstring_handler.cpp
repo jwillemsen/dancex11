@@ -56,7 +56,7 @@ namespace DAnCEX11
       if (type.kind ().integral () != TCKind::tk_string_l)
       {
         DANCEX11_LOG_ERROR ("ERROR: String type description required");
-        throw Config_Error ("","Expected <string> element, incorrect tc_kind.");
+        throw Config_Error ("", "Expected <string> element, incorrect tc_kind.");
       }
 
       uint32_t bound {} ;

@@ -83,12 +83,11 @@ namespace DAnCEX11
       }
       catch (const Config_Error &ex)
       {
-        throw Config_Error (ex.add_name(struct_type->typeId ()), ex.get_error());
+        throw Config_Error (ex.add_name (struct_type->typeId ()), ex.get_error ());
       }
       catch (...)
       {
-        throw Config_Error (struct_type->typeId (),
-                            "Unknown exception");
+        throw Config_Error (struct_type->typeId (), "Unknown exception");
       }
     }
 
@@ -101,8 +100,7 @@ namespace DAnCEX11
       if (!struct_type)
         {
           DANCEX11_LOG_ERROR ("ERROR: Struct type description required");
-          throw Config_Error ("","Expected struct type information, tc_kind may be"\
-                                 "incorrect");
+        throw Config_Error ("", "Expected struct type information, tc_kind may be incorrect");
         }
       std::string rid (struct_type->typeId ());
       std::string name (struct_type->name ());

@@ -133,8 +133,7 @@ namespace DAnCEX11
       if (!sequence_type)
         {
         DANCEX11_LOG_ERROR ("ERROR: Sequence type description required");
-          throw Config_Error ("",
-                              "Expected <sequence> element, incorrect tc_kind.");
+        throw Config_Error ("", "Expected <sequence> element, incorrect tc_kind.");
         }
 
       IDL::traits<CORBA::TypeCode>::ref_type etc =

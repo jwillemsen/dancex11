@@ -126,7 +126,7 @@ namespace DAnCEX11
       if (!array_type)
         {
         DANCEX11_LOG_ERROR("ERROR: Array type description required");
-          throw Config_Error ("","Expected <array> element, incorrect tc_kind.");
+        throw Config_Error ("", "Expected <array> element, incorrect tc_kind.");
         }
 
       IDL::traits<CORBA::TypeCode>::ref_type etc =

@@ -135,7 +135,7 @@ namespace DAnCEX11
         case TCKind::tk_null_l:
         case TCKind::tk_void_l:
           DANCEX11_LOG_ERROR ("DynAny_Handler::extract_into_dynany - Don't know how to handle null or void types");
-          throw Config_Error ("","Null or void types not supported");
+          throw Config_Error ("", "Null or void types not supported");
           break;
 
         case TCKind::tk_short_l:
@@ -384,7 +384,7 @@ namespace DAnCEX11
         case TCKind::tk_null_l:
         case TCKind::tk_void_l:
           DANCEX11_LOG_DEBUG ("I don't know how to handle null or void typesn");
-          throw Config_Error ("","Null or void types not supported");
+          throw Config_Error ("", "Null or void types not supported");
           break;
 
         case TCKind::tk_short_l:

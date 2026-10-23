@@ -44,17 +44,17 @@ namespace DAnCEX11
       {
         DANCEX11_LOG_ERROR("Invalid value provided in XML when trying to "
                            "initialize an instance of alias type " << alias_type->typeId ());
-        throw Config_Error (alias_type->typeId (),"Invalid value provided in XML");
+        throw Config_Error (alias_type->typeId (), "Invalid value provided in XML");
       }
       catch (const Config_Error &ex)
       {
         DANCEX11_LOG_ERROR ("DynAlias_Handler caught Config_Error");
-        throw Config_Error (ex.add_name(alias_type->typeId ()), ex.get_error());
+        throw Config_Error (ex.add_name (alias_type->typeId ()), ex.get_error ());
       }
       catch (...)
       {
         DANCEX11_LOG_ERROR ("DynAlias_Handler caught unknown exception");
-        throw Config_Error (alias_type->typeId (),"Unknown exception");
+        throw Config_Error (alias_type->typeId (), "Unknown exception");
       }
     }
 
@@ -67,7 +67,7 @@ namespace DAnCEX11
       if (!alias_type)
       {
         DANCEX11_LOG_ERROR ("ERROR: Alias type description required");
-        throw Config_Error ("","Did not find expected alias type description, tk_kind may be wrong.");
+        throw Config_Error ("", "Did not find expected alias type description, tk_kind may be wrong.");
       }
 
       IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_alias_tc (
