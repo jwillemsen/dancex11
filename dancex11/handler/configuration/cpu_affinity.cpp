@@ -38,7 +38,7 @@ namespace DAnCEX11
 
     cpu_set_t mask;
     CPU_ZERO (std::addressof(mask));
-    std::vector< std::string > tokens = DAnCEX11::Utility::tokenize (affinity, ',');
+    std::vector<std::string> tokens = DAnCEX11::Utility::tokenize (affinity, ',');
     for (const std::string &token : tokens)
       {
         int i = atoi (token.c_str ());

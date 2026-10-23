@@ -76,7 +76,7 @@ namespace DAnCEX11
       {
         // get artifact deployment descriptor
         Deployment::ArtifactDeploymentDescription &add =
-          const_cast< Deployment::ArtifactDeploymentDescription &> (
+          const_cast<Deployment::ArtifactDeploymentDescription&> (
               plan.artifact ()[artifactRef]);
 
         // install artifact
@@ -150,7 +150,7 @@ namespace DAnCEX11
       {
         // get artifact deployment descriptor
         Deployment::ArtifactDeploymentDescription &add =
-          const_cast< Deployment::ArtifactDeploymentDescription &> (
+          const_cast<Deployment::ArtifactDeploymentDescription&> (
               plan.artifact ()[artifactRef]);
 
         // remove artifact

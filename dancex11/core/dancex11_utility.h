@@ -108,7 +108,7 @@ namespace DAnCEX11
     DANCEX11_STUB_Export std::string
     stringify_exception_from_any (const CORBA::Any &excep);
 
-    DANCEX11_STUB_Export std::vector< std::string >
+      DANCEX11_STUB_Export std::vector<std::string>
     tokenize (std::string_view str, char c=' ');
   }
 }

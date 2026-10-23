@@ -278,10 +278,10 @@ namespace DAnCEX11
       return result;
     }
 
-    std::vector< std::string >
+    std::vector<std::string>
     tokenize (std::string_view str, char c)
     {
-      std::vector< std::string > result;
+      std::vector<std::string> result;
 
       while (true)
         {
