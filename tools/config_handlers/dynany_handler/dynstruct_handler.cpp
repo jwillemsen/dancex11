@@ -26,10 +26,9 @@ namespace DAnCEX11
       if (!struct_type)
         throw Config_Error ("", "Struct type description required");
 
-      for (auto i = struct_type->member ().begin ();
-           i != struct_type->member ().end (); ++i)
+      for (auto const& member : struct_type->member ())
       {
-        dt_map[i->name ()] = &(i->type ());
+        dt_map[member.name ()] = &member.type ();
       }
     }
 
@@ -65,15 +64,14 @@ namespace DAnCEX11
         DynamicAny::NameDynAnyPairSeq values;
         values.resize (value.member ().size ());
 
-        for (auto i = value.member ().begin ();
-             i != value.member ().end (); ++i)
+        for (auto const& member : value.member ())
         {
-          auto const data_type = dt_map.find (i->name ());
+          auto const data_type = dt_map.find (member.name ());
           if (data_type == dt_map.end ())
-            throw Config_Error (i->name (), "Unknown member in struct value");
+            throw Config_Error (member.name (), "Unknown member in struct value");
 
-          values[pos].id(i->name ());
-          values[pos].value (DYNANY_HANDLER->extract_into_dynany (*data_type->second, i->value ()));
+          values[pos].id(member.name ());
+          values[pos].value (DYNANY_HANDLER->extract_into_dynany (*data_type->second, member.value ()));
           ++pos;
         }
 
@@ -107,12 +105,11 @@ namespace DAnCEX11
 
       CORBA::StructMemberSeq members;
 
-      for (auto i = struct_type->member ().begin ();
-           i != struct_type->member ().end (); ++i)
+      for (auto const& source_member : struct_type->member ())
       {
         CORBA::StructMember member =
-           CORBA::StructMember(i->name (),
-                               DYNANY_HANDLER->create_typecode (i->type ()),
+           CORBA::StructMember(source_member.name (),
+                               DYNANY_HANDLER->create_typecode (source_member.type ()),
                                nullptr);
           members.push_back (member);
       }

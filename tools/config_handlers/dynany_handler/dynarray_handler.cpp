@@ -73,12 +73,10 @@ namespace DAnCEX11
         case TCKind::tk_array_l:
           try
           {
-            for (auto i = value.element ().begin ();
-                 i != value.element ().end ();
-                 ++i)
+            for (auto const& element : value.element ())
             {
               IDL::traits<DynamicAny::DynAny>::ref_type dynany (
-                DYNANY_HANDLER->extract_into_dynany (array_type->elementType (), *i));
+                DYNANY_HANDLER->extract_into_dynany (array_type->elementType (), element));
               dynseq.push_back (dynany->copy ());
             }
 

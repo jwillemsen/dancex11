@@ -79,12 +79,10 @@ namespace DAnCEX11
             dynseq.resize (value.element ().size ());
             retval->set_length (static_cast<uint32_t>(value.element ().size ()));
 
-            for (auto i = value.element ().begin ();
-                 i != value.element ().end ();
-                 ++i)
+            for (auto const& element : value.element ())
             {
               IDL::traits<DynamicAny::DynAny>::ref_type dynany (
-                DYNANY_HANDLER->extract_into_dynany (sequence_type->elementType (), *i));
+                DYNANY_HANDLER->extract_into_dynany (sequence_type->elementType (), element));
               dynseq[pos++] = dynany->copy ();
             }
 
