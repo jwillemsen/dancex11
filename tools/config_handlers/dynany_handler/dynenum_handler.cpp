@@ -94,8 +94,8 @@ namespace DAnCEX11
 
       IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_enum_tc (
         enum_type->typeId (),
-          enum_type->name (),
-          members);
+        enum_type->name (),
+        members);
 
       DYNANY_HANDLER->register_typecode (enum_type->typeId (), tc);
 

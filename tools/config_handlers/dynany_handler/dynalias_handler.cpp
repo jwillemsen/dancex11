@@ -72,8 +72,8 @@ namespace DAnCEX11
 
       IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_alias_tc (
         alias_type->typeId (),
-         alias_type->name (),
-         DYNANY_HANDLER->create_typecode (alias_type->elementType ()));
+        alias_type->name (),
+        DYNANY_HANDLER->create_typecode (alias_type->elementType ()));
 
       DYNANY_HANDLER->register_typecode (alias_type->typeId (), tc);
 
