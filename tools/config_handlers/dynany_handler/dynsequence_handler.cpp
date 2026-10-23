@@ -76,11 +76,11 @@ namespace DAnCEX11
         case TCKind::tk_array_l:
           try
           {
-            dynseq.resize (value.count_element ());
-            retval->set_length (static_cast<uint32_t>(value.count_element ()));
+            dynseq.resize (value.element_values ().size ());
+            retval->set_length (static_cast<uint32_t>(value.element_values ().size ()));
 
-            for (DataValue::element_const_iterator i = value.begin_element ();
-                 i != value.end_element ();
+            for (auto i = value.element_values ().begin ();
+                 i != value.element_values ().end ();
                  ++i)
             {
               IDL::traits<DynamicAny::DynAny>::ref_type dynany

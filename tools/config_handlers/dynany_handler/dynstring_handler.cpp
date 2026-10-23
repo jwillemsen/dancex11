@@ -36,9 +36,9 @@ namespace DAnCEX11
       DANCEX11_LOG_TRACE("DynString_Handler::extract_into_dynany - created DynAny: " << retval);
 
       std::string s;
-      if (value.count_string ())
+      if (value.string_values ().size ())
       {
-        s = (*value.begin_string ());
+        s = (*value.string_values ().begin ());
       }
 
       DANCEX11_LOG_TRACE("DynString_Handler::extract_into_dynany - inserting string: [" << s << "]");
@@ -63,9 +63,9 @@ namespace DAnCEX11
       auto const* bounded_string = type.boundedString_if_set ();
       if (bounded_string)
       {
-        if (bounded_string->count_bound ())
+        if (bounded_string->bound_values ().size ())
         {
-          bound = *bounded_string->begin_bound ();
+          bound = *bounded_string->bound_values ().begin ();
         }
       }
 

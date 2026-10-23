@@ -41,18 +41,18 @@ namespace DAnCEX11
       else
         dest.implementationRef(std::numeric_limits<uint32_t>::max());
 
-      std::transform(src.begin_configProperty (),
-                    src.end_configProperty (),
+      std::transform(src.configProperty_values ().begin (),
+                    src.configProperty_values ().end (),
                     std::back_inserter(dest.configProperty()),
                     DAnCEX11::Config_Handlers::convert_property);
 
-      std::transform(src.begin_deployedResource (),
-                    src.end_deployedResource (),
+      std::transform(src.deployedResource_values ().begin (),
+                    src.deployedResource_values ().end (),
                     std::back_inserter(dest.deployedResource()),
                     DAnCEX11::Config_Handlers::convert_instanceresourcedeploymentdescription);
 
-      std::transform(src.begin_deployedSharedResource (),
-                    src.end_deployedSharedResource (),
+      std::transform(src.deployedSharedResource_values ().begin (),
+                    src.deployedSharedResource_values ().end (),
                     std::back_inserter(dest.deployedSharedResource()),
                     DAnCEX11::Config_Handlers::convert_instanceresourcedeploymentdescription);
 

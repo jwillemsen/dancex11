@@ -28,8 +28,8 @@ namespace DAnCEX11
         dest.portName (*port_name);
       }
 
-      std::copy(src.begin_supportedType (),
-                src.end_supportedType (),
+      std::copy(src.supportedType_values ().begin (),
+                src.supportedType_values ().end (),
                 std::back_inserter(dest.supportedType()));
 
       return dest;

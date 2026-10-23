@@ -44,7 +44,7 @@ namespace DAnCEX11
         IDL::traits<DynamicAny::DynEnum>::ref_type retval = IDL::traits<DynamicAny::DynEnum>::narrow (
           temp);
 
-        retval->set_as_string (value.begin_enum ()->c_str ());
+        retval->set_as_string (value.enum_values ().begin ()->c_str ());
 
         return retval;
       }
@@ -84,8 +84,8 @@ namespace DAnCEX11
       // Construct TypeCode for the enum
       CORBA::EnumMemberSeq members;
 
-      for (EnumType::member_const_iterator i = enum_type->begin_member ();
-           i != enum_type->end_member ();
+      for (auto i = enum_type->member_values ().begin ();
+           i != enum_type->member_values ().end ();
            ++i)
         {
           members.push_back (*i);

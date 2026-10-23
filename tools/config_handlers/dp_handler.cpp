@@ -41,13 +41,13 @@ namespace DAnCEX11
           idl_dp->UUID (*uuid);
         }
 
-      std::transform(xsc_dp.begin_dependsOn (),
-                     xsc_dp.end_dependsOn (),
+      std::transform(xsc_dp.dependsOn_values ().begin (),
+                     xsc_dp.dependsOn_values ().end (),
                      std::back_inserter(idl_dp->dependsOn()),
                      DAnCEX11::Config_Handlers::convert_implementationdependency);
 
-      std::transform(xsc_dp.begin_infoProperty (),
-                     xsc_dp.end_infoProperty (),
+      std::transform(xsc_dp.infoProperty_values ().begin (),
+                     xsc_dp.infoProperty_values ().end (),
                      std::back_inserter(idl_dp->infoProperty()),
                      DAnCEX11::Config_Handlers::convert_property);
 
@@ -58,8 +58,8 @@ namespace DAnCEX11
         }
 
       std::unordered_map<std::string, size_t> artifact_map;
-      std::transform(xsc_dp.begin_artifact (),
-                     xsc_dp.end_artifact (),
+      std::transform(xsc_dp.artifact_values ().begin (),
+                     xsc_dp.artifact_values ().end (),
                      std::back_inserter(idl_dp->artifact()),
                      [&](const DAnCE::Config_Handlers::ArtifactDeploymentDescription& src)
                      {
@@ -72,8 +72,8 @@ namespace DAnCEX11
                      });
 
       std::unordered_map<std::string, size_t> monolithicdeploymentdescription_map;
-      std::transform(xsc_dp.begin_implementation (),
-                     xsc_dp.end_implementation (),
+      std::transform(xsc_dp.implementation_values ().begin (),
+                     xsc_dp.implementation_values ().end (),
                      std::back_inserter(idl_dp->implementation()),
                      [&](const DAnCE::Config_Handlers::MonolithicDeploymentDescription& src)
                      {
@@ -86,8 +86,8 @@ namespace DAnCEX11
                      });
 
       std::unordered_map<std::string, size_t> instancedeploymentdescription_map;
-      std::transform(xsc_dp.begin_instance (),
-                     xsc_dp.end_instance (),
+      std::transform(xsc_dp.instance_values ().begin (),
+                     xsc_dp.instance_values ().end (),
                      std::back_inserter(idl_dp->instance()),
                      [&](const DAnCE::Config_Handlers::InstanceDeploymentDescription& src)
                      {
@@ -99,16 +99,16 @@ namespace DAnCEX11
                        return DAnCEX11::Config_Handlers::convert_instancedeploymentdescription(src, monolithicdeploymentdescription_map);
                      });
 
-      std::transform(xsc_dp.begin_connection (),
-                     xsc_dp.end_connection (),
+      std::transform(xsc_dp.connection_values ().begin (),
+                     xsc_dp.connection_values ().end (),
                      std::back_inserter(idl_dp->connection()),
                      [&](const DAnCE::Config_Handlers::PlanConnectionDescription& src)
                      {
                        return DAnCEX11::Config_Handlers::convert_planconnectiondescription(src, instancedeploymentdescription_map);
                      });
 
-      std::transform(xsc_dp.begin_localityConstraint (),
-                     xsc_dp.end_localityConstraint (),
+      std::transform(xsc_dp.localityConstraint_values ().begin (),
+                     xsc_dp.localityConstraint_values ().end (),
                      std::back_inserter(idl_dp->localityConstraint()),
                      [&](const DAnCE::Config_Handlers::PlanLocality& src)
                      {

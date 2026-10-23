@@ -73,8 +73,8 @@ namespace DAnCEX11
         case TCKind::tk_array_l:
           try
           {
-            for (DataValue::element_const_iterator i = value.begin_element ();
-                 i != value.end_element ();
+            for (auto i = value.element_values ().begin ();
+                 i != value.element_values ().end ();
                  ++i)
             {
                IDL::traits<DynamicAny::DynAny>::ref_type dynany

@@ -33,8 +33,8 @@ namespace DAnCEX11
         idl_dd->UUID (*uuid);
       }
 
-      std::transform(domain.begin_node (),
-                     domain.end_node (),
+      std::transform(domain.node_values ().begin (),
+                     domain.node_values ().end (),
                      std::back_inserter(idl_dd->node()),
                      DAnCEX11::Config_Handlers::convert_node);
 
