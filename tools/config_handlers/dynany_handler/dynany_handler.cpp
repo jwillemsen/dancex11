@@ -95,12 +95,12 @@ namespace DAnCEX11
 
       TCKind::Value const tkind = type.kind ().integral ();
 
-      if ((!value.short_ ().empty () && tkind != TCKind::tk_short_l) ||
-          (!value.long_ ().empty () && tkind != TCKind::tk_long_l) ||
+      if ((!value._cxx_short ().empty () && tkind != TCKind::tk_short_l) ||
+          (!value._cxx_long ().empty () && tkind != TCKind::tk_long_l) ||
           (!value.ushort ().empty () && tkind != TCKind::tk_ushort_l ) ||
           (!value.ulong ().empty () && tkind != TCKind::tk_ulong_l) ||
-          (!value.float_ ().empty () && tkind != TCKind::tk_float_l) ||
-          (!value.double_ ().empty () && tkind != TCKind::tk_double_l) ||
+          (!value._cxx_float ().empty () && tkind != TCKind::tk_float_l) ||
+          (!value._cxx_double ().empty () && tkind != TCKind::tk_double_l) ||
           (!value.boolean ().empty () && tkind != TCKind::tk_boolean_l) ||
           (!value.octet ().empty () && tkind != TCKind::tk_octet_l) ||
           (!value.longlong ().empty () && tkind != TCKind::tk_longlong_l) ||
@@ -128,9 +128,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_short);
           }
           int16_t s {};
-          if (!value.short_ ().empty ())
+          if (!value._cxx_short ().empty ())
           {
-            s = *value.short_ ().begin ();
+            s = value._cxx_short ().front ();
           }
           retval->insert_short (s);
         }
@@ -142,9 +142,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_long);
           }
           int32_t l {};
-          if (!value.long_ ().empty ())
+          if (!value._cxx_long ().empty ())
           {
-            l = *value.long_ ().begin ();
+            l = value._cxx_long ().front ();
           }
           retval->insert_long (l);
         }
@@ -159,7 +159,7 @@ namespace DAnCEX11
           uint16_t us {};
           if (!value.ushort ().empty ())
           {
-            us = *value.ushort ().begin ();
+            us = value.ushort ().front ();
           }
           retval->insert_ushort (us);
         }
@@ -174,7 +174,7 @@ namespace DAnCEX11
           uint32_t ul {};
           if (!value.ulong ().empty ())
           {
-            ul = *value.ulong ().begin ();
+            ul = value.ulong ().front ();
           }
           retval->insert_ulong (ul);
         }
@@ -187,9 +187,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_float);
           }
           float f {};
-          if (!value.float_ ().empty ())
+          if (!value._cxx_float ().empty ())
           {
-            f = *value.float_ ().begin ();
+            f = value._cxx_float ().front ();
           }
           retval->insert_float (f);
         }
@@ -202,9 +202,9 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_double);
           }
           double d {};
-          if (!value.double_ ().empty ())
+          if (!value._cxx_double ().empty ())
           {
-            d = *value.double_ ().begin ();
+            d = value._cxx_double ().front ();
           }
           retval->insert_double (d);
         }
@@ -219,7 +219,7 @@ namespace DAnCEX11
             bool b { false };
             if (!value.boolean ().empty ())
               {
-                b = *value.boolean ().begin ();
+            b = value.boolean ().front ();
               }
             retval->insert_boolean (b);
           }
@@ -234,7 +234,7 @@ namespace DAnCEX11
           uint8_t o {};
           if (!value.octet ().empty ())
           {
-            o = *(value.octet ().begin ());
+            o = value.octet ().front ();
           }
           retval->insert_octet (o);
         }
@@ -249,7 +249,7 @@ namespace DAnCEX11
           int64_t ll {};
           if (!value.longlong ().empty ())
           {
-            ll = *value.longlong ().begin ();
+            ll = value.longlong ().front ();
           }
           retval->insert_longlong (ll);
         }
@@ -264,7 +264,7 @@ namespace DAnCEX11
         uint64_t ull = {};
         if (!value.ulonglong ().empty ())
           {
-            ull = *value.ulonglong ().begin ();
+            ull = value.ulonglong ().front ();
           }
           retval->insert_ulonglong (ull);
         }
@@ -282,7 +282,7 @@ namespace DAnCEX11
           char c = 0;
           if (!value.string ().empty ())
           {
-            c = *value.string ().begin ()->c_str();
+            c = *value.string ().front ().c_str ();
           }
           retval->insert_char (c);
         }
@@ -297,7 +297,7 @@ namespace DAnCEX11
           wchar_t wc{};
           if (!value.string ().empty ())
           {
-            wc = *value.string ().begin ()->c_str();
+            wc = *value.string ().front ().c_str ();
           }
           retval->insert_wchar (wc);
         }

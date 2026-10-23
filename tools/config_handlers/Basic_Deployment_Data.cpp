@@ -42,13 +42,13 @@ namespace DAnCE
     {
       return *kind_;
     }
-    ::DAnCE::Config_Handlers::EnumType const* DataType::enum__if_set () const noexcept
+    ::DAnCE::Config_Handlers::EnumType const* DataType::_cxx_enum_if_set () const noexcept
     {
-      return enum__.get ();
+      return _cxx_enum_.get ();
     }
-    ::DAnCE::Config_Handlers::StructType const* DataType::struct__if_set () const noexcept
+    ::DAnCE::Config_Handlers::StructType const* DataType::_cxx_struct_if_set () const noexcept
     {
-      return struct__.get ();
+      return _cxx_struct_.get ();
     }
     ::DAnCE::Config_Handlers::ValueType const* DataType::value_if_set () const noexcept
     {
@@ -75,13 +75,13 @@ namespace DAnCE
       return id_.get ();
     }
 
-    DataValue::short_container_type const& DataValue::short_ () const noexcept
+    DataValue::short_container_type const& DataValue::_cxx_short () const noexcept
     {
-      return short__;
+      return _cxx_short_;
     }
-    DataValue::long_container_type const& DataValue::long_ () const noexcept
+    DataValue::long_container_type const& DataValue::_cxx_long () const noexcept
     {
-      return long__;
+      return _cxx_long_;
     }
     DataValue::ushort_container_type const& DataValue::ushort () const noexcept
     {
@@ -91,13 +91,13 @@ namespace DAnCE
     {
       return ulong_;
     }
-    DataValue::float_container_type const& DataValue::float_ () const noexcept
+    DataValue::float_container_type const& DataValue::_cxx_float () const noexcept
     {
-      return float__;
+      return _cxx_float_;
     }
-    DataValue::double_container_type const& DataValue::double_ () const noexcept
+    DataValue::double_container_type const& DataValue::_cxx_double () const noexcept
     {
-      return double__;
+      return _cxx_double_;
     }
     DataValue::boolean_container_type const& DataValue::boolean () const noexcept
     {
@@ -107,9 +107,9 @@ namespace DAnCE
     {
       return octet_;
     }
-    DataValue::enum_container_type const& DataValue::enum_ () const noexcept
+    DataValue::enum_container_type const& DataValue::_cxx_enum () const noexcept
     {
-      return enum__;
+      return _cxx_enum_;
     }
     DataValue::string_container_type const& DataValue::string () const noexcept
     {
@@ -879,11 +879,11 @@ namespace DAnCE
         }
         else if (n == "enum")
         {
-          enum__ = std::make_unique<::DAnCE::Config_Handlers::EnumType> (e);
+          _cxx_enum_ = std::make_unique<::DAnCE::Config_Handlers::EnumType> (e);
         }
         else if (n == "struct")
         {
-          struct__ = std::make_unique<::DAnCE::Config_Handlers::StructType> (e);
+          _cxx_struct_ = std::make_unique<::DAnCE::Config_Handlers::StructType> (e);
         }
         else if (n == "value")
         {
@@ -928,11 +928,11 @@ namespace DAnCE
 
         if (n == "short")
         {
-          short__.emplace_back (e);
+          _cxx_short_.emplace_back (e);
         }
         else if (n == "long")
         {
-          long__.emplace_back (e);
+          _cxx_long_.emplace_back (e);
         }
         else if (n == "ushort")
         {
@@ -944,11 +944,11 @@ namespace DAnCE
         }
         else if (n == "float")
         {
-          float__.emplace_back (e);
+          _cxx_float_.emplace_back (e);
         }
         else if (n == "double")
         {
-          double__.emplace_back (e);
+          _cxx_double_.emplace_back (e);
         }
         else if (n == "boolean")
         {
@@ -960,7 +960,7 @@ namespace DAnCE
         }
         else if (n == "enum")
         {
-          enum__.emplace_back (e);
+          _cxx_enum_.emplace_back (e);
         }
         else if (n == "string")
         {

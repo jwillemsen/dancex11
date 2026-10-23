@@ -25,9 +25,13 @@ namespace DAnCEX11
                                           IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynEnum_Handler::extract_into_dynany");
-      ::DAnCE::Config_Handlers::EnumType const* enum_type = type.enum__if_set ();
+      ::DAnCE::Config_Handlers::EnumType const* enum_type = type._cxx_enum_if_set ();
       if (!enum_type)
         throw Config_Error ("", "Enum type description required");
+
+      ::DAnCE::Config_Handlers::DataValue::enum_container_type const& enum_values = value._cxx_enum ();
+      if (enum_values.empty ())
+        throw Config_Error (enum_type->typeId (), "Enum value required");
 
       try
       {
@@ -44,7 +48,7 @@ namespace DAnCEX11
         IDL::traits<DynamicAny::DynEnum>::ref_type retval = IDL::traits<DynamicAny::DynEnum>::narrow (
           temp);
 
-        retval->set_as_string (value.enum_ ().begin ()->c_str ());
+        retval->set_as_string (enum_values.front ().c_str ());
 
         return retval;
       }
@@ -73,7 +77,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynEnum_Handler::create_typecode");
 
-      ::DAnCE::Config_Handlers::EnumType const* enum_type = type.enum__if_set ();
+      ::DAnCE::Config_Handlers::EnumType const* enum_type = type._cxx_enum_if_set ();
       if (!enum_type)
       {
         DANCEX11_LOG_ERROR ("ERROR: Enum type description required");

@@ -38,7 +38,7 @@ namespace DAnCEX11
       std::string s;
       if (!value.string ().empty ())
       {
-        s = (*value.string ().begin ());
+        s = value.string ().front ();
       }
 
       DANCEX11_LOG_TRACE("DynString_Handler::extract_into_dynany - inserting string: [" << s << "]");
@@ -65,7 +65,7 @@ namespace DAnCEX11
       {
         if (!bounded_string->bound ().empty ())
         {
-          bound = *bounded_string->bound ().begin ();
+          bound = bounded_string->bound ().front ();
         }
       }
 

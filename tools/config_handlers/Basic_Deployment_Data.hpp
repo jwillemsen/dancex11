@@ -177,16 +177,16 @@ namespace DAnCE
       kind_type kind_ {};
 
       public:
-      ::DAnCE::Config_Handlers::EnumType const* enum__if_set () const noexcept;
+      ::DAnCE::Config_Handlers::EnumType const* _cxx_enum_if_set () const noexcept;
       private:
-      using enum__type = std::unique_ptr<::DAnCE::Config_Handlers::EnumType>;
-      enum__type enum__ {};
+      using _cxx_enum_type = std::unique_ptr<::DAnCE::Config_Handlers::EnumType>;
+      _cxx_enum_type _cxx_enum_ {};
 
       public:
-      ::DAnCE::Config_Handlers::StructType const* struct__if_set () const noexcept;
+      ::DAnCE::Config_Handlers::StructType const* _cxx_struct_if_set () const noexcept;
       private:
-      using struct__type = std::unique_ptr<::DAnCE::Config_Handlers::StructType>;
-      struct__type struct__ {};
+      using _cxx_struct_type = std::unique_ptr<::DAnCE::Config_Handlers::StructType>;
+      _cxx_struct_type _cxx_struct_ {};
 
       public:
       ::DAnCE::Config_Handlers::ValueType const* value_if_set () const noexcept;
@@ -239,17 +239,17 @@ namespace DAnCE
 
       public:
       using short_container_type = std::list<::XMLSchema::short_>;
-      short_container_type const& short_ () const noexcept;
+      short_container_type const& _cxx_short () const noexcept;
 
       private:
-      short_container_type short__ {};
+      short_container_type _cxx_short_ {};
 
       public:
       using long_container_type = std::list<::XMLSchema::int_>;
-      long_container_type const& long_ () const noexcept;
+      long_container_type const& _cxx_long () const noexcept;
 
       private:
-      long_container_type long__ {};
+      long_container_type _cxx_long_ {};
 
       public:
       using ushort_container_type = std::list<::XMLSchema::unsignedShort>;
@@ -267,17 +267,17 @@ namespace DAnCE
 
       public:
       using float_container_type = std::list<::XMLSchema::float_>;
-      float_container_type const& float_ () const noexcept;
+      float_container_type const& _cxx_float () const noexcept;
 
       private:
-      float_container_type float__ {};
+      float_container_type _cxx_float_ {};
 
       public:
       using double_container_type = std::list<::XMLSchema::double_>;
-      double_container_type const& double_ () const noexcept;
+      double_container_type const& _cxx_double () const noexcept;
 
       private:
-      double_container_type double__ {};
+      double_container_type _cxx_double_ {};
 
       public:
       using boolean_container_type = std::list<::XMLSchema::boolean>;
@@ -295,10 +295,10 @@ namespace DAnCE
 
       public:
       using enum_container_type = std::list<::XMLSchema::string<char>>;
-      enum_container_type const& enum_ () const noexcept;
+      enum_container_type const& _cxx_enum () const noexcept;
 
       private:
-      enum_container_type enum__ {};
+      enum_container_type _cxx_enum_ {};
 
       public:
       using string_container_type = std::list<::XMLSchema::string<char>>;
