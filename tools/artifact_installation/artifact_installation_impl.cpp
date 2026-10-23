@@ -393,7 +393,7 @@ namespace DAnCEX11
             {
               ACE_NEW_NORETURN (ar, ArtifactRegistry (this->artifacts_condition_,
                                                       true));
-              if (ar == 0)
+              if (ar == nullptr)
                 {
                   throw Deployment::PlanError (plan_uuid, "out of memory");
                 }
@@ -421,7 +421,7 @@ namespace DAnCEX11
               return ar;
             }
         }
-      return 0;
+      return nullptr;
     }
 
     ArtifactRegistry*
@@ -464,7 +464,7 @@ namespace DAnCEX11
               return ar;
             }
         }
-      return 0;
+      return nullptr;
     }
 
     void ArtifactInstallation_Impl::remove (
@@ -679,7 +679,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE ("ArtifactInstallation_Impl::register_handler");
 
-      if (aih != 0)
+      if (aih != nullptr)
         {
           ACE_GUARD_RETURN (TLOCK, guard_, handler_lock_, -1);
 
@@ -695,7 +695,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE ("ArtifactInstallation_Impl::deregister_handler");
 
-      if (aih != 0)
+      if (aih != nullptr)
         {
           ACE_GUARD_RETURN (TLOCK, guard_, handler_lock_, -1);
 
