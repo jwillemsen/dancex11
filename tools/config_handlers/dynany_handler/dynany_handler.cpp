@@ -282,7 +282,11 @@ namespace DAnCEX11
           char c = 0;
           if (!value.string ().empty ())
           {
-            c = value.string ().front ().front ();
+            ::XMLSchema::string<char> const& character_value = value.string ().front ();
+            if (!character_value.empty ())
+            {
+              c = character_value.front ();
+            }
           }
           retval->insert_char (c);
         }
@@ -297,7 +301,11 @@ namespace DAnCEX11
           wchar_t wc{};
           if (!value.string ().empty ())
           {
-            wc = value.string ().front ().front ();
+            ::XMLSchema::string<char> const& character_value = value.string ().front ();
+            if (!character_value.empty ())
+            {
+              wc = character_value.front ();
+            }
           }
           retval->insert_wchar (wc);
         }
