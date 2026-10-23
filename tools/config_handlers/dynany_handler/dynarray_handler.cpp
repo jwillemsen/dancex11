@@ -19,7 +19,7 @@ namespace DAnCEX11
     IDL::traits<DynamicAny::DynAny>::ref_type
     DynArray_Handler::extract_into_dynany (const DataType &type,
                                            const DataValue &value,
-                                            IDL::traits<CORBA::TypeCode>::ref_type req_tc)
+                                          IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynArray_Handler::extract_into_dynany");
       ::DAnCE::Config_Handlers::ArrayType const* array_type = type.array_if_set ();
