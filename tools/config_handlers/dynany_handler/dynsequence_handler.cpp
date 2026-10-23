@@ -54,8 +54,8 @@ namespace DAnCEX11
         case TCKind::tk_component_l:
         case TCKind::tk_home_l:
 
-          DANCEX11_LOG_ERROR ("I don't know how to handle null or void types");
-          throw 1;
+          DANCEX11_LOG_ERROR ("Null and void element types are not supported in sequences");
+          throw Config_Error ("", "Null or void element types are not supported in sequences");
 
         case TCKind::tk_short_l:
         case TCKind::tk_long_l:

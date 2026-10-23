@@ -6,6 +6,7 @@
  */
 
 #include "datatype_handler.h"
+#include "common.h"
 #include "tao/x11/anytypecode/typecode.h"
 #include "tao/x11/anytypecode/typecode_constants.h"
 #include "dancex11/logger/log.h"
@@ -78,7 +79,7 @@ namespace DAnCEX11
         break;
       default:
         DANCEX11_LOG_ERROR ("DAnCEX11::Config_Handlers::convert_datatype, invalid typecode in any");
-        throw 1;
+        throw Config_Error ("", "Invalid typecode in data type description");
       }
 
       return dest;
