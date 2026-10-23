@@ -48,7 +48,7 @@ namespace DAnCEX11
         IDL::traits<DynamicAny::DynEnum>::ref_type retval = IDL::traits<DynamicAny::DynEnum>::narrow (
           temp);
 
-        retval->set_as_string (enum_values.front ().c_str ());
+        retval->set_as_string (enum_values.front ());
 
         return retval;
       }
