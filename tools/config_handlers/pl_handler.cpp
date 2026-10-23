@@ -39,7 +39,7 @@ namespace DAnCEX11
                      std::back_inserter(dest.constrainedInstanceRef()),
                      [&](const DAnCE::Config_Handlers::IdRef& id)
                      {
-                       auto const* idref = id.idref_if_set ();
+                       ::XMLSchema::IDREF<char> const* idref = id.idref_if_set ();
                        if (!idref)
                          throw Config_Error ("", "Missing idref for constrained instance");
 

@@ -31,7 +31,7 @@ namespace DAnCEX11
 
       // Lookup the reference for our mdd, when we find it we use the index, if we can't find
       // it we set it to max to indicate that we failed
-      auto const* idref = src.implementation ().idref_if_set ();
+      ::XMLSchema::IDREF<char> const* idref = src.implementation ().idref_if_set ();
       if (!idref)
         throw Config_Error ("", "Missing idref for implementation");
 

@@ -95,17 +95,17 @@ namespace DAnCEX11
 
       TCKind::Value const tkind = type.kind ().integral ();
 
-      if ((value.short_ ().size () && tkind != TCKind::tk_short_l) ||
-          (value.long_ ().size () && tkind != TCKind::tk_long_l) ||
-          (value.ushort ().size () && tkind != TCKind::tk_ushort_l ) ||
-          (value.ulong ().size () && tkind != TCKind::tk_ulong_l) ||
-          (value.float_ ().size () && tkind != TCKind::tk_float_l) ||
-          (value.double_ ().size () && tkind != TCKind::tk_double_l) ||
-          (value.boolean ().size () && tkind != TCKind::tk_boolean_l) ||
-          (value.octet ().size () && tkind != TCKind::tk_octet_l) ||
-          (value.longlong ().size () && tkind != TCKind::tk_longlong_l) ||
-          (value.ulonglong ().size () && tkind != TCKind::tk_ulonglong_l) ||
-          (value.string ().size () && !(tkind == TCKind::tk_string_l ||
+      if ((!value.short_ ().empty () && tkind != TCKind::tk_short_l) ||
+          (!value.long_ ().empty () && tkind != TCKind::tk_long_l) ||
+          (!value.ushort ().empty () && tkind != TCKind::tk_ushort_l ) ||
+          (!value.ulong ().empty () && tkind != TCKind::tk_ulong_l) ||
+          (!value.float_ ().empty () && tkind != TCKind::tk_float_l) ||
+          (!value.double_ ().empty () && tkind != TCKind::tk_double_l) ||
+          (!value.boolean ().empty () && tkind != TCKind::tk_boolean_l) ||
+          (!value.octet ().empty () && tkind != TCKind::tk_octet_l) ||
+          (!value.longlong ().empty () && tkind != TCKind::tk_longlong_l) ||
+          (!value.ulonglong ().empty () && tkind != TCKind::tk_ulonglong_l) ||
+          (!value.string ().empty () && !(tkind == TCKind::tk_string_l ||
                                       tkind == TCKind::tk_char_l ||
                                       tkind == TCKind::tk_wchar_l)))
         {
@@ -128,7 +128,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_short);
           }
           int16_t s {};
-          if (value.short_ ().size ())
+          if (!value.short_ ().empty ())
           {
             s = *value.short_ ().begin ();
           }
@@ -142,7 +142,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_long);
           }
           int32_t l {};
-          if (value.long_ ().size ())
+          if (!value.long_ ().empty ())
           {
             l = *value.long_ ().begin ();
           }
@@ -157,7 +157,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ushort);
           }
           uint16_t us {};
-          if (value.ushort ().size ())
+          if (!value.ushort ().empty ())
           {
             us = *value.ushort ().begin ();
           }
@@ -172,7 +172,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ulong);
           }
           uint32_t ul {};
-          if (value.ulong ().size ())
+          if (!value.ulong ().empty ())
           {
             ul = *value.ulong ().begin ();
           }
@@ -187,7 +187,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_float);
           }
           float f {};
-          if (value.float_ ().size ())
+          if (!value.float_ ().empty ())
           {
             f = *value.float_ ().begin ();
           }
@@ -202,7 +202,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_double);
           }
           double d {};
-          if (value.double_ ().size ())
+          if (!value.double_ ().empty ())
           {
             d = *value.double_ ().begin ();
           }
@@ -217,7 +217,7 @@ namespace DAnCEX11
                 retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_boolean);
               }
             bool b { false };
-            if (value.boolean ().size ())
+            if (!value.boolean ().empty ())
               {
                 b = *value.boolean ().begin ();
               }
@@ -232,7 +232,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_octet);
           }
           uint8_t o {};
-          if (value.octet ().size ())
+          if (!value.octet ().empty ())
           {
             o = *(value.octet ().begin ());
           }
@@ -247,7 +247,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_longlong);
           }
           int64_t ll {};
-          if (value.longlong ().size ())
+          if (!value.longlong ().empty ())
           {
             ll = *value.longlong ().begin ();
           }
@@ -262,7 +262,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ulonglong);
           }
         uint64_t ull = {};
-        if (value.ulonglong ().size ())
+        if (!value.ulonglong ().empty ())
           {
             ull = *value.ulonglong ().begin ();
           }
@@ -280,7 +280,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_char);
           }
           char c = 0;
-          if (value.string ().size ())
+          if (!value.string ().empty ())
           {
             c = *value.string ().begin ()->c_str();
           }
@@ -295,7 +295,7 @@ namespace DAnCEX11
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_wchar);
           }
           wchar_t wc{};
-          if (value.string ().size ())
+          if (!value.string ().empty ())
           {
             wc = *value.string ().begin ()->c_str();
           }

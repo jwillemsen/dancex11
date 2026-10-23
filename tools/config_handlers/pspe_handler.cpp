@@ -27,7 +27,7 @@ namespace DAnCEX11
 
       // Lookup the reference for our mdd, when we find it we use the index, if we can't find
       // it we set it to max to indicate that we failed
-      auto const* idref = src.instance ().idref_if_set ();
+      ::XMLSchema::IDREF<char> const* idref = src.instance ().idref_if_set ();
       if (!idref)
         throw Config_Error ("", "Missing idref for instance endpoint");
 
@@ -37,7 +37,7 @@ namespace DAnCEX11
       else
         dest.instanceRef(std::numeric_limits<uint32_t>::max());
 
-      auto const* provider = src.provider_if_set ();
+      ::XMLSchema::string<char> const* provider = src.provider_if_set ();
       if (provider)
         {
           dest.provider (*provider == "true");

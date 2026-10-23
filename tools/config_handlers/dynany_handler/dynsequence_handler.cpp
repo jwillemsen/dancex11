@@ -25,7 +25,7 @@ namespace DAnCEX11
                                               IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynSequence_Handler::extract_into_dynany");
-      auto const* sequence_type = type.sequence_if_set ();
+      ::DAnCE::Config_Handlers::SequenceType const* sequence_type = type.sequence_if_set ();
       if (!sequence_type)
         throw Config_Error ("", "Sequence type description required");
 
@@ -130,7 +130,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynSequence_Handler::create_typecode");
 
-      auto const* sequence_type = type.sequence_if_set ();
+      ::DAnCE::Config_Handlers::SequenceType const* sequence_type = type.sequence_if_set ();
       if (!sequence_type)
         {
         DANCEX11_LOG_ERROR ("ERROR: Sequence type description required");
@@ -142,7 +142,7 @@ namespace DAnCEX11
         DYNANY_HANDLER->create_typecode (sequence_type->elementType ());
 
       uint32_t bound {};
-      auto const* sequence_bound = sequence_type->bound_if_set ();
+      ::XMLSchema::unsignedInt const* sequence_bound = sequence_type->bound_if_set ();
       if (sequence_bound)
         bound = *sequence_bound;
 

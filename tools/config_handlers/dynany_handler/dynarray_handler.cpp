@@ -22,7 +22,7 @@ namespace DAnCEX11
                                             IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynArray_Handler::extract_into_dynany");
-      auto const* array_type = type.array_if_set ();
+      ::DAnCE::Config_Handlers::ArrayType const* array_type = type.array_if_set ();
       if (!array_type)
         throw Config_Error ("", "Array type description required");
 
@@ -123,7 +123,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynArray_Handler::create_typecode");
 
-      auto const* array_type = type.array_if_set ();
+      ::DAnCE::Config_Handlers::ArrayType const* array_type = type.array_if_set ();
       if (!array_type)
         {
         DANCEX11_LOG_ERROR("ERROR: Array type description required");

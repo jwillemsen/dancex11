@@ -22,7 +22,7 @@ namespace DAnCEX11
       dest.location (src.location ());
       dest.provider (src.provider ());
 
-      auto const* port_name = src.portName_if_set ();
+      ::XMLSchema::string<char> const* port_name = src.portName_if_set ();
       if (port_name)
       {
         dest.portName (*port_name);

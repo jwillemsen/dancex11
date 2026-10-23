@@ -43,7 +43,7 @@ namespace DAnCEX11
 
       dest.name (src.name ());
 
-      auto const* label = src.label_if_set ();
+      ::XMLSchema::string<char> const* label = src.label_if_set ();
       if (label)
       {
         dest.label (*label);

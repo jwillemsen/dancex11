@@ -21,13 +21,13 @@ namespace DAnCEX11
 
       std::unique_ptr<Deployment::Domain> idl_dd = std::make_unique<Deployment::Domain> ();
 
-      auto const* label = domain.label_if_set ();
+      ::XMLSchema::string<char> const* label = domain.label_if_set ();
       if (label)
       {
         idl_dd->label(*label);
       }
 
-      auto const* uuid = domain.UUID_if_set ();
+      ::XMLSchema::string<char> const* uuid = domain.UUID_if_set ();
       if (uuid)
       {
         idl_dd->UUID (*uuid);

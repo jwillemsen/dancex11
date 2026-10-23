@@ -25,7 +25,7 @@ namespace DAnCEX11
       dest.exclusiveUser (src.exclusiveUser ());
       dest.optional (src.optional ());
 
-      auto const* specific_type = src.specificType_if_set ();
+      ::XMLSchema::string<char> const* specific_type = src.specificType_if_set ();
       if (specific_type)
       {
         dest.specificType (*specific_type);

@@ -23,7 +23,7 @@ namespace DAnCEX11
                                            IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynAlias_Handler::extract_into_dynany");
-      auto const* alias_type = type.alias_if_set ();
+      ::DAnCE::Config_Handlers::AliasType const* alias_type = type.alias_if_set ();
       if (!alias_type)
         throw Config_Error ("", "Alias type description required");
 
@@ -63,7 +63,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynAlias_Handler::create_typecode");
 
-      auto const* alias_type = type.alias_if_set ();
+      ::DAnCE::Config_Handlers::AliasType const* alias_type = type.alias_if_set ();
       if (!alias_type)
       {
         DANCEX11_LOG_ERROR ("ERROR: Alias type description required");

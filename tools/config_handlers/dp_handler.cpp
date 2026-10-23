@@ -29,13 +29,13 @@ namespace DAnCEX11
 
       std::unique_ptr<Deployment::DeploymentPlan> idl_dp = std::make_unique<Deployment::DeploymentPlan> ();
 
-      auto const* label = xsc_dp.label_if_set ();
+      ::XMLSchema::string<char> const* label = xsc_dp.label_if_set ();
       if (label)
         {
           idl_dp->label (*label);
         }
 
-      auto const* uuid = xsc_dp.UUID_if_set ();
+      ::XMLSchema::string<char> const* uuid = xsc_dp.UUID_if_set ();
       if (uuid)
         {
           idl_dp->UUID (*uuid);
@@ -51,7 +51,7 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->infoProperty()),
                      DAnCEX11::Config_Handlers::convert_property);
 
-      auto const* realizes = xsc_dp.realizes_if_set ();
+      ::DAnCE::Config_Handlers::ComponentInterfaceDescription const* realizes = xsc_dp.realizes_if_set ();
       if (realizes)
         {
           idl_dp->realizes(DAnCEX11::Config_Handlers::convert_componentinterfacedescription (*realizes));
@@ -63,7 +63,7 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->artifact()),
                      [&](const DAnCE::Config_Handlers::ArtifactDeploymentDescription& src)
                      {
-                       auto const* id = src.id_if_set ();
+                       ::XMLSchema::ID<char> const* id = src.id_if_set ();
                        if (id)
                        {
                          artifact_map.insert({*id, idl_dp->artifact().size () });
@@ -77,7 +77,7 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->implementation()),
                      [&](const DAnCE::Config_Handlers::MonolithicDeploymentDescription& src)
                      {
-                       auto const* id = src.id_if_set ();
+                       ::XMLSchema::ID<char> const* id = src.id_if_set ();
                        if (id)
                        {
                          monolithicdeploymentdescription_map.insert({*id, idl_dp->implementation().size () });
@@ -91,7 +91,7 @@ namespace DAnCEX11
                      std::back_inserter(idl_dp->instance()),
                      [&](const DAnCE::Config_Handlers::InstanceDeploymentDescription& src)
                      {
-                       auto const* id = src.id_if_set ();
+                       ::XMLSchema::ID<char> const* id = src.id_if_set ();
                        if (id)
                        {
                          instancedeploymentdescription_map.insert({*id, idl_dp->instance().size () });

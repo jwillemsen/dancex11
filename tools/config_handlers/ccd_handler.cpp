@@ -22,19 +22,19 @@ namespace DAnCEX11
 
       Deployment::ComponentInterfaceDescription dest {};
 
-      auto const* uuid = src.UUID_if_set ();
+      ::XMLSchema::string<char> const* uuid = src.UUID_if_set ();
       if (uuid)
       {
         dest.UUID (*uuid);
       }
 
-      auto const* label = src.label_if_set ();
+      ::XMLSchema::string<char> const* label = src.label_if_set ();
       if (label)
       {
         dest.label (*label);
       }
 
-      auto const* specific_type = src.specificType_if_set ();
+      ::XMLSchema::string<char> const* specific_type = src.specificType_if_set ();
       if (specific_type)
       {
         dest.specificType (*specific_type);

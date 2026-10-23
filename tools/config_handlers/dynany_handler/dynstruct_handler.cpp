@@ -22,7 +22,7 @@ namespace DAnCEX11
                           std::map <std::string, DataType const *> &dt_map)
     {
       DANCEX11_LOG_TRACE("Config_Handlers::create_type_map");
-      auto const* struct_type = type.struct__if_set ();
+      ::DAnCE::Config_Handlers::StructType const* struct_type = type.struct__if_set ();
       if (!struct_type)
         throw Config_Error ("", "Struct type description required");
 
@@ -40,7 +40,7 @@ namespace DAnCEX11
                                             IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynStruct_Handler::extract_into_dynany");
-      auto const* struct_type = type.struct__if_set ();
+      ::DAnCE::Config_Handlers::StructType const* struct_type = type.struct__if_set ();
       if (!struct_type)
         throw Config_Error ("", "Struct type description required");
 
@@ -95,7 +95,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynStruct_Handler::create_typecode");
 
-      auto const* struct_type = type.struct__if_set ();
+      ::DAnCE::Config_Handlers::StructType const* struct_type = type.struct__if_set ();
       if (!struct_type)
         {
           DANCEX11_LOG_ERROR ("ERROR: Struct type description required");

@@ -25,7 +25,7 @@ namespace DAnCEX11
                                           IDL::traits<CORBA::TypeCode>::ref_type req_tc)
     {
       DANCEX11_LOG_TRACE("DynEnum_Handler::extract_into_dynany");
-      auto const* enum_type = type.enum__if_set ();
+      ::DAnCE::Config_Handlers::EnumType const* enum_type = type.enum__if_set ();
       if (!enum_type)
         throw Config_Error ("", "Enum type description required");
 
@@ -73,7 +73,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynEnum_Handler::create_typecode");
 
-      auto const* enum_type = type.enum__if_set ();
+      ::DAnCE::Config_Handlers::EnumType const* enum_type = type.enum__if_set ();
       if (!enum_type)
       {
         DANCEX11_LOG_ERROR ("ERROR: Enum type description required");

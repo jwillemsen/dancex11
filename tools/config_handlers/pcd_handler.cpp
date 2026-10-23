@@ -28,7 +28,7 @@ namespace DAnCEX11
 
       dest.name (src.name ());
 
-      auto const* source = src.source_if_set ();
+      ::XMLSchema::string<char> const* source = src.source_if_set ();
       if (source)
         {
           dest.source().push_back (*source);
