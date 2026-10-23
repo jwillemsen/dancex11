@@ -242,8 +242,7 @@ namespace DAnCEX11
                                           " to location " << location);
 
                       // register installed version for later removal
-                      ar_guard->versions ().push_back (
-                          ArtifactRegistry::Version(protocol, location));
+                      ar_guard->versions ().emplace_back (protocol, location);
 
                       // remove handled protocol
                       prot_stack.pop ();
@@ -261,8 +260,7 @@ namespace DAnCEX11
               else
                 {
                   // just register the artifact without protocol
-                  ar_guard->versions ().push_back (
-                      ArtifactRegistry::Version(std::string(),location));
+                  ar_guard->versions ().emplace_back (std::string (), location);
                 }
 
               // we successfully installed the artifact so increment the install count

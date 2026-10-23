@@ -297,8 +297,7 @@ namespace DAnCEX11
       {
         DANCEX11_LOG_ERROR ("DomainApplicationManager_Impl::startLaunch - " <<
                                 "DomainApplication servant failed to activate");
-        throw ::Deployment::StartError ("DomainApplication",
-                                        "Activation failure");
+        throw ::Deployment::StartError ("DomainApplication", "Activation failure");
       }
       return app;
     }
@@ -310,16 +309,14 @@ namespace DAnCEX11
                          "Caught a CORBA exception, propagating StartError: "
                          << os.str ());
 
-      throw Deployment::StartError (this->getPlanUUID (),
-                                    os.str ());
+      throw Deployment::StartError (this->getPlanUUID (), os.str ());
     }
     catch (...)
     {
       DANCEX11_LOG_ERROR ("DomainApplicationManager_Impl::startLaunch - "
                          "Caught unknown exception.  Propagating StartError");
 
-      throw Deployment::StartError (this->getPlanUUID (),
-                                    "Unknown C++ exception");
+      throw Deployment::StartError (this->getPlanUUID (), "Unknown C++ exception");
     }
     return {};
   }
@@ -451,8 +448,7 @@ namespace DAnCEX11
           DANCEX11_LOG_ERROR ("DomainApplicationManager_Impl::preparePlan - " <<
                                "Deployment::StartError exception. NodeManager "
                                << sub_plan_key << " cannot be found");
-          throw Deployment::StartError (sub_plan_key,
-                                        "NodeManager not found");
+          throw Deployment::StartError (sub_plan_key, "NodeManager not found");
         }
         // narrow to async interface
         CORBA::amic_traits<Deployment::NodeManager>::ref_type nm_async =
@@ -576,16 +572,14 @@ namespace DAnCEX11
                          "Caught a CORBA exception, propagating StartError: "
                          << os.str ());
 
-      throw Deployment::StartError (this->plan_.UUID(),
-                                    os.str ());
+      throw Deployment::StartError (this->plan_.UUID(), os.str ());
     }
     catch (...)
     {
       DANCEX11_LOG_ERROR ("DomainApplicationManager_Impl::preparePlan - " <<
                          "Caught unknown exception.  Propagating StartError");
 
-      throw Deployment::StartError (this->plan_.UUID(),
-                                    "Unknown C++ exception");
+      throw Deployment::StartError (this->plan_.UUID(), "Unknown C++ exception");
     }
     DANCEX11_LOG_DEBUG ("DomainApplicationManager_Impl::preparePlan - finished");
   }
@@ -754,16 +748,14 @@ namespace DAnCEX11
                           "Caught a CORBA exception, propagating StopError: "
                          << os.str ());
 
-      throw Deployment::StopError (this->plan_.UUID(),
-                                   os.str ());
+      throw Deployment::StopError (this->plan_.UUID(), os.str ());
     }
     catch (...)
     {
       DANCEX11_LOG_ERROR ("DomainApplicationManager_Impl::destroyManager - " <<
                           "Caught unknown exception.  Propagating StopError");
 
-      throw Deployment::StopError (this->plan_.UUID(),
-                                   "Unknown C++ exception");
+      throw Deployment::StopError (this->plan_.UUID(), "Unknown C++ exception");
     }
     DANCEX11_LOG_DEBUG ("DomainApplicationManager_Impl::destroyManager - finished");
   }

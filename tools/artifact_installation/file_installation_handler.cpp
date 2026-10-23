@@ -77,10 +77,7 @@ namespace DAnCEX11
           ArtifactInstallationProperties propreader (properties, this->protocol_prefix());
 
           ifstream* ifs {};
-          ACE_NEW_NORETURN (ifs,
-                            ifstream (location,
-                                      std::ios_base::in |
-                                      std::ios_base::binary));
+          ACE_NEW_NORETURN (ifs, ifstream (location, std::ios_base::in | std::ios_base::binary));
           std::unique_ptr<ifstream> pifs (ifs);
           if (pifs.get ()!=0 && (*pifs))
             {

@@ -73,8 +73,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_ERROR ("Service_Object_Handler_Impl::install_instance - " <<
                           "No entrypoint found for plug-in initialization");
-      throw ::Deployment::StartError (idd.name (),
-        "No entrypoint found for plug-in initialization\n");
+      throw ::Deployment::StartError (idd.name (), "No entrypoint found for plug-in initialization\n");
     }
 
     std::string artifact;
@@ -84,8 +83,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_ERROR ("Service_Object_Handler_Impl::install_instance - " <<
                           "No artifact found for plug-in initialization");
-      throw ::Deployment::StartError (idd.name (),
-        "No artifact found for plug-in initialization\n");
+      throw ::Deployment::StartError (idd.name (), "No artifact found for plug-in initialization\n");
     }
 
     std::string arguments;

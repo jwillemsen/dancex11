@@ -550,8 +550,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_ERROR ("DomainApplication_Impl::finishLaunch " <<
                           "with unknown exception.");
-      throw Deployment::StartError("DomainApplication_Impl",
-                                   "Unknown C++ exception in finishLaunch");
+      throw Deployment::StartError("DomainApplication_Impl", "Unknown C++ exception in finishLaunch");
     }
 
   }
@@ -687,8 +686,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_ERROR ("DomainApplication_Impl::start - " <<
                           "Propagating StartError for unknown exception caught here");
-     throw Deployment::StartError(this->planUUID_,
-                                  "unknown exception in start");
+     throw Deployment::StartError(this->planUUID_, "unknown exception in start");
     }
   }
 
@@ -992,8 +990,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_ERROR ("DomainApplication_Impl::stop - " <<
                           "Propagating StopError for unknown exception caught here");
-     throw Deployment::StopError(this->planUUID_,
-                                  "unknown exception in stop");
+     throw Deployment::StopError(this->planUUID_, "unknown exception in stop");
     }
   }
 
