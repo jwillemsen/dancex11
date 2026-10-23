@@ -36,8 +36,8 @@ namespace DAnCEX11
         else
           tc = DynAlias_Handler::create_typecode (type);
 
-        IDL::traits<DynamicAny::DynAny>::ref_type alias = DYNANY_HANDLER->extract_into_dynany (
-          alias_type->elementType (), value, tc);
+        IDL::traits<DynamicAny::DynAny>::ref_type alias =
+          DYNANY_HANDLER->extract_into_dynany (alias_type->elementType (), value, tc);
         return alias;
       }
       catch (const DynamicAny::DynAny::InvalidValue&)

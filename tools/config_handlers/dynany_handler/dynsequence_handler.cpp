@@ -83,9 +83,8 @@ namespace DAnCEX11
                  i != value.element ().end ();
                  ++i)
             {
-              IDL::traits<DynamicAny::DynAny>::ref_type dynany
-                (DYNANY_HANDLER->extract_into_dynany (sequence_type->elementType (),
-                                                      *i));
+              IDL::traits<DynamicAny::DynAny>::ref_type dynany (
+                DYNANY_HANDLER->extract_into_dynany (sequence_type->elementType (), *i));
               dynseq[pos++] = dynany->copy ();
             }
 

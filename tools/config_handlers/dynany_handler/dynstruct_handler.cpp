@@ -73,8 +73,7 @@ namespace DAnCEX11
             throw Config_Error (i->name (), "Unknown member in struct value");
 
           values[pos].id(i->name ());
-          values[pos].value (DYNANY_HANDLER->extract_into_dynany (*data_type->second,
-                                                 i->value ()));
+          values[pos].value (DYNANY_HANDLER->extract_into_dynany (*data_type->second, i->value ()));
           ++pos;
         }
 
