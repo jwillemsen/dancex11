@@ -49,7 +49,7 @@ namespace DAnCEX11
                 std::back_inserter(dest.idlFile()));
 
       std::transform(src.configProperty ().begin (),
-                     src.configProperty ().begin (),
+                     src.configProperty ().end (),
                      std::back_inserter(dest.configProperty()),
                      DAnCEX11::Config_Handlers::convert_property);
 
