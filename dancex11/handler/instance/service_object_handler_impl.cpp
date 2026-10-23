@@ -46,8 +46,7 @@ namespace DAnCEX11
       DANCEX11_LOG_ERROR ("Service_Object_Handler_Impl::install_instance - " <<
                           "Invalid instance reference " << instanceRef << " provided " <<
                           "to install_instance");
-      throw Deployment::PlanError (plan.UUID (),
-                                      "Invalid instance reference");
+      throw Deployment::PlanError (plan.UUID (), "Invalid instance reference");
     }
 
     Deployment::InstanceDeploymentDescription const &idd =
@@ -58,8 +57,7 @@ namespace DAnCEX11
       DANCEX11_LOG_ERROR ("Service_Object_Handler_Impl::install_instance - " <<
                           "Invalid implementation reference " << idd.implementationRef () << " provided " <<
                           "to install_instance");
-      throw ::Deployment::PlanError (plan.UUID (),
-                                      "Invalid Implementation reference");
+      throw ::Deployment::PlanError (plan.UUID (), "Invalid Implementation reference");
     }
 
     Deployment::MonolithicDeploymentDescription const &mdd =

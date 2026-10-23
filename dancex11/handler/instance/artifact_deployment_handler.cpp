@@ -58,8 +58,7 @@ namespace DAnCEX11
                              "Invalid instance reference " <<
                              instanceRef << " provided " <<
                              "to install_instance");
-      throw ::Deployment::PlanError (plan.UUID (),
-                                     "Invalid instance reference");
+      throw ::Deployment::PlanError (plan.UUID (), "Invalid instance reference");
     }
 
     std::set<std::string> artifact_paths;
@@ -135,8 +134,7 @@ namespace DAnCEX11
                              "Invalid instance reference " <<
                              instanceRef << " provided " <<
                              "to install_instance");
-      throw ::Deployment::PlanError (plan.UUID (),
-                                     "Invalid instance reference");
+      throw ::Deployment::PlanError (plan.UUID (), "Invalid instance reference");
     }
 
     if (DAnCEX11::ArtifactInstallation_Impl::handlers_available ())
