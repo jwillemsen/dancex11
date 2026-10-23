@@ -51,7 +51,7 @@ namespace DAnCEX11
 
   IDL::traits<::Deployment::ApplicationManager>::ref_type
   ExecutionManager_Impl::preparePlan (
-    const ::Deployment::DeploymentPlan& plan,
+    ::Deployment::DeploymentPlan const& plan,
     IDL::traits<::Deployment::ResourceCommitmentManager>::ref_type /*resourceCommitment*/)
   {
     DANCEX11_LOG_TRACE ( "ExecutionManager_Impl::preparePlan");

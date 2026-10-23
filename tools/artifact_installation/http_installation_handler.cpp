@@ -20,7 +20,7 @@ namespace DAnCEX11
     : public ACE::HTTP::ClientRequestHandler
   {
     public:
-      HTTPInstallationRequestHandler (const std::string& plan_uuid)
+      HTTPInstallationRequestHandler (std::string const& plan_uuid)
         : plan_uuid_ (plan_uuid) {}
       ~HTTPInstallationRequestHandler () override = default;
 
