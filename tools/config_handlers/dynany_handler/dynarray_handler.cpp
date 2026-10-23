@@ -135,8 +135,7 @@ namespace DAnCEX11
 
       uint32_t const length =  array_type->length ();
 
-      IDL::traits<CORBA::TypeCode>::ref_type tc =
-        DYNANY_HANDLER->orb ()->create_array_tc (length, etc);
+      IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_array_tc (length, etc);
 
       return tc;
     }

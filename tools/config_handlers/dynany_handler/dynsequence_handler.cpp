@@ -146,8 +146,7 @@ namespace DAnCEX11
       if (sequence_bound)
         bound = *sequence_bound;
 
-      IDL::traits<CORBA::TypeCode>::ref_type tc =
-        DYNANY_HANDLER->orb ()->create_sequence_tc (bound, etc);
+      IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_sequence_tc (bound, etc);
 
       return tc;
     }

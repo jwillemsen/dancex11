@@ -69,8 +69,7 @@ namespace DAnCEX11
         }
       }
 
-      IDL::traits<CORBA::TypeCode>::ref_type tc =
-        DYNANY_HANDLER->orb ()->create_string_tc (bound);
+      IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_string_tc (bound);
 
       return tc;
     }

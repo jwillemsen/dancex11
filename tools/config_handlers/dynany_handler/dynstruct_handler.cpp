@@ -105,8 +105,8 @@ namespace DAnCEX11
           throw Config_Error ("","Expected struct type information, tc_kind may be"\
                                  "incorrect");
         }
-      std::string  rid (struct_type->typeId ());
-      std::string  name (struct_type->name ());
+      std::string rid (struct_type->typeId ());
+      std::string name (struct_type->name ());
 
       CORBA::StructMemberSeq members;
 
@@ -120,12 +120,10 @@ namespace DAnCEX11
           members.push_back (member);
       }
 
-      IDL::traits<CORBA::TypeCode>::ref_type tc {};
-      tc =
-        DYNANY_HANDLER->orb ()->create_struct_tc (
-          rid,
-          name ,
-          members);
+      IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_struct_tc (
+        rid,
+        name,
+        members);
 
       DYNANY_HANDLER->register_typecode (struct_type->typeId (), tc);
 

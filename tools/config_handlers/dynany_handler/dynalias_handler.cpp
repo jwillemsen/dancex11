@@ -70,9 +70,8 @@ namespace DAnCEX11
         throw Config_Error ("","Did not find expected alias type description, tk_kind may be wrong.");
       }
 
-      IDL::traits<CORBA::TypeCode>::ref_type tc =
-        DYNANY_HANDLER->orb ()->create_alias_tc
-        (alias_type->typeId (),
+      IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_alias_tc (
+        alias_type->typeId (),
          alias_type->name (),
          DYNANY_HANDLER->create_typecode (alias_type->elementType ()));
 
