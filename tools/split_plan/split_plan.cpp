@@ -95,7 +95,7 @@ namespace DAnCEX11
 
             for (uint32_t i = 0; i < num_localities; ++i)
               {
-                default_loc.push_back (Deployment::PlanLocality ());
+                default_loc.emplace_back ();
                 default_loc[i].constraint (Deployment::PlanLocalityKind::PlanNoConstraint);
               }
 

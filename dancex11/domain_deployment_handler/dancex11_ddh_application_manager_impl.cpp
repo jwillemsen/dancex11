@@ -539,11 +539,9 @@ namespace DAnCEX11
                                "] has been called");
 
           // We save combination NAM and NM in TNam2Nm vector
-          this->sub_app_mgr_.push_back(
-                  std::pair< IDL::traits<::Deployment::NodeApplicationManager>::ref_type,
-                             IDL::traits<::Deployment::NodeManager>::ref_type>(nam, result.nm_));
+          this->sub_app_mgr_.emplace_back (nam, result.nm_);
           // Save combination NM and node_id in TNm2Id vector
-          this->node_ids_.push_back( DomainApplication_Impl::TNm2Id_PAIR (result.nm_, result.node_));
+          this->node_ids_.emplace_back (result.nm_, result.node_);
         }
         else
         {

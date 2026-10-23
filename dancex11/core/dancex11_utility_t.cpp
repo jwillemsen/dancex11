@@ -137,7 +137,7 @@ namespace DAnCEX11
       DANCEX11_LOG_INFO ("DAnCEX11::Utility::update_property_value<T> - " <<
                          "Property for name '" << name << "' not found; adding property");
 
-      properties.push_back (Deployment::Property ());
+      properties.emplace_back ();
       properties.back ().name (name);
       properties.back ().value () <<= val;
     }

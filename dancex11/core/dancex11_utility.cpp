@@ -49,7 +49,7 @@ namespace DAnCEX11
            i != pmap.end ();
            ++i)
         {
-          prop.push_back (::Deployment::Property (i->first, i->second));
+          prop.emplace_back (i->first, i->second);
 
           DANCEX11_LOG_INFO ("build_property_sequence: " <<
                              "Added value for property <" << i->first << ">");

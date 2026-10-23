@@ -809,8 +809,8 @@ namespace DAnCEX11
                               "instance_references : "
                                <<  result.providedReference_.size ());
 
-          this->node_applications_.push_back ( TApp2Mgr_PAIR(result.app_, result.nam_));
-          this->app_node_ids_.push_back (TApp2Id_PAIR(result.app_, result.node_));
+          this->node_applications_.emplace_back (result.app_, result.nam_);
+          this->app_node_ids_.emplace_back (result.app_, result.node_);
 
           for (::Deployment::Connection conn : result.providedReference_ )
           {
