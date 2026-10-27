@@ -7,6 +7,7 @@
 
 #include "dynsequence_handler.h"
 #include "dynany_handler.h"
+#include "dyncharsequence.h"
 #include "dancex11/logger/log.h"
 #include "Basic_Deployment_Data.hpp"
 #include "common.h"
@@ -14,6 +15,9 @@
 #include "ace/Null_Mutex.h"
 
 #include "tao/x11/anytypecode/typecode.h"
+
+#include <algorithm>
+#include <string>
 
 namespace DAnCEX11
 {
@@ -98,8 +102,36 @@ namespace DAnCEX11
 
         case TCKind::tk_char_l:
         case TCKind::tk_wchar_l:
-          // special case where value iterator multiplicity should be one, and should
-          // represent a string, each character of which becomes a element of the sequence.
+          {
+            std::string const characters = extract_char_sequence (value);
+            if (sequence_type->elementType ().kind ().integral () == TCKind::tk_wchar_l &&
+                std::any_of (characters.begin (), characters.end (), [] (unsigned char c) { return c > 0x7f; }))
+              throw Config_Error ("", "Non-ASCII wchar values are not supported");
+
+            try
+            {
+              retval->set_length (static_cast<uint32_t> (characters.size ()));
+              dynseq.resize (characters.size ());
+              for (size_t i {}; i < characters.size (); ++i)
+              {
+                IDL::traits<DynamicAny::DynAny>::ref_type character =
+                  DYNANY_HANDLER->daf ()->create_dyn_any_from_type_code (
+                    sequence_type->elementType ().kind ().integral () == TCKind::tk_char_l
+                      ? CORBA::_tc_char : CORBA::_tc_wchar);
+                if (sequence_type->elementType ().kind ().integral () == TCKind::tk_char_l)
+                  character->insert_char (characters[i]);
+                else
+                  character->insert_wchar (static_cast<wchar_t> (static_cast<unsigned char> (characters[i])));
+                dynseq[i] = character->copy ();
+              }
+              retval->set_elements_as_dyn_any (dynseq);
+              return retval;
+            }
+            catch (const DynamicAny::DynAny::InvalidValue&)
+            {
+              throw Config_Error ("", "Invalid value whilst populating the character sequence.");
+            }
+          }
 
         case TCKind::tk_any_l:
         case TCKind::tk_TypeCode_l:

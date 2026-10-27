@@ -63,6 +63,9 @@ namespace DAnCEX11
       ::DAnCE::Config_Handlers::BoundedStringType const* bounded_string = type.boundedString_if_set ();
       if (bounded_string)
       {
+        if (bounded_string->bound ().size () > 1)
+          throw Config_Error ("", "A bounded string type can have at most one bound");
+
         if (!bounded_string->bound ().empty ())
         {
           bound = bounded_string->bound ().front ();

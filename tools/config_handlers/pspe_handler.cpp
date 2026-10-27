@@ -35,12 +35,17 @@ namespace DAnCEX11
       if (result != instancedeploymentdescription_map.end ())
         dest.instanceRef(static_cast<uint32_t>(result->second));
       else
-        dest.instanceRef(std::numeric_limits<uint32_t>::max());
+        throw Config_Error (idref->id (), "Instance reference does not identify an instance");
 
       ::XMLSchema::string<char> const* provider = src.provider_if_set ();
       if (provider)
         {
-          dest.provider (*provider == "true");
+          if (*provider == "true")
+            dest.provider (true);
+          else if (*provider == "false")
+            dest.provider (false);
+          else
+            throw Config_Error ("provider", "Expected 'true' or 'false'");
         }
       else
         {

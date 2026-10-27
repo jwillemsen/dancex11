@@ -44,7 +44,7 @@ namespace DAnCEX11
                        if (result != artifact_map.end ())
                          return static_cast<uint32_t>(result->second);
                        else
-                         return std::numeric_limits<uint32_t>::max();
+                         throw Config_Error (idref->id (), "Artifact reference does not identify an artifact");
                      });
 
       std::transform(src.execParameter ().begin (),

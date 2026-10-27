@@ -19,7 +19,7 @@ namespace DAnCEX11
   {
     Deployment::InstanceDeploymentDescription
     convert_instancedeploymentdescription (const DAnCE::Config_Handlers::InstanceDeploymentDescription& src,
-                                           const std::unordered_map<std::string, size_t>& monolithicdeploymentdescription_map)
+      const std::unordered_map<std::string, size_t>& monolithicdeploymentdescription_map)
     {
       DANCEX11_LOG_TRACE("DAnCEX11::Config_Handlers::convert_instancedeploymentdescription");
 
@@ -39,7 +39,7 @@ namespace DAnCEX11
       if (result != monolithicdeploymentdescription_map.end ())
         dest.implementationRef(static_cast<uint32_t>(result->second));
       else
-        dest.implementationRef(std::numeric_limits<uint32_t>::max());
+        throw Config_Error (idref->id (), "Implementation reference does not identify an implementation");
 
       std::transform(src.configProperty ().begin (),
                     src.configProperty ().end (),

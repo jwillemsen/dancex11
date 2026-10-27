@@ -15,7 +15,9 @@ namespace DAnCEX11
   namespace Config_Handlers
   {
     Deployment::PlanLocality
-    convert_planlocality (const DAnCE::Config_Handlers::PlanLocality& src, const std::unordered_map<std::string, size_t>& instancedeploymentdescription_map)
+    convert_planlocality (
+      const DAnCE::Config_Handlers::PlanLocality& src,
+      const std::unordered_map<std::string, size_t>& instancedeploymentdescription_map)
     {
       DANCEX11_LOG_TRACE("DAnCEX11::Config_Handlers::convert_planlocality");
 
@@ -47,7 +49,8 @@ namespace DAnCEX11
                        if (result != instancedeploymentdescription_map.end ())
                          return static_cast<uint32_t>(result->second);
                        else
-                         return std::numeric_limits<uint32_t>::max();
+                         throw Config_Error (idref->id (),
+                                             "Constrained instance reference does not identify an instance");
                      });
 
       return dest;

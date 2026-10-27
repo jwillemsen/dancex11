@@ -300,10 +300,9 @@ namespace DAnCEX11
           if (!value.string ().empty ())
           {
             ::XMLSchema::string<char> const& character_value = value.string ().front ();
-            if (!character_value.empty ())
-            {
-              c = character_value.front ();
-            }
+            if (character_value.size () != 1)
+              throw Config_Error ("", "A char value must contain exactly one character");
+            c = character_value.front ();
           }
           retval->insert_char (c);
         }
