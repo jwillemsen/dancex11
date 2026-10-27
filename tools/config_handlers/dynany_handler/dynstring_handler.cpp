@@ -53,7 +53,7 @@ namespace DAnCEX11
     {
       DANCEX11_LOG_TRACE("DynString_Handler::create_typecode");
 
-      if (type.kind ().integral () != TCKind::tk_string_l)
+      if (type.kind ().integral () != TCKind::tk_string)
       {
         DANCEX11_LOG_ERROR ("ERROR: String type description required");
         throw Config_Error ("", "Expected <string> element, incorrect tc_kind.");

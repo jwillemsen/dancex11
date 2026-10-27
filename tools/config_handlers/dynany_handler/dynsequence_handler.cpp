@@ -51,33 +51,33 @@ namespace DAnCEX11
       switch (sequence_type->elementType ().kind ().integral ())
         {
           // ========== BASIC TYPES
-        case TCKind::tk_null_l:
-        case TCKind::tk_void_l:
-        case TCKind::tk_objref_l:
-        case TCKind::tk_fixed_l:
-        case TCKind::tk_component_l:
-        case TCKind::tk_home_l:
+        case TCKind::tk_null:
+        case TCKind::tk_void:
+        case TCKind::tk_objref:
+        case TCKind::tk_fixed:
+        case TCKind::tk_component:
+        case TCKind::tk_home:
 
           DANCEX11_LOG_ERROR ("Null and void element types are not supported in sequences");
           throw Config_Error ("", "Null or void element types are not supported in sequences");
 
-        case TCKind::tk_short_l:
-        case TCKind::tk_long_l:
-        case TCKind::tk_ushort_l:
-        case TCKind::tk_ulong_l:
-        case TCKind::tk_float_l:
-        case TCKind::tk_double_l:
-        case TCKind::tk_boolean_l:
-        case TCKind::tk_octet_l:
-        case TCKind::tk_string_l:
-        case TCKind::tk_longlong_l:
-        case TCKind::tk_ulonglong_l:
-        case TCKind::tk_longdouble_l:
-        case TCKind::tk_wstring_l:
-        case TCKind::tk_enum_l:
-        case TCKind::tk_struct_l:
-        case TCKind::tk_sequence_l:
-        case TCKind::tk_array_l:
+        case TCKind::tk_short:
+        case TCKind::tk_long:
+        case TCKind::tk_ushort:
+        case TCKind::tk_ulong:
+        case TCKind::tk_float:
+        case TCKind::tk_double:
+        case TCKind::tk_boolean:
+        case TCKind::tk_octet:
+        case TCKind::tk_string:
+        case TCKind::tk_longlong:
+        case TCKind::tk_ulonglong:
+        case TCKind::tk_longdouble:
+        case TCKind::tk_wstring:
+        case TCKind::tk_enum:
+        case TCKind::tk_struct:
+        case TCKind::tk_sequence:
+        case TCKind::tk_array:
           try
           {
             dynseq.resize (value.element ().size ());
@@ -100,11 +100,11 @@ namespace DAnCEX11
             throw Config_Error ("", "Invalid value whilst populating the sequence.");
           }
 
-        case TCKind::tk_char_l:
-        case TCKind::tk_wchar_l:
+        case TCKind::tk_char:
+        case TCKind::tk_wchar:
           {
             std::string const characters = extract_char_sequence (value);
-            if (sequence_type->elementType ().kind ().integral () == TCKind::tk_wchar_l &&
+            if (sequence_type->elementType ().kind ().integral () == TCKind::tk_wchar &&
                 std::any_of (characters.begin (), characters.end (), [] (unsigned char c) { return c > 0x7f; }))
               throw Config_Error ("", "Non-ASCII wchar values are not supported");
 
@@ -116,9 +116,9 @@ namespace DAnCEX11
               {
                 IDL::traits<DynamicAny::DynAny>::ref_type character =
                   DYNANY_HANDLER->daf ()->create_dyn_any_from_type_code (
-                    sequence_type->elementType ().kind ().integral () == TCKind::tk_char_l
+                    sequence_type->elementType ().kind ().integral () == TCKind::tk_char
                       ? CORBA::_tc_char : CORBA::_tc_wchar);
-                if (sequence_type->elementType ().kind ().integral () == TCKind::tk_char_l)
+                if (sequence_type->elementType ().kind ().integral () == TCKind::tk_char)
                   character->insert_char (characters[i]);
                 else
                   character->insert_wchar (static_cast<wchar_t> (static_cast<unsigned char> (characters[i])));
@@ -133,18 +133,18 @@ namespace DAnCEX11
             }
           }
 
-        case TCKind::tk_any_l:
-        case TCKind::tk_TypeCode_l:
-        case TCKind::tk_Principal_l:
-        case TCKind::tk_union_l:
-        case TCKind::tk_alias_l:
-        case TCKind::tk_except_l:
-        case TCKind::tk_value_l:
-        case TCKind::tk_value_box_l:
-        case TCKind::tk_native_l:
-        case TCKind::tk_abstract_interface_l:
-        case TCKind::tk_local_interface_l:
-        case TCKind::tk_event_l:
+        case TCKind::tk_any:
+        case TCKind::tk_TypeCode:
+        case TCKind::tk_Principal:
+        case TCKind::tk_union:
+        case TCKind::tk_alias:
+        case TCKind::tk_except:
+        case TCKind::tk_value:
+        case TCKind::tk_value_box:
+        case TCKind::tk_native:
+        case TCKind::tk_abstract_interface:
+        case TCKind::tk_local_interface:
+        case TCKind::tk_event:
           // Special case where element association in datavalue contains another datavalue.
 
           DANCEX11_LOG_ERROR ("DynSequence_Handler::extract_into_dynany - Type not supported");

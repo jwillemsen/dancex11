@@ -23,58 +23,58 @@ namespace DAnCEX11
 
       switch (src.kind().integral ())
       {
-      case DAnCE::Config_Handlers::TCKind::tk_null_l:
+      case DAnCE::Config_Handlers::TCKind::tk_null:
         dest = CORBA::_tc_null;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_short_l:
+      case DAnCE::Config_Handlers::TCKind::tk_short:
         dest = CORBA::_tc_short;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_long_l:
+      case DAnCE::Config_Handlers::TCKind::tk_long:
         dest = CORBA::_tc_long;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_ushort_l:
+      case DAnCE::Config_Handlers::TCKind::tk_ushort:
         dest = CORBA::_tc_ushort;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_ulong_l:
+      case DAnCE::Config_Handlers::TCKind::tk_ulong:
         dest = CORBA::_tc_ulong;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_float_l:
+      case DAnCE::Config_Handlers::TCKind::tk_float:
         dest = CORBA::_tc_float;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_double_l:
+      case DAnCE::Config_Handlers::TCKind::tk_double:
         dest = CORBA::_tc_double;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_boolean_l:
+      case DAnCE::Config_Handlers::TCKind::tk_boolean:
         dest = CORBA::_tc_boolean;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_char_l:
+      case DAnCE::Config_Handlers::TCKind::tk_char:
         dest = CORBA::_tc_char;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_octet_l:
+      case DAnCE::Config_Handlers::TCKind::tk_octet:
         dest = CORBA::_tc_octet;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_string_l:
+      case DAnCE::Config_Handlers::TCKind::tk_string:
         dest = CORBA::_tc_string;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_longlong_l:
+      case DAnCE::Config_Handlers::TCKind::tk_longlong:
         dest = CORBA::_tc_longlong;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_ulonglong_l:
+      case DAnCE::Config_Handlers::TCKind::tk_ulonglong:
         dest = CORBA::_tc_ulonglong;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_longdouble_l:
+      case DAnCE::Config_Handlers::TCKind::tk_longdouble:
         dest = CORBA::_tc_longdouble;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_wchar_l:
+      case DAnCE::Config_Handlers::TCKind::tk_wchar:
         dest = CORBA::_tc_wchar;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_wstring_l:
+      case DAnCE::Config_Handlers::TCKind::tk_wstring:
         dest = CORBA::_tc_wstring;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_any_l:
+      case DAnCE::Config_Handlers::TCKind::tk_any:
         dest = CORBA::_tc_any;
         break;
-      case DAnCE::Config_Handlers::TCKind::tk_TypeCode_l:
+      case DAnCE::Config_Handlers::TCKind::tk_TypeCode:
         dest = CORBA::_tc_TypeCode;
         break;
       default:

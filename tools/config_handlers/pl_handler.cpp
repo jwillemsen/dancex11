@@ -25,13 +25,13 @@ namespace DAnCEX11
 
       switch (src.constraint ().integral ())
         {
-          case DAnCE::Config_Handlers::PlanLocalityKind::SameProcess_l:
+          case DAnCE::Config_Handlers::PlanLocalityKind::SameProcess:
             dest.constraint (Deployment::PlanLocalityKind::PlanSameProcess);
             break;
-          case DAnCE::Config_Handlers::PlanLocalityKind::DifferentProcess_l:
+          case DAnCE::Config_Handlers::PlanLocalityKind::DifferentProcess:
             dest.constraint (Deployment::PlanLocalityKind::PlanDifferentProcess);
             break;
-          case DAnCE::Config_Handlers::PlanLocalityKind::NoConstraint_l:
+          case DAnCE::Config_Handlers::PlanLocalityKind::NoConstraint:
             dest.constraint(Deployment::PlanLocalityKind::PlanNoConstraint);
             break;
         }

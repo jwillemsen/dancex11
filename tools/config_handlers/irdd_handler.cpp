@@ -22,19 +22,19 @@ namespace DAnCEX11
 
       switch (src.resourceUsage ().integral ())
       {
-        case DAnCE::Config_Handlers::ResourceUsageKind::None_l:
+        case DAnCE::Config_Handlers::ResourceUsageKind::None:
           dest.resourceUsage (Deployment::ResourceUsageKind::None);
           break;
-        case DAnCE::Config_Handlers::ResourceUsageKind::InstanceUsesResource_l:
+        case DAnCE::Config_Handlers::ResourceUsageKind::InstanceUsesResource:
           dest.resourceUsage (Deployment::ResourceUsageKind::InstanceUsesResource);
           break;
-        case DAnCE::Config_Handlers::ResourceUsageKind::ResourceUsesInstance_l:
+        case DAnCE::Config_Handlers::ResourceUsageKind::ResourceUsesInstance:
           dest.resourceUsage (Deployment::ResourceUsageKind::ResourceUsesInstance);
           break;
-        case DAnCE::Config_Handlers::ResourceUsageKind::PortUsesResource_l:
+        case DAnCE::Config_Handlers::ResourceUsageKind::PortUsesResource:
           dest.resourceUsage (Deployment::ResourceUsageKind::PortUsesResource);
           break;
-        case DAnCE::Config_Handlers::ResourceUsageKind::ResourceUsesPort_l:
+        case DAnCE::Config_Handlers::ResourceUsageKind::ResourceUsesPort:
           dest.resourceUsage (Deployment::ResourceUsageKind::ResourceUsesPort);
           break;
       }
