@@ -13,6 +13,7 @@
 #include "id_handler.h"
 #include "pl_handler.h"
 #include "property_handler.h"
+#include "common.h"
 #include "cdp.hpp"
 #include "pcd_handler.h"
 #include "dancex11/logger/log.h"
@@ -89,6 +90,57 @@ namespace DAnCEX11
           idl_dp->instance ().push_back (
             DAnCEX11::Config_Handlers::convert_instancedeploymentdescription (
               src, monolithicdeploymentdescription_map));
+        }
+
+      for (DAnCE::Config_Handlers::PlanPropertyMapping const& src : xsc_dp.externalProperty ())
+        {
+          Deployment::PlanSubcomponentPropertyReferences delegates;
+          for (DAnCE::Config_Handlers::PlanSubcomponentPropertyReference const& delegate : src.delegatesTo ())
+            {
+              DAnCE::Config_Handlers::InstanceDeploymentDescription const& nested = delegate.instance ();
+              size_t instance_index = idl_dp->instance ().size ();
+              ::XMLSchema::ID<char> const* id = nested.id_if_set ();
+              if (id)
+                {
+                  auto const found = instancedeploymentdescription_map.find (*id);
+                  if (found != instancedeploymentdescription_map.end ())
+                    instance_index = found->second;
+                }
+
+              if (instance_index == idl_dp->instance ().size ())
+                {
+                  ::XMLSchema::IDREF<char> const* implementation = nested.implementation ().idref_if_set ();
+                  for (DAnCE::Config_Handlers::InstanceDeploymentDescription const& candidate : xsc_dp.instance ())
+                    {
+                      ::XMLSchema::IDREF<char> const* candidate_implementation =
+                        candidate.implementation ().idref_if_set ();
+                      if (candidate.name () == nested.name () && candidate.node () == nested.node () &&
+                          implementation && candidate_implementation && *implementation == *candidate_implementation)
+                        {
+                          ::XMLSchema::ID<char> const* candidate_id = candidate.id_if_set ();
+                          if (!candidate_id)
+                            throw Config_Error (nested.name (), "Delegated instance has no XMI ID");
+                          auto const found = instancedeploymentdescription_map.find (*candidate_id);
+                          if (found != instancedeploymentdescription_map.end ())
+                            {
+                              if (instance_index != idl_dp->instance ().size ())
+                                throw Config_Error (nested.name (), "Ambiguous delegated instance reference");
+                              instance_index = found->second;
+                            }
+                        }
+                    }
+                }
+
+              if (instance_index == idl_dp->instance ().size ())
+                throw Config_Error (nested.name (), "Unable to resolve delegated instance reference");
+
+              delegates.emplace_back (delegate.propertyName (), static_cast<uint32_t>(instance_index));
+            }
+
+          CORBA::StringSeq source;
+          std::copy (src.source ().begin (), src.source ().end (), std::back_inserter (source));
+          idl_dp->externalProperty ().emplace_back (
+            src.name (), std::move (source), src.externalName (), std::move (delegates));
         }
 
       std::transform(xsc_dp.connection ().begin (),

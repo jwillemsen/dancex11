@@ -381,10 +381,9 @@ namespace DAnCEX11
         {
           // ========== BASIC TYPES
         case TCKind::tk_null:
+          return CORBA::_tc_null;
         case TCKind::tk_void:
-          DANCEX11_LOG_DEBUG ("I don't know how to handle null or void typesn");
-          throw Config_Error ("", "Null or void types not supported");
-          break;
+          return CORBA::_tc_void;
 
         case TCKind::tk_short:
           return CORBA::_tc_short;
@@ -423,19 +422,20 @@ namespace DAnCEX11
           return CORBA::_tc_ulonglong;
 
         case TCKind::tk_longdouble:
-          // Disabled since a longdouble is defined in the xsd as double.
-          // We are then creating a long double initialized from a regular
-          // double. This is a very tricky conversion and doesn't work in
-          // combination with certain (versions of) compilers.
-          DANCEX11_LOG_DEBUG("DynAny_Handler::create_typecode - Type not supported");
-          throw Config_Error ("", "Type not supported");
+          return CORBA::_tc_longdouble;
 
         case TCKind::tk_wchar:
           return CORBA::_tc_wchar;
 
         case TCKind::tk_wstring:
-          DANCEX11_LOG_DEBUG("DynAny_Handler::create_typecode - Type not supported");
-          throw Config_Error ("", "Type not supported");
+          {
+            uint32_t bound {};
+            ::DAnCE::Config_Handlers::BoundedStringType const* bounded = type.boundedString_if_set ();
+            if (bounded && bounded->bound ().size () > 1)
+              throw Config_Error ("", "A bounded wide string type can have at most one bound");
+            if (bounded && !bounded->bound ().empty ()) bound = bounded->bound ().front ();
+            return this->orb_->create_wstring_tc (bound);
+          }
 
         case TCKind::tk_enum:
           return DynEnum_Handler::create_typecode (type);
@@ -452,11 +452,15 @@ namespace DAnCEX11
         case TCKind::tk_array:
           return DynArray_Handler::create_typecode (type);
 
-        case TCKind::tk_fixed:
         case TCKind::tk_any:
+          return CORBA::_tc_any;
         case TCKind::tk_TypeCode:
+          return CORBA::_tc_TypeCode;
         case TCKind::tk_Principal:
+          return CORBA::_tc_Principal;
         case TCKind::tk_objref:
+          return CORBA::_tc_Object;
+        case TCKind::tk_fixed:
         case TCKind::tk_union:
         case TCKind::tk_except:
         case TCKind::tk_value:
