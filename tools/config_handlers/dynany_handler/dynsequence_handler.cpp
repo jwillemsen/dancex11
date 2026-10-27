@@ -17,6 +17,7 @@
 #include "tao/x11/anytypecode/typecode.h"
 
 #include <algorithm>
+#include <limits>
 #include <string>
 
 namespace DAnCEX11
@@ -78,6 +79,9 @@ namespace DAnCEX11
         case TCKind::tk_struct:
         case TCKind::tk_sequence:
         case TCKind::tk_array:
+          if (value.element ().size () > std::numeric_limits<uint32_t>::max ())
+            throw Config_Error ("", "Sequence value exceeds the supported length");
+
           try
           {
             dynseq.resize (value.element ().size ());
@@ -104,6 +108,9 @@ namespace DAnCEX11
         case TCKind::tk_wchar:
           {
             std::string const characters = extract_char_sequence (value);
+            if (characters.size () > std::numeric_limits<uint32_t>::max ())
+              throw Config_Error ("", "Character sequence exceeds the supported length");
+
             if (sequence_type->elementType ().kind ().integral () == TCKind::tk_wchar &&
                 std::any_of (characters.begin (), characters.end (), [] (unsigned char c) { return c > 0x7f; }))
               throw Config_Error ("", "Non-ASCII wchar values are not supported");

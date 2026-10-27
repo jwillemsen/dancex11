@@ -1,5 +1,9 @@
 /**
  * @file    dyncharsequence.h
+ * @author  Johnny Willemsen
+ *
+ * @copyright Copyright (c) Remedy IT Expertise BV
+ *
  * @brief   Helpers for the character-string representation of char sequences.
  */
 

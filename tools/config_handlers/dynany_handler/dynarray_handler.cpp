@@ -30,6 +30,11 @@ namespace DAnCEX11
       if (!array_type)
         throw Config_Error ("", "Array type description required");
 
+      if (value.element ().size () != array_type->length () &&
+          array_type->elementType ().kind ().integral () != TCKind::tk_char &&
+          array_type->elementType ().kind ().integral () != TCKind::tk_wchar)
+        throw Config_Error ("", "Array value does not match the declared length");
+
       IDL::traits<CORBA::TypeCode>::ref_type tc;
       if (req_tc)
         tc = req_tc;
@@ -82,6 +87,7 @@ namespace DAnCEX11
               IDL::traits<DynamicAny::DynAny>::ref_type dynany (
                 DYNANY_HANDLER->extract_into_dynany (array_type->elementType (), element));
               dynseq.push_back (dynany->copy ());
+              ++pos;
             }
 
             retval->set_elements_as_dyn_any (dynseq);

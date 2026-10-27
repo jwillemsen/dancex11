@@ -12,6 +12,8 @@
 #include "tao/x11/ifr_client/IFR_BaseC.h"
 #include "common.h"
 
+#include <set>
+
 namespace DAnCEX11
 {
   namespace Config_Handlers
@@ -63,17 +65,23 @@ namespace DAnCEX11
         uint32_t pos {};
         DynamicAny::NameDynAnyPairSeq values;
         values.resize (value.member ().size ());
+        std::set<std::string> seen_members;
 
         for (auto const& member : value.member ())
         {
           auto const data_type = dt_map.find (member.name ());
           if (data_type == dt_map.end ())
             throw Config_Error (member.name (), "Unknown member in struct value");
+          if (!seen_members.insert (member.name ()).second)
+            throw Config_Error (member.name (), "Duplicate member in struct value");
 
           values[pos].id(member.name ());
           values[pos].value (DYNANY_HANDLER->extract_into_dynany (*data_type->second, member.value ()));
           ++pos;
         }
+
+        if (seen_members.size () != dt_map.size ())
+          throw Config_Error (struct_type->typeId (), "Missing member in struct value");
 
         retval->set_members_as_dyn_any (values);
 
