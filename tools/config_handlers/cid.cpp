@@ -435,6 +435,7 @@ namespace DAnCE
           requiredType_ = std::make_unique<::DAnCE::Config_Handlers::ComponentInterfaceDescription> (e);
         }
       }
+      if (!requiredType_)throw std::invalid_argument ("missing required XML element: requiredType");
     }
     SubcomponentInstantiationDescription::SubcomponentInstantiationDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -484,6 +485,7 @@ namespace DAnCE
           id_ = std::make_unique<::XMLSchema::ID<char>> (a);
         }
       }
+      if (!name_)throw std::invalid_argument ("missing required XML element: name");
     }
     SubcomponentPropertyReference::SubcomponentPropertyReference (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -504,6 +506,8 @@ namespace DAnCE
           instance_ = std::make_unique<::DAnCE::Config_Handlers::IdRef> (e);
         }
       }
+      if (!propertyName_)throw std::invalid_argument ("missing required XML element: propertyName");
+      if (!instance_)throw std::invalid_argument ("missing required XML element: instance");
     }
     AssemblyPropertyMapping::AssemblyPropertyMapping (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -528,6 +532,8 @@ namespace DAnCE
           delegatesTo_.emplace_back (e);
         }
       }
+      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!externalName_)throw std::invalid_argument ("missing required XML element: externalName");
     }
     LocalityKind::LocalityKind (::XSCRT::XML::Element<char> const& e)
     : ::XSCRT::Type (e)
@@ -577,6 +583,8 @@ namespace DAnCE
           constrainedInstance_ = std::make_unique<::DAnCE::Config_Handlers::IdRef> (e);
         }
       }
+      if (!constraint_)throw std::invalid_argument ("missing required XML element: constraint");
+      if (!constrainedInstance_)throw std::invalid_argument ("missing required XML element: constrainedInstance");
     }
     ComponentAssemblyDescription::ComponentAssemblyDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
