@@ -45,7 +45,8 @@ namespace DAnCEX11
                        if (!idref)
                          throw Config_Error ("", "Missing idref for constrained instance");
 
-                       auto result = instancedeploymentdescription_map.find (idref->id ());
+                       std::unordered_map<std::string, size_t>::const_iterator const result =
+                         instancedeploymentdescription_map.find (idref->id ());
                        if (result != instancedeploymentdescription_map.end ())
                          return static_cast<uint32_t>(result->second);
                        else

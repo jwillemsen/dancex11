@@ -35,7 +35,8 @@ namespace DAnCEX11
       if (!idref)
         throw Config_Error ("", "Missing idref for implementation");
 
-      auto result = monolithicdeploymentdescription_map.find (idref->id ());
+      std::unordered_map<std::string, size_t>::const_iterator const result =
+        monolithicdeploymentdescription_map.find (idref->id ());
       if (result != monolithicdeploymentdescription_map.end ())
         dest.implementationRef(static_cast<uint32_t>(result->second));
       else

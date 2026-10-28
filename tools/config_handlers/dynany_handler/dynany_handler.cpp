@@ -137,7 +137,6 @@ namespace DAnCEX11
           DANCEX11_LOG_ERROR ("DynAny_Handler::extract_into_dynany - Don't know how to handle null or void types");
           throw Config_Error ("", "Null or void types not supported");
           break;
-
         case TCKind::tk_short:
         {
           if (!req_tc)
@@ -166,7 +165,6 @@ namespace DAnCEX11
           retval->insert_long (l);
         }
         break;
-
         case TCKind::tk_ushort:
         {
           if (!req_tc)
@@ -181,7 +179,6 @@ namespace DAnCEX11
           retval->insert_ushort (us);
         }
         break;
-
         case TCKind::tk_ulong:
         {
           if (!req_tc)
@@ -196,7 +193,6 @@ namespace DAnCEX11
           retval->insert_ulong (ul);
         }
         break;
-
         case TCKind::tk_float:
         {
           if (!req_tc)
@@ -211,7 +207,6 @@ namespace DAnCEX11
           retval->insert_float (f);
         }
         break;
-
         case TCKind::tk_double:
         {
           if (!req_tc)
@@ -226,7 +221,6 @@ namespace DAnCEX11
           retval->insert_double (d);
         }
         break;
-
         case TCKind::tk_boolean:
           {
             if (!req_tc)
@@ -241,7 +235,6 @@ namespace DAnCEX11
             retval->insert_boolean (b);
           }
           break;
-
         case TCKind::tk_octet:
         {
           if (!req_tc)
@@ -256,7 +249,6 @@ namespace DAnCEX11
           retval->insert_octet (o);
         }
           break;
-
         case TCKind::tk_longlong:
         {
           if (!req_tc)
@@ -271,14 +263,13 @@ namespace DAnCEX11
           retval->insert_longlong (ll);
         }
         break;
-
         case TCKind::tk_ulonglong:
         {
           if (!req_tc)
           {
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_ulonglong);
           }
-        uint64_t ull = {};
+        uint64_t ull {};
         if (!value.ulonglong ().empty ())
           {
             ull = value.ulonglong ().front ();
@@ -286,7 +277,6 @@ namespace DAnCEX11
           retval->insert_ulonglong (ull);
         }
         break;
-
         case TCKind::tk_string:
           return DynString_Handler::extract_into_dynany (type, value, req_tc);
 
@@ -296,7 +286,7 @@ namespace DAnCEX11
           {
             retval = this->daf_->create_dyn_any_from_type_code (CORBA::_tc_char);
           }
-          char c = 0;
+          char c {};
           if (!value.string ().empty ())
           {
             ::XMLSchema::string<char> const& character_value = value.string ().front ();
@@ -307,7 +297,6 @@ namespace DAnCEX11
           retval->insert_char (c);
         }
         break;
-
         case TCKind::tk_wchar:
         {
           if (!req_tc)
@@ -328,7 +317,6 @@ namespace DAnCEX11
           retval->insert_wchar (wc);
         }
         break;
-
         case TCKind::tk_enum:
           return DynEnum_Handler::extract_into_dynany (type, value, req_tc);
 

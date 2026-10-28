@@ -69,7 +69,7 @@ namespace DAnCEX11
 
       IDL::traits<DynamicAny::DynAnyFactory>::ref_type daf_ {};
 
-      using TypecodeMap = std::map <std::string,
+      using TypecodeMap = std::map<std::string,
                                     IDL::traits<CORBA::TypeCode>::ref_type,
                                     std::less<>>;
       TypecodeMap typecode_map_;

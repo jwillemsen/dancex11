@@ -82,7 +82,7 @@ namespace DAnCEX11
         case TCKind::tk_array:
           try
           {
-            for (auto const& element : value.element ())
+            for (DataValue const& element : value.element ())
             {
               IDL::traits<DynamicAny::DynAny>::ref_type dynany (
                 DYNANY_HANDLER->extract_into_dynany (array_type->elementType (), element));

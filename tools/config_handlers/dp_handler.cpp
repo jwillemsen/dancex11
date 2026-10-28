@@ -102,7 +102,8 @@ namespace DAnCEX11
               ::XMLSchema::ID<char> const* id = nested.id_if_set ();
               if (id)
                 {
-                  auto const found = instancedeploymentdescription_map.find (*id);
+                  std::unordered_map<std::string, size_t>::const_iterator const found =
+                    instancedeploymentdescription_map.find (*id);
                   if (found != instancedeploymentdescription_map.end ())
                     instance_index = found->second;
                 }
@@ -120,7 +121,8 @@ namespace DAnCEX11
                           ::XMLSchema::ID<char> const* candidate_id = candidate.id_if_set ();
                           if (!candidate_id)
                             throw Config_Error (nested.name (), "Delegated instance has no XMI ID");
-                          auto const found = instancedeploymentdescription_map.find (*candidate_id);
+                          std::unordered_map<std::string, size_t>::const_iterator const found =
+                            instancedeploymentdescription_map.find (*candidate_id);
                           if (found != instancedeploymentdescription_map.end ())
                             {
                               if (instance_index != idl_dp->instance ().size ())

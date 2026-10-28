@@ -12,26 +12,24 @@
 #include "tao/x11/ifr_client/IFR_BaseC.h"
 #include "common.h"
 
+#include <map>
+#include <memory>
 #include <set>
 
 namespace DAnCEX11
 {
   namespace Config_Handlers
   {
-    using DAnCE::Config_Handlers::StructType;
-
     void create_type_map (const DataType &type,
-                          std::map <std::string, DataType const *> &dt_map)
+                          std::map<std::string, DataType const*>& dt_map)
     {
       DANCEX11_LOG_TRACE("Config_Handlers::create_type_map");
       ::DAnCE::Config_Handlers::StructType const* struct_type = type._cxx_struct_if_set ();
       if (!struct_type)
         throw Config_Error ("", "Struct type description required");
 
-      for (auto const& member : struct_type->member ())
-      {
-        dt_map[member.name ()] = &member.type ();
-      }
+      for (::DAnCE::Config_Handlers::StructMemberType const& member : struct_type->member ())
+        dt_map[member.name ()] = std::addressof (member.type ());
     }
 
     IDL::traits<DynamicAny::DynAny>::ref_type
@@ -53,7 +51,7 @@ namespace DAnCEX11
         else
           tc = DynStruct_Handler::create_typecode (type);
 
-        std::map <std::string, DataType const*> dt_map;
+        std::map<std::string, DataType const*> dt_map;
         create_type_map (type, dt_map);
 
         // Make the actual DynStruct
@@ -67,9 +65,9 @@ namespace DAnCEX11
         values.resize (value.member ().size ());
         std::set<std::string> seen_members;
 
-        for (auto const& member : value.member ())
+        for (::DAnCE::Config_Handlers::NamedValue const& member : value.member ())
         {
-          auto const data_type = dt_map.find (member.name ());
+          std::map<std::string, DataType const*>::const_iterator const data_type = dt_map.find (member.name ());
           if (data_type == dt_map.end ())
             throw Config_Error (member.name (), "Unknown member in struct value");
           if (!seen_members.insert (member.name ()).second)
@@ -104,22 +102,22 @@ namespace DAnCEX11
 
       ::DAnCE::Config_Handlers::StructType const* struct_type = type._cxx_struct_if_set ();
       if (!struct_type)
-        {
-          DANCEX11_LOG_ERROR ("ERROR: Struct type description required");
+      {
+        DANCEX11_LOG_ERROR ("ERROR: Struct type description required");
         throw Config_Error ("", "Expected struct type information, tc_kind may be incorrect");
-        }
+      }
       std::string rid (struct_type->typeId ());
       std::string name (struct_type->name ());
 
       CORBA::StructMemberSeq members;
 
-      for (auto const& source_member : struct_type->member ())
+      for (::DAnCE::Config_Handlers::StructMemberType const& source_member : struct_type->member ())
       {
         CORBA::StructMember member =
-           CORBA::StructMember(source_member.name (),
+          CORBA::StructMember (source_member.name (),
                                DYNANY_HANDLER->create_typecode (source_member.type ()),
                                nullptr);
-          members.push_back (member);
+        members.push_back (member);
       }
 
       IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_struct_tc (

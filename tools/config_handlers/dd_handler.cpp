@@ -12,8 +12,34 @@
 #include "Deployment.hpp"
 #include "dancex11/logger/log.h"
 #include "common.h"
-#include <vector>
+#include <memory>
+#include <string>
 #include <unordered_map>
+#include <vector>
+
+namespace
+{
+  template <typename T>
+  void add_named (T const& value,
+                  std::unordered_map<std::string, size_t>& indices,
+                  std::vector<T const*>& values)
+  {
+    if (indices.emplace (value.name (), values.size ()).second)
+      values.push_back (std::addressof (value));
+  }
+
+  template <typename IndexMap>
+  uint32_t find_index (IndexMap const& indices,
+                       std::string const& name,
+                       char const* type)
+  {
+    typename IndexMap::const_iterator const found = indices.find (name);
+    if (found == indices.end ())
+      throw DAnCEX11::Config_Handlers::Config_Error (
+        name, std::string ("Unresolved ") + type + " reference in domain");
+    return static_cast<uint32_t> (found->second);
+  }
+}
 
 namespace DAnCEX11
 {
@@ -52,31 +78,14 @@ namespace DAnCEX11
       std::unordered_map<std::string, size_t> bridge_indices;
       std::unordered_map<std::string, size_t> shared_resource_indices;
 
-      auto add_node = [&] (Node const& value)
-      {
-        if (node_indices.emplace (value.name (), nodes.size ()).second)
-          nodes.push_back (std::addressof(value));
-      };
-      auto add_interconnect = [&] (Interconnect const& value)
-      {
-        if (interconnect_indices.emplace (value.name (), interconnects.size ()).second)
-          interconnects.push_back (std::addressof(value));
-      };
-      auto add_bridge = [&] (Bridge const& value)
-      {
-        if (bridge_indices.emplace (value.name (), bridges.size ()).second)
-          bridges.push_back (std::addressof(value));
-      };
-      auto add_shared_resource = [&] (SharedResource const& value)
-      {
-        if (shared_resource_indices.emplace (value.name (), shared_resources.size ()).second)
-          shared_resources.push_back (std::addressof(value));
-      };
-
-      for (Node const& value : domain.node ()) add_node (value);
-      for (Interconnect const& value : domain.interconnect ()) add_interconnect (value);
-      for (Bridge const& value : domain.bridge ()) add_bridge (value);
-      for (SharedResource const& value : domain.sharedResource ()) add_shared_resource (value);
+      for (Node const& value : domain.node ())
+        add_named (value, node_indices, nodes);
+      for (Interconnect const& value : domain.interconnect ())
+        add_named (value, interconnect_indices, interconnects);
+      for (Bridge const& value : domain.bridge ())
+        add_named (value, bridge_indices, bridges);
+      for (SharedResource const& value : domain.sharedResource ())
+        add_named (value, shared_resource_indices, shared_resources);
 
       for (size_t n {}, i {}, b {}, s {};
            n < nodes.size () || i < interconnects.size () ||
@@ -85,32 +94,29 @@ namespace DAnCEX11
         while (n < nodes.size ())
         {
           Node const& value = *nodes[n++];
-          for (Interconnect const& connection : value.connection ()) add_interconnect (connection);
-          for (SharedResource const& resource : value.sharedResource ()) add_shared_resource (resource);
+          for (Interconnect const& connection : value.connection ())
+            add_named (connection, interconnect_indices, interconnects);
+          for (SharedResource const& resource : value.sharedResource ())
+            add_named (resource, shared_resource_indices, shared_resources);
         }
         while (i < interconnects.size ())
         {
           Interconnect const& value = *interconnects[i++];
-          for (Bridge const& connection : value.connection ()) add_bridge (connection);
-          for (Node const& connection : value.connect ()) add_node (connection);
+          for (Bridge const& connection : value.connection ())
+            add_named (connection, bridge_indices, bridges);
+          for (Node const& connection : value.connect ())
+            add_named (connection, node_indices, nodes);
         }
         while (b < bridges.size ())
         {
-          for (Interconnect const& connection : bridges[b++]->connect ()) add_interconnect (connection);
+          for (Interconnect const& connection : bridges[b++]->connect ())
+            add_named (connection, interconnect_indices, interconnects);
         }
         while (s < shared_resources.size ())
         {
-          add_node (shared_resources[s++]->node ());
+          add_named (shared_resources[s++]->node (), node_indices, nodes);
         }
       }
-
-      auto find_index = [] (auto const& indices, std::string const& name, char const* type)
-      {
-        auto const found = indices.find (name);
-        if (found == indices.end ())
-          throw Config_Error (name, std::string ("Unresolved ") + type + " reference in domain");
-        return static_cast<uint32_t>(found->second);
-      };
 
       for (SharedResource const* src : shared_resources)
       {

@@ -87,7 +87,7 @@ namespace DAnCEX11
             dynseq.resize (value.element ().size ());
             retval->set_length (static_cast<uint32_t>(value.element ().size ()));
 
-            for (auto const& element : value.element ())
+            for (DataValue const& element : value.element ())
             {
               IDL::traits<DynamicAny::DynAny>::ref_type dynany (
                 DYNANY_HANDLER->extract_into_dynany (sequence_type->elementType (), element));

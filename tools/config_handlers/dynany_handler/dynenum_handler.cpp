@@ -85,7 +85,7 @@ namespace DAnCEX11
       // Construct TypeCode for the enum
       CORBA::EnumMemberSeq members;
 
-      for (auto const& member : enum_type->member ())
+      for (::XMLSchema::string<char> const& member : enum_type->member ())
         members.push_back (member);
 
       IDL::traits<CORBA::TypeCode>::ref_type tc = DYNANY_HANDLER->orb ()->create_enum_tc (

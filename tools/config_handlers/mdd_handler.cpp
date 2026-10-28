@@ -40,7 +40,8 @@ namespace DAnCEX11
                        if (!idref)
                          throw Config_Error ("", "Missing idref for artifact reference");
 
-                       auto result = artifact_map.find (idref->id ());
+                       std::unordered_map<std::string, size_t>::const_iterator const result =
+                         artifact_map.find (idref->id ());
                        if (result != artifact_map.end ())
                          return static_cast<uint32_t>(result->second);
                        else
