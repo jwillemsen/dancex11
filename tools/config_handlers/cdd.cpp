@@ -272,7 +272,7 @@ namespace DAnCE
           infoProperty_.emplace_back (e);
         }
       }
-      if (node_.size () < 1)throw std::invalid_argument ("missing required XML element: node");
+      if (node_.size () < 1) throw std::invalid_argument ("missing required XML element: node");
     }
     Bridge::Bridge (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -301,8 +301,8 @@ namespace DAnCE
           resource_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (connect_.size () < 1)throw std::invalid_argument ("missing required XML element: connect");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (connect_.size () < 1) throw std::invalid_argument ("missing required XML element: connect");
     }
     Interconnect::Interconnect (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -335,8 +335,8 @@ namespace DAnCE
           resource_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (connect_.size () < 1)throw std::invalid_argument ("missing required XML element: connect");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (connect_.size () < 1) throw std::invalid_argument ("missing required XML element: connect");
     }
     Node::Node (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -369,7 +369,7 @@ namespace DAnCE
           resource_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
     }
     SharedResource::SharedResource (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -398,10 +398,10 @@ namespace DAnCE
           property_ = std::make_unique<::DAnCE::Config_Handlers::SatisfierProperty> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!resourceType_)throw std::invalid_argument ("missing required XML element: resourceType");
-      if (!node_)throw std::invalid_argument ("missing required XML element: node");
-      if (!property_)throw std::invalid_argument ("missing required XML element: property");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!resourceType_) throw std::invalid_argument ("missing required XML element: resourceType");
+      if (!node_) throw std::invalid_argument ("missing required XML element: node");
+      if (!property_) throw std::invalid_argument ("missing required XML element: property");
     }
   }
 }

@@ -1539,7 +1539,7 @@ namespace DAnCE
           id_ = std::make_unique<::XMLSchema::ID<char>> (a);
         }
       }
-      if (!kind_)throw std::invalid_argument ("missing required XML element: kind");
+      if (!kind_) throw std::invalid_argument ("missing required XML element: kind");
     }
     DataValue::DataValue (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1636,9 +1636,9 @@ namespace DAnCE
           elementType_ = std::make_unique<::DAnCE::Config_Handlers::DataType> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!typeId_)throw std::invalid_argument ("missing required XML element: typeId");
-      if (!elementType_)throw std::invalid_argument ("missing required XML element: elementType");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!typeId_) throw std::invalid_argument ("missing required XML element: typeId");
+      if (!elementType_) throw std::invalid_argument ("missing required XML element: elementType");
     }
     EnumType::EnumType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1663,9 +1663,9 @@ namespace DAnCE
           member_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!typeId_)throw std::invalid_argument ("missing required XML element: typeId");
-      if (member_.size () < 1)throw std::invalid_argument ("missing required XML element: member");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!typeId_) throw std::invalid_argument ("missing required XML element: typeId");
+      if (member_.size () < 1) throw std::invalid_argument ("missing required XML element: member");
     }
     BoundedStringType::BoundedStringType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1706,8 +1706,8 @@ namespace DAnCE
           member_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!typeId_)throw std::invalid_argument ("missing required XML element: typeId");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!typeId_) throw std::invalid_argument ("missing required XML element: typeId");
     }
     StructMemberType::StructMemberType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1728,8 +1728,8 @@ namespace DAnCE
           type_ = std::make_unique<::DAnCE::Config_Handlers::DataType> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!type_)throw std::invalid_argument ("missing required XML element: type");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!type_) throw std::invalid_argument ("missing required XML element: type");
     }
     ValueType::ValueType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1762,10 +1762,10 @@ namespace DAnCE
           member_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!typeId_)throw std::invalid_argument ("missing required XML element: typeId");
-      if (!modifier_)throw std::invalid_argument ("missing required XML element: modifier");
-      if (!baseType_)throw std::invalid_argument ("missing required XML element: baseType");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!typeId_) throw std::invalid_argument ("missing required XML element: typeId");
+      if (!modifier_) throw std::invalid_argument ("missing required XML element: modifier");
+      if (!baseType_) throw std::invalid_argument ("missing required XML element: baseType");
     }
     ValueMemberType::ValueMemberType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1790,9 +1790,9 @@ namespace DAnCE
           type_ = std::make_unique<::DAnCE::Config_Handlers::DataType> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!visibility_)throw std::invalid_argument ("missing required XML element: visibility");
-      if (!type_)throw std::invalid_argument ("missing required XML element: type");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!visibility_) throw std::invalid_argument ("missing required XML element: visibility");
+      if (!type_) throw std::invalid_argument ("missing required XML element: type");
     }
     NamedValue::NamedValue (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1813,8 +1813,8 @@ namespace DAnCE
           value_ = std::make_unique<::DAnCE::Config_Handlers::DataValue> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!value_)throw std::invalid_argument ("missing required XML element: value");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!value_) throw std::invalid_argument ("missing required XML element: value");
     }
     ArrayType::ArrayType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1835,8 +1835,8 @@ namespace DAnCE
           elementType_ = std::make_unique<::DAnCE::Config_Handlers::DataType> (e);
         }
       }
-      if (!length_)throw std::invalid_argument ("missing required XML element: length");
-      if (!elementType_)throw std::invalid_argument ("missing required XML element: elementType");
+      if (!length_) throw std::invalid_argument ("missing required XML element: length");
+      if (!elementType_) throw std::invalid_argument ("missing required XML element: elementType");
     }
     SequenceType::SequenceType (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1857,7 +1857,7 @@ namespace DAnCE
           elementType_ = std::make_unique<::DAnCE::Config_Handlers::DataType> (e);
         }
       }
-      if (!elementType_)throw std::invalid_argument ("missing required XML element: elementType");
+      if (!elementType_) throw std::invalid_argument ("missing required XML element: elementType");
     }
     Any::Any (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1878,8 +1878,8 @@ namespace DAnCE
           value_ = std::make_unique<::DAnCE::Config_Handlers::DataValue> (e);
         }
       }
-      if (!type_)throw std::invalid_argument ("missing required XML element: type");
-      if (!value_)throw std::invalid_argument ("missing required XML element: value");
+      if (!type_) throw std::invalid_argument ("missing required XML element: type");
+      if (!value_) throw std::invalid_argument ("missing required XML element: value");
     }
     Property::Property (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1900,8 +1900,8 @@ namespace DAnCE
           value_ = std::make_unique<::DAnCE::Config_Handlers::Any> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!value_)throw std::invalid_argument ("missing required XML element: value");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!value_) throw std::invalid_argument ("missing required XML element: value");
     }
     SatisfierPropertyKind::SatisfierPropertyKind (::XSCRT::XML::Element<char> const& e)
     : ::XSCRT::Type (e)
@@ -1959,10 +1959,10 @@ namespace DAnCE
           value_ = std::make_unique<::DAnCE::Config_Handlers::Any> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!kind_)throw std::invalid_argument ("missing required XML element: kind");
-      if (!dynamic_)throw std::invalid_argument ("missing required XML element: dynamic");
-      if (!value_)throw std::invalid_argument ("missing required XML element: value");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!kind_) throw std::invalid_argument ("missing required XML element: kind");
+      if (!dynamic_) throw std::invalid_argument ("missing required XML element: dynamic");
+      if (!value_) throw std::invalid_argument ("missing required XML element: value");
     }
     Resource::Resource (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -1987,8 +1987,8 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (resourceType_.size () < 1)throw std::invalid_argument ("missing required XML element: resourceType");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (resourceType_.size () < 1) throw std::invalid_argument ("missing required XML element: resourceType");
     }
     Requirement::Requirement (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2013,8 +2013,8 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!resourceType_)throw std::invalid_argument ("missing required XML element: resourceType");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!resourceType_) throw std::invalid_argument ("missing required XML element: resourceType");
     }
     ResourceDeploymentDescription::ResourceDeploymentDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2039,8 +2039,8 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!requirementName_)throw std::invalid_argument ("missing required XML element: requirementName");
-      if (!resourceName_)throw std::invalid_argument ("missing required XML element: resourceName");
+      if (!requirementName_) throw std::invalid_argument ("missing required XML element: requirementName");
+      if (!resourceName_) throw std::invalid_argument ("missing required XML element: resourceName");
     }
     ArtifactDeploymentDescription::ArtifactDeploymentDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2090,8 +2090,8 @@ namespace DAnCE
           id_ = std::make_unique<::XMLSchema::ID<char>> (a);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!node_)throw std::invalid_argument ("missing required XML element: node");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!node_) throw std::invalid_argument ("missing required XML element: node");
     }
     MonolithicDeploymentDescription::MonolithicDeploymentDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2133,7 +2133,7 @@ namespace DAnCE
           id_ = std::make_unique<::XMLSchema::ID<char>> (a);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
     }
     ResourceUsageKind::ResourceUsageKind (::XSCRT::XML::Element<char> const& e)
     : ::XSCRT::Type (e)
@@ -2189,9 +2189,9 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!resourceUsage_)throw std::invalid_argument ("missing required XML element: resourceUsage");
-      if (!requirementName_)throw std::invalid_argument ("missing required XML element: requirementName");
-      if (!resourceName_)throw std::invalid_argument ("missing required XML element: resourceName");
+      if (!resourceUsage_) throw std::invalid_argument ("missing required XML element: resourceUsage");
+      if (!requirementName_) throw std::invalid_argument ("missing required XML element: requirementName");
+      if (!resourceName_) throw std::invalid_argument ("missing required XML element: resourceName");
     }
     InstanceDeploymentDescription::InstanceDeploymentDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2241,10 +2241,10 @@ namespace DAnCE
           id_ = std::make_unique<::XMLSchema::ID<char>> (a);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!node_)throw std::invalid_argument ("missing required XML element: node");
-      if (!source_)throw std::invalid_argument ("missing required XML element: source");
-      if (!implementation_)throw std::invalid_argument ("missing required XML element: implementation");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!node_) throw std::invalid_argument ("missing required XML element: node");
+      if (!source_) throw std::invalid_argument ("missing required XML element: source");
+      if (!implementation_) throw std::invalid_argument ("missing required XML element: implementation");
     }
     CCMComponentPortKind::CCMComponentPortKind (::XSCRT::XML::Element<char> const& e)
     : ::XSCRT::Type (e)
@@ -2326,12 +2326,12 @@ namespace DAnCE
           templateParam_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!provider_)throw std::invalid_argument ("missing required XML element: provider");
-      if (!exclusiveProvider_)throw std::invalid_argument ("missing required XML element: exclusiveProvider");
-      if (!exclusiveUser_)throw std::invalid_argument ("missing required XML element: exclusiveUser");
-      if (!optional_)throw std::invalid_argument ("missing required XML element: optional");
-      if (!kind_)throw std::invalid_argument ("missing required XML element: kind");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!provider_) throw std::invalid_argument ("missing required XML element: provider");
+      if (!exclusiveProvider_) throw std::invalid_argument ("missing required XML element: exclusiveProvider");
+      if (!exclusiveUser_) throw std::invalid_argument ("missing required XML element: exclusiveUser");
+      if (!optional_) throw std::invalid_argument ("missing required XML element: optional");
+      if (!kind_) throw std::invalid_argument ("missing required XML element: kind");
     }
     ComponentPropertyDescription::ComponentPropertyDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2352,8 +2352,8 @@ namespace DAnCE
           type_ = std::make_unique<::DAnCE::Config_Handlers::DataType> (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
-      if (!type_)throw std::invalid_argument ("missing required XML element: type");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
+      if (!type_) throw std::invalid_argument ("missing required XML element: type");
     }
     ComponentExternalPortEndpoint::ComponentExternalPortEndpoint (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2370,7 +2370,7 @@ namespace DAnCE
           portName_ = std::make_unique<::XMLSchema::string<char>> (e);
         }
       }
-      if (!portName_)throw std::invalid_argument ("missing required XML element: portName");
+      if (!portName_) throw std::invalid_argument ("missing required XML element: portName");
     }
     PlanSubcomponentPortEndpoint::PlanSubcomponentPortEndpoint (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2399,9 +2399,9 @@ namespace DAnCE
           instance_ = std::make_unique<::DAnCE::Config_Handlers::IdRef> (e);
         }
       }
-      if (!portName_)throw std::invalid_argument ("missing required XML element: portName");
-      if (!kind_)throw std::invalid_argument ("missing required XML element: kind");
-      if (!instance_)throw std::invalid_argument ("missing required XML element: instance");
+      if (!portName_) throw std::invalid_argument ("missing required XML element: portName");
+      if (!kind_) throw std::invalid_argument ("missing required XML element: kind");
+      if (!instance_) throw std::invalid_argument ("missing required XML element: instance");
     }
     ExternalReferenceEndpoint::ExternalReferenceEndpoint (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2430,8 +2430,8 @@ namespace DAnCE
           supportedType_.emplace_back (e);
         }
       }
-      if (!location_)throw std::invalid_argument ("missing required XML element: location");
-      if (!provider_)throw std::invalid_argument ("missing required XML element: provider");
+      if (!location_) throw std::invalid_argument ("missing required XML element: location");
+      if (!provider_) throw std::invalid_argument ("missing required XML element: provider");
     }
     ConnectionResourceDeploymentDescription::ConnectionResourceDeploymentDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2460,9 +2460,9 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!targetName_)throw std::invalid_argument ("missing required XML element: targetName");
-      if (!requirementName_)throw std::invalid_argument ("missing required XML element: requirementName");
-      if (!resourceName_)throw std::invalid_argument ("missing required XML element: resourceName");
+      if (!targetName_) throw std::invalid_argument ("missing required XML element: targetName");
+      if (!requirementName_) throw std::invalid_argument ("missing required XML element: requirementName");
+      if (!resourceName_) throw std::invalid_argument ("missing required XML element: resourceName");
     }
     PlanConnectionDescription::PlanConnectionDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2503,7 +2503,7 @@ namespace DAnCE
           deployedResource_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
     }
     ImplementationDependency::ImplementationDependency (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2520,7 +2520,7 @@ namespace DAnCE
           requiredType_ = std::make_unique<::XMLSchema::string<char>> (e);
         }
       }
-      if (!requiredType_)throw std::invalid_argument ("missing required XML element: requiredType");
+      if (!requiredType_) throw std::invalid_argument ("missing required XML element: requiredType");
     }
     Capability::Capability (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2545,7 +2545,7 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
     }
     ImplementationRequirement::ImplementationRequirement (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2582,8 +2582,8 @@ namespace DAnCE
           property_.emplace_back (e);
         }
       }
-      if (!resourceType_)throw std::invalid_argument ("missing required XML element: resourceType");
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!resourceType_) throw std::invalid_argument ("missing required XML element: resourceType");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
     }
     SubcomponentPortEndpoint::SubcomponentPortEndpoint (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2604,8 +2604,8 @@ namespace DAnCE
           instance_ = std::make_unique<::DAnCE::Config_Handlers::IdRef> (e);
         }
       }
-      if (!portName_)throw std::invalid_argument ("missing required XML element: portName");
-      if (!instance_)throw std::invalid_argument ("missing required XML element: instance");
+      if (!portName_) throw std::invalid_argument ("missing required XML element: portName");
+      if (!instance_) throw std::invalid_argument ("missing required XML element: instance");
     }
     AssemblyConnectionDescription::AssemblyConnectionDescription (::XSCRT::XML::Element<char> const& element)
     : ::XSCRT::Type (element)
@@ -2638,7 +2638,7 @@ namespace DAnCE
           externalReference_.emplace_back (e);
         }
       }
-      if (!name_)throw std::invalid_argument ("missing required XML element: name");
+      if (!name_) throw std::invalid_argument ("missing required XML element: name");
     }
     PlanLocalityKind::PlanLocalityKind (::XSCRT::XML::Element<char> const& e)
     : ::XSCRT::Type (e)
@@ -2682,8 +2682,8 @@ namespace DAnCE
           constrainedInstance_.emplace_back (e);
         }
       }
-      if (!constraint_)throw std::invalid_argument ("missing required XML element: constraint");
-      if (constrainedInstance_.size () < 1)throw std::invalid_argument ("missing required XML element: constrainedInstance");
+      if (!constraint_) throw std::invalid_argument ("missing required XML element: constraint");
+      if (constrainedInstance_.size () < 1) throw std::invalid_argument ("missing required XML element: constrainedInstance");
     }
   }
 }
