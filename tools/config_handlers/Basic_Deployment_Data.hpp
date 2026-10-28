@@ -60,36 +60,6 @@ namespace DAnCE
 }
 #include <memory>
 #include <string>
-#include <optional>
-#ifndef XSCRT_OPTIONAL_ARG_HPP
-#define XSCRT_OPTIONAL_ARG_HPP
-namespace XSCRT
-{
-  template <typename T>
-  class OptionalArg
-  {
-  public:
-    OptionalArg (std::nullopt_t) noexcept : value_ (nullptr)
-    {
-    }
-    OptionalArg (T const& value) noexcept : value_ (std::addressof (value))
-    {
-    }
-    OptionalArg (T const&&) = delete;
-
-    explicit operator bool () const noexcept
-    {
-      return value_ != nullptr;
-    }
-    T const& operator* () const noexcept
-    {
-      return *value_;
-    }
-  private:
-    T const* value_ {};
-  };
-}
-#endif // XSCRT_OPTIONAL_ARG_HPP
 #include <list>
 #include "ace/XML_Utils/XMLSchema/Types.hpp"
 #include "ace/XML_Utils/XMLSchema/id_map.hpp"
@@ -115,9 +85,7 @@ namespace DAnCE
       idref_type idref_ {};
 
     public:
-      IdRef (::XSCRT::OptionalArg<::XMLSchema::string<char>> href__ = std::nullopt,
-             ::XSCRT::OptionalArg<::XMLSchema::IDREF<char>> idref__ = std::nullopt);
-
+      IdRef () = default;
       explicit IdRef (::XSCRT::XML::Element<char> const&);
       IdRef (IdRef const& s);
       IdRef (IdRef&&) = delete;
@@ -212,16 +180,6 @@ namespace DAnCE
 
     public:
       DataType () = delete;
-      DataType (::DAnCE::Config_Handlers::TCKind const& kind__,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::EnumType> _cxx_enum__ = std::nullopt,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::StructType> _cxx_struct__ = std::nullopt,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::ValueType> value__ = std::nullopt,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::SequenceType> sequence__ = std::nullopt,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::AliasType> alias__ = std::nullopt,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::ArrayType> array__ = std::nullopt,
-                ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::BoundedStringType> boundedString__ = std::nullopt,
-                ::XSCRT::OptionalArg<::XMLSchema::ID<char>> id__ = std::nullopt);
-
       explicit DataType (::XSCRT::XML::Element<char> const&);
       DataType (DataType const& s);
       DataType (DataType&&) = delete;
@@ -337,22 +295,7 @@ namespace DAnCE
       member_container_type member_ {};
 
     public:
-      DataValue (short_container_type const& _cxx_short__ = {},
-                 long_container_type const& _cxx_long__ = {},
-                 ushort_container_type const& ushort__ = {},
-                 ulong_container_type const& ulong__ = {},
-                 float_container_type const& _cxx_float__ = {},
-                 double_container_type const& _cxx_double__ = {},
-                 boolean_container_type const& boolean__ = {},
-                 octet_container_type const& octet__ = {},
-                 enum_container_type const& _cxx_enum__ = {},
-                 string_container_type const& string__ = {},
-                 longlong_container_type const& longlong__ = {},
-                 ulonglong_container_type const& ulonglong__ = {},
-                 longdouble_container_type const& longdouble__ = {},
-                 element_container_type const& element__ = {},
-                 member_container_type const& member__ = {});
-
+      DataValue () = default;
       explicit DataValue (::XSCRT::XML::Element<char> const&);
       DataValue (DataValue const& s) = default;
       DataValue (DataValue&&) = delete;
@@ -382,10 +325,6 @@ namespace DAnCE
 
     public:
       AliasType () = delete;
-      AliasType (::XMLSchema::string<char> const& name__,
-                 ::XMLSchema::string<char> const& typeId__,
-                 ::DAnCE::Config_Handlers::DataType const& elementType__);
-
       explicit AliasType (::XSCRT::XML::Element<char> const&);
       AliasType (AliasType const& s);
       AliasType (AliasType&&) = delete;
@@ -416,10 +355,6 @@ namespace DAnCE
 
     public:
       EnumType () = delete;
-      EnumType (::XMLSchema::string<char> const& name__,
-                ::XMLSchema::string<char> const& typeId__,
-                member_container_type const& member__);
-
       explicit EnumType (::XSCRT::XML::Element<char> const&);
       EnumType (EnumType const& s);
       EnumType (EnumType&&) = delete;
@@ -437,8 +372,7 @@ namespace DAnCE
       bound_container_type bound_ {};
 
     public:
-      BoundedStringType (bound_container_type const& bound__ = {});
-
+      BoundedStringType () = default;
       explicit BoundedStringType (::XSCRT::XML::Element<char> const&);
       BoundedStringType (BoundedStringType const& s) = default;
       BoundedStringType (BoundedStringType&&) = delete;
@@ -469,10 +403,6 @@ namespace DAnCE
 
     public:
       StructType () = delete;
-      StructType (::XMLSchema::string<char> const& name__,
-                  ::XMLSchema::string<char> const& typeId__,
-                  member_container_type const& member__ = {});
-
       explicit StructType (::XSCRT::XML::Element<char> const&);
       StructType (StructType const& s);
       StructType (StructType&&) = delete;
@@ -496,9 +426,6 @@ namespace DAnCE
 
     public:
       StructMemberType () = delete;
-      StructMemberType (::XMLSchema::string<char> const& name__,
-                        ::DAnCE::Config_Handlers::DataType const& type__);
-
       explicit StructMemberType (::XSCRT::XML::Element<char> const&);
       StructMemberType (StructMemberType const& s);
       StructMemberType (StructMemberType&&) = delete;
@@ -541,12 +468,6 @@ namespace DAnCE
 
     public:
       ValueType () = delete;
-      ValueType (::XMLSchema::string<char> const& name__,
-                 ::XMLSchema::string<char> const& typeId__,
-                 ::XMLSchema::string<char> const& modifier__,
-                 ::DAnCE::Config_Handlers::DataType const& baseType__,
-                 member_container_type const& member__ = {});
-
       explicit ValueType (::XSCRT::XML::Element<char> const&);
       ValueType (ValueType const& s);
       ValueType (ValueType&&) = delete;
@@ -576,10 +497,6 @@ namespace DAnCE
 
     public:
       ValueMemberType () = delete;
-      ValueMemberType (::XMLSchema::string<char> const& name__,
-                       ::XMLSchema::string<char> const& visibility__,
-                       ::DAnCE::Config_Handlers::DataType const& type__);
-
       explicit ValueMemberType (::XSCRT::XML::Element<char> const&);
       ValueMemberType (ValueMemberType const& s);
       ValueMemberType (ValueMemberType&&) = delete;
@@ -603,9 +520,6 @@ namespace DAnCE
 
     public:
       NamedValue () = delete;
-      NamedValue (::XMLSchema::string<char> const& name__,
-                  ::DAnCE::Config_Handlers::DataValue const& value__);
-
       explicit NamedValue (::XSCRT::XML::Element<char> const&);
       NamedValue (NamedValue const& s);
       NamedValue (NamedValue&&) = delete;
@@ -629,9 +543,6 @@ namespace DAnCE
 
     public:
       ArrayType () = delete;
-      ArrayType (::XMLSchema::unsignedInt const& length__,
-                 ::DAnCE::Config_Handlers::DataType const& elementType__);
-
       explicit ArrayType (::XSCRT::XML::Element<char> const&);
       ArrayType (ArrayType const& s);
       ArrayType (ArrayType&&) = delete;
@@ -655,9 +566,6 @@ namespace DAnCE
 
     public:
       SequenceType () = delete;
-      SequenceType (::DAnCE::Config_Handlers::DataType const& elementType__,
-                    ::XSCRT::OptionalArg<::XMLSchema::unsignedInt> bound__ = std::nullopt);
-
       explicit SequenceType (::XSCRT::XML::Element<char> const&);
       SequenceType (SequenceType const& s);
       SequenceType (SequenceType&&) = delete;
@@ -681,9 +589,6 @@ namespace DAnCE
 
     public:
       Any () = delete;
-      Any (::DAnCE::Config_Handlers::DataType const& type__,
-           ::DAnCE::Config_Handlers::DataValue const& value__);
-
       explicit Any (::XSCRT::XML::Element<char> const&);
       Any (Any const& s);
       Any (Any&&) = delete;
@@ -707,9 +612,6 @@ namespace DAnCE
 
     public:
       Property () = delete;
-      Property (::XMLSchema::string<char> const& name__,
-                ::DAnCE::Config_Handlers::Any const& value__);
-
       explicit Property (::XSCRT::XML::Element<char> const&);
       Property (Property const& s);
       Property (Property&&) = delete;
@@ -774,11 +676,6 @@ namespace DAnCE
 
     public:
       SatisfierProperty () = delete;
-      SatisfierProperty (::XMLSchema::string<char> const& name__,
-                         ::DAnCE::Config_Handlers::SatisfierPropertyKind const& kind__,
-                         ::XMLSchema::boolean const& dynamic__,
-                         ::DAnCE::Config_Handlers::Any const& value__);
-
       explicit SatisfierProperty (::XSCRT::XML::Element<char> const&);
       SatisfierProperty (SatisfierProperty const& s);
       SatisfierProperty (SatisfierProperty&&) = delete;
@@ -810,10 +707,6 @@ namespace DAnCE
 
     public:
       Resource () = delete;
-      Resource (::XMLSchema::string<char> const& name__,
-                resourceType_container_type const& resourceType__,
-                property_container_type const& property__ = {});
-
       explicit Resource (::XSCRT::XML::Element<char> const&);
       Resource (Resource const& s);
       Resource (Resource&&) = delete;
@@ -844,10 +737,6 @@ namespace DAnCE
 
     public:
       Requirement () = delete;
-      Requirement (::XMLSchema::string<char> const& name__,
-                   ::XMLSchema::string<char> const& resourceType__,
-                   property_container_type const& property__ = {});
-
       explicit Requirement (::XSCRT::XML::Element<char> const&);
       Requirement (Requirement const& s);
       Requirement (Requirement&&) = delete;
@@ -878,10 +767,6 @@ namespace DAnCE
 
     public:
       ResourceDeploymentDescription () = delete;
-      ResourceDeploymentDescription (::XMLSchema::string<char> const& requirementName__,
-                                     ::XMLSchema::string<char> const& resourceName__,
-                                     property_container_type const& property__ = {});
-
       explicit ResourceDeploymentDescription (::XSCRT::XML::Element<char> const&);
       ResourceDeploymentDescription (ResourceDeploymentDescription const& s);
       ResourceDeploymentDescription (ResourceDeploymentDescription&&) = delete;
@@ -946,15 +831,6 @@ namespace DAnCE
 
     public:
       ArtifactDeploymentDescription () = delete;
-      ArtifactDeploymentDescription (::XMLSchema::string<char> const& name__,
-                                     ::XMLSchema::string<char> const& node__,
-                                     source_container_type const& source__ = {},
-                                     location_container_type const& location__ = {},
-                                     execParameter_container_type const& execParameter__ = {},
-                                     deployRequirement_container_type const& deployRequirement__ = {},
-                                     deployedResource_container_type const& deployedResource__ = {},
-                                     ::XSCRT::OptionalArg<::XMLSchema::ID<char>> id__ = std::nullopt);
-
       explicit ArtifactDeploymentDescription (::XSCRT::XML::Element<char> const&);
       ArtifactDeploymentDescription (ArtifactDeploymentDescription const& s);
       ArtifactDeploymentDescription (ArtifactDeploymentDescription&&) = delete;
@@ -1006,13 +882,6 @@ namespace DAnCE
 
     public:
       MonolithicDeploymentDescription () = delete;
-      MonolithicDeploymentDescription (::XMLSchema::string<char> const& name__,
-                                       source_container_type const& source__ = {},
-                                       artifact_container_type const& artifact__ = {},
-                                       execParameter_container_type const& execParameter__ = {},
-                                       deployRequirement_container_type const& deployRequirement__ = {},
-                                       ::XSCRT::OptionalArg<::XMLSchema::ID<char>> id__ = std::nullopt);
-
       explicit MonolithicDeploymentDescription (::XSCRT::XML::Element<char> const&);
       MonolithicDeploymentDescription (MonolithicDeploymentDescription const& s);
       MonolithicDeploymentDescription (MonolithicDeploymentDescription&&) = delete;
@@ -1078,11 +947,6 @@ namespace DAnCE
 
     public:
       InstanceResourceDeploymentDescription () = delete;
-      InstanceResourceDeploymentDescription (::DAnCE::Config_Handlers::ResourceUsageKind const& resourceUsage__,
-                                             ::XMLSchema::string<char> const& requirementName__,
-                                             ::XMLSchema::string<char> const& resourceName__,
-                                             property_container_type const& property__ = {});
-
       explicit InstanceResourceDeploymentDescription (::XSCRT::XML::Element<char> const&);
       InstanceResourceDeploymentDescription (InstanceResourceDeploymentDescription const& s);
       InstanceResourceDeploymentDescription (InstanceResourceDeploymentDescription&&) = delete;
@@ -1145,15 +1009,6 @@ namespace DAnCE
 
     public:
       InstanceDeploymentDescription () = delete;
-      InstanceDeploymentDescription (::XMLSchema::string<char> const& name__,
-                                     ::XMLSchema::string<char> const& node__,
-                                     ::XMLSchema::string<char> const& source__,
-                                     ::DAnCE::Config_Handlers::IdRef const& implementation__,
-                                     configProperty_container_type const& configProperty__ = {},
-                                     deployedResource_container_type const& deployedResource__ = {},
-                                     deployedSharedResource_container_type const& deployedSharedResource__ = {},
-                                     ::XSCRT::OptionalArg<::XMLSchema::ID<char>> id__ = std::nullopt);
-
       explicit InstanceDeploymentDescription (::XSCRT::XML::Element<char> const&);
       InstanceDeploymentDescription (InstanceDeploymentDescription const& s);
       InstanceDeploymentDescription (InstanceDeploymentDescription&&) = delete;
@@ -1250,16 +1105,6 @@ namespace DAnCE
 
     public:
       ComponentPortDescription () = delete;
-      ComponentPortDescription (::XMLSchema::string<char> const& name__,
-                                ::XMLSchema::boolean const& provider__,
-                                ::XMLSchema::boolean const& exclusiveProvider__,
-                                ::XMLSchema::boolean const& exclusiveUser__,
-                                ::XMLSchema::boolean const& optional__,
-                                ::DAnCE::Config_Handlers::CCMComponentPortKind const& kind__,
-                                ::XSCRT::OptionalArg<::XMLSchema::string<char>> specificType__ = std::nullopt,
-                                supportedType_container_type const& supportedType__ = {},
-                                templateParam_container_type const& templateParam__ = {});
-
       explicit ComponentPortDescription (::XSCRT::XML::Element<char> const&);
       ComponentPortDescription (ComponentPortDescription const& s);
       ComponentPortDescription (ComponentPortDescription&&) = delete;
@@ -1283,9 +1128,6 @@ namespace DAnCE
 
     public:
       ComponentPropertyDescription () = delete;
-      ComponentPropertyDescription (::XMLSchema::string<char> const& name__,
-                                    ::DAnCE::Config_Handlers::DataType const& type__);
-
       explicit ComponentPropertyDescription (::XSCRT::XML::Element<char> const&);
       ComponentPropertyDescription (ComponentPropertyDescription const& s);
       ComponentPropertyDescription (ComponentPropertyDescription&&) = delete;
@@ -1303,8 +1145,6 @@ namespace DAnCE
 
     public:
       ComponentExternalPortEndpoint () = delete;
-      ComponentExternalPortEndpoint (::XMLSchema::string<char> const& portName__);
-
       explicit ComponentExternalPortEndpoint (::XSCRT::XML::Element<char> const&);
       ComponentExternalPortEndpoint (ComponentExternalPortEndpoint const& s);
       ComponentExternalPortEndpoint (ComponentExternalPortEndpoint&&) = delete;
@@ -1340,11 +1180,6 @@ namespace DAnCE
 
     public:
       PlanSubcomponentPortEndpoint () = delete;
-      PlanSubcomponentPortEndpoint (::XMLSchema::string<char> const& portName__,
-                                    ::DAnCE::Config_Handlers::CCMComponentPortKind const& kind__,
-                                    ::DAnCE::Config_Handlers::IdRef const& instance__,
-                                    ::XSCRT::OptionalArg<::XMLSchema::string<char>> provider__ = std::nullopt);
-
       explicit PlanSubcomponentPortEndpoint (::XSCRT::XML::Element<char> const&);
       PlanSubcomponentPortEndpoint (PlanSubcomponentPortEndpoint const& s);
       PlanSubcomponentPortEndpoint (PlanSubcomponentPortEndpoint&&) = delete;
@@ -1381,11 +1216,6 @@ namespace DAnCE
 
     public:
       ExternalReferenceEndpoint () = delete;
-      ExternalReferenceEndpoint (::XMLSchema::string<char> const& location__,
-                                 ::XMLSchema::boolean const& provider__,
-                                 ::XSCRT::OptionalArg<::XMLSchema::string<char>> portName__ = std::nullopt,
-                                 supportedType_container_type const& supportedType__ = {});
-
       explicit ExternalReferenceEndpoint (::XSCRT::XML::Element<char> const&);
       ExternalReferenceEndpoint (ExternalReferenceEndpoint const& s);
       ExternalReferenceEndpoint (ExternalReferenceEndpoint&&) = delete;
@@ -1422,11 +1252,6 @@ namespace DAnCE
 
     public:
       ConnectionResourceDeploymentDescription () = delete;
-      ConnectionResourceDeploymentDescription (::XMLSchema::string<char> const& targetName__,
-                                               ::XMLSchema::string<char> const& requirementName__,
-                                               ::XMLSchema::string<char> const& resourceName__,
-                                               property_container_type const& property__ = {});
-
       explicit ConnectionResourceDeploymentDescription (::XSCRT::XML::Element<char> const&);
       ConnectionResourceDeploymentDescription (ConnectionResourceDeploymentDescription const& s);
       ConnectionResourceDeploymentDescription (ConnectionResourceDeploymentDescription&&) = delete;
@@ -1485,14 +1310,6 @@ namespace DAnCE
 
     public:
       PlanConnectionDescription () = delete;
-      PlanConnectionDescription (::XMLSchema::string<char> const& name__,
-                                 ::XSCRT::OptionalArg<::XMLSchema::string<char>> source__ = std::nullopt,
-                                 deployRequirement_container_type const& deployRequirement__ = {},
-                                 externalEndpoint_container_type const& externalEndpoint__ = {},
-                                 internalEndpoint_container_type const& internalEndpoint__ = {},
-                                 externalReference_container_type const& externalReference__ = {},
-                                 deployedResource_container_type const& deployedResource__ = {});
-
       explicit PlanConnectionDescription (::XSCRT::XML::Element<char> const&);
       PlanConnectionDescription (PlanConnectionDescription const& s);
       PlanConnectionDescription (PlanConnectionDescription&&) = delete;
@@ -1510,8 +1327,6 @@ namespace DAnCE
 
     public:
       ImplementationDependency () = delete;
-      ImplementationDependency (::XMLSchema::string<char> const& requiredType__);
-
       explicit ImplementationDependency (::XSCRT::XML::Element<char> const&);
       ImplementationDependency (ImplementationDependency const& s);
       ImplementationDependency (ImplementationDependency&&) = delete;
@@ -1543,10 +1358,6 @@ namespace DAnCE
 
     public:
       Capability () = delete;
-      Capability (::XMLSchema::string<char> const& name__,
-                  resourceType_container_type const& resourceType__ = {},
-                  property_container_type const& property__ = {});
-
       explicit Capability (::XSCRT::XML::Element<char> const&);
       Capability (Capability const& s);
       Capability (Capability&&) = delete;
@@ -1595,13 +1406,6 @@ namespace DAnCE
 
     public:
       ImplementationRequirement () = delete;
-      ImplementationRequirement (::XMLSchema::string<char> const& resourceType__,
-                                 ::XMLSchema::string<char> const& name__,
-                                 ::XSCRT::OptionalArg<::DAnCE::Config_Handlers::ResourceUsageKind> resourceUsage__ = std::nullopt,
-                                 ::XSCRT::OptionalArg<::XMLSchema::string<char>> resourcePort__ = std::nullopt,
-                                 ::XSCRT::OptionalArg<::XMLSchema::string<char>> componentPort__ = std::nullopt,
-                                 property_container_type const& property__ = {});
-
       explicit ImplementationRequirement (::XSCRT::XML::Element<char> const&);
       ImplementationRequirement (ImplementationRequirement const& s);
       ImplementationRequirement (ImplementationRequirement&&) = delete;
@@ -1625,9 +1429,6 @@ namespace DAnCE
 
     public:
       SubcomponentPortEndpoint () = delete;
-      SubcomponentPortEndpoint (::XMLSchema::string<char> const& portName__,
-                                ::DAnCE::Config_Handlers::IdRef const& instance__);
-
       explicit SubcomponentPortEndpoint (::XSCRT::XML::Element<char> const&);
       SubcomponentPortEndpoint (SubcomponentPortEndpoint const& s);
       SubcomponentPortEndpoint (SubcomponentPortEndpoint&&) = delete;
@@ -1673,12 +1474,6 @@ namespace DAnCE
 
     public:
       AssemblyConnectionDescription () = delete;
-      AssemblyConnectionDescription (::XMLSchema::string<char> const& name__,
-                                     deployRequirement_container_type const& deployRequirement__ = {},
-                                     internalEndpoint_container_type const& internalEndpoint__ = {},
-                                     externalEndpoint_container_type const& externalEndpoint__ = {},
-                                     externalReference_container_type const& externalReference__ = {});
-
       explicit AssemblyConnectionDescription (::XSCRT::XML::Element<char> const&);
       AssemblyConnectionDescription (AssemblyConnectionDescription const& s);
       AssemblyConnectionDescription (AssemblyConnectionDescription&&) = delete;
@@ -1732,9 +1527,6 @@ namespace DAnCE
 
     public:
       PlanLocality () = delete;
-      PlanLocality (::DAnCE::Config_Handlers::PlanLocalityKind const& constraint__,
-                    constrainedInstance_container_type const& constrainedInstance__);
-
       explicit PlanLocality (::XSCRT::XML::Element<char> const&);
       PlanLocality (PlanLocality const& s);
       PlanLocality (PlanLocality&&) = delete;
